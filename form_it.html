@@ -15,29 +15,6 @@
 	</div>
 	<div class="video">
 
-		<!-- <script type="text/javascript">
-			const wait = (timeout) => {
-				return new Promise(resolve => {
-					setTimeout(() => {
-						resolve();
-					}, timeout);
-				});
-			}
-			const checkFunction = async () => {
-				let retryPeriod = 100;
-				while (true) {
-					await wait(retryPeriod);
-					var bar = document.getElementsByClassName('formFooter f6 branding21')[0];
-					if (bar) {
-						bar.remove();
-						break;
-					}
-					retryPeriod += 100;
-				}
-			}
-			checkFunction();
-		</script> -->
-
 		<script src="https://cdn01.jotfor.ms/static/prototype.forms.js" type="text/javascript"></script>
 		<script src="https://cdn02.jotfor.ms/static/jotform.forms.js?3.3.28746" type="text/javascript"></script>
 		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/punycode/1.4.1/punycode.js"></script>
@@ -57,6 +34,8 @@
 			JotForm.init(function () {
 				/*INIT-START*/
 				JotForm.setPhoneMaskingValidator('input_7_full', '(###) ###-####');
+				if (window.JotForm && JotForm.accessible) $('input_10').setAttribute('tabindex', 0);
+				if (window.JotForm && JotForm.accessible) $('input_11').setAttribute('tabindex', 0);
 
 				JotForm.calendarMonths = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
 				JotForm.calendarDays = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
@@ -1349,14 +1328,14 @@
 					};
 
 					return _update;
-				})({ "text": { "text": "Question", "value": "Indica un orario in cui ti renderesti disponibile per una call" }, "labelAlign": { "text": "Label Align", "value": "Top", "dropdown": [["Auto", "Auto"], ["Left", "Left"], ["Right", "Right"], ["Top", "Top"]] }, "required": { "text": "Required", "value": "Yes", "dropdown": [["No", "No"], ["Yes", "Yes"]] }, "description": { "text": "Hover Text", "value": "", "textarea": true }, "slotDuration": { "text": "Slot Duration", "value": "15", "dropdown": [[15, "15 min"], [30, "30 min"], [45, "45 min"], [60, "60 min"], ["custom", "Custom min"]], "hint": "Select how long each slot will be." }, "startDate": { "text": "Start Date", "value": "" }, "endDate": { "text": "End Date", "value": "" }, "intervals": { "text": "Intervals", "value": [{ "from": "09:00", "to": "17:00", "days": ["Mon", "Tue", "Wed", "Thu", "Fri"] }], "hint": "The hours will be applied to the selected days and repeated." }, "useBlockout": { "text": "Blockout Custom Dates", "value": "No", "dropdown": [["No", "No"], ["Yes", "Yes"]], "hint": "Disable certain date(s) in the calendar." }, "blockoutDates": { "text": "Blockout dates", "value": [{ "startDate": "", "endDate": "" }] }, "useLunchBreak": { "text": "Lunch Time", "value": "Yes", "dropdown": [["No", "No"], ["Yes", "Yes"]], "hint": "Enable lunchtime in the calendar." }, "lunchBreak": { "text": "Lunchtime hours", "value": [{ "from": "12:00", "to": "14:00" }] }, "timezone": { "text": "Timezone", "value": "Europe/Rome (GMT+01:00)" }, "timeFormat": { "text": "Time Format", "value": "24 Hour", "dropdown": [["24 Hour", "24 Hour"], ["AM/PM", "AM/PM"]], "icon": "images/blank.gif", "iconClassName": "toolbar-time_format_24" }, "months": { "value": ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"], "hidden": true }, "days": { "value": ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"], "hidden": true }, "startWeekOn": { "text": "Start Week On", "value": "Monday", "dropdown": [["Monday", "Monday"], ["Sunday", "Sunday"]], "toolbar": false }, "rollingDays": { "text": "Rolling Days", "value": "", "toolbar": false }, "prevMonthButtonText": { "text": "Previous month", "value": "" }, "nextMonthButtonText": { "text": "Next month", "value": "" }, "prevYearButtonText": { "text": "Previous year", "value": "" }, "nextYearButtonText": { "text": "Next year", "value": "" }, "prevDayButtonText": { "text": "Previous day", "value": "" }, "nextDayButtonText": { "text": "Next day", "value": "" }, "appointmentType": { "hidden": true, "value": "multiple" }, "autoDetectTimezone": { "hidden": true, "value": "Yes" }, "dateFormat": { "hidden": true, "value": "dd/mm/yyyy" }, "maxAttendee": { "hidden": true, "value": "5" }, "maxEvents": { "hidden": true, "value": "" }, "minScheduleNotice": { "hidden": true, "value": "3" }, "name": { "hidden": true, "value": "indicaUn5" }, "order": { "hidden": true, "value": "6" }, "qid": { "toolbar": false, "value": "input_5" }, "reminderEmails": { "hidden": true, "value": { "schedule": [{ "value": "2", "unit": "hour" }, { "value": "4", "unit": "hour" }, { "value": "1", "unit": "day" }], "emailSettings": { "PDFPassword": "", "attachPDF": "false", "updateEmail": "true", "type": "APPOINTMENT_REMINDER", "to": [{ "id": "4", "value": "{email}", "name": "Email", "text": "Email", "isValid": "true", "isQuestion": "true" }], "subject": "Reminder: Your appointment is on {indicaUn5}", "content": "<table width=\"100%\" bgcolor=\"#ecedf2\" cellSpacing=\"0\" cellPadding=\"0\"><tbody><tr><td width=\"32\" style=\"width:32px;min-width:32px\"> </td><td><table class=\"jmTable-wrapper\" style=\"width:100%\" cellSpacing=\"0\" cellPadding=\"0\"><tbody><tr><td height=\"36\" style=\"min-height:36px\"> </td></tr><tr><td align=\"center\"><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:transparent;text-align:center\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\" id=\"jmLogo-container\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\"><img src=\"https://cdn.jotfor.ms/assets/img/logo2021/jotform-logo.png\" height=\"40\" alt=\"Jotform Logo\"/></td></tr></tbody></table><br/><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:#fff\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\" id=\"jmOutcome-container\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\"><table cellPadding=\"0\" cellSpacing=\"0\" width=\"100%\"><tbody><tr height=\"26\" style=\"min-height:26px\"><td colSpan=\"3\"> </td></tr><tr><td width=\"40\"></td><td id=\"jmButton-container\"><span id=\"jmOutcomeHeader-container\" style=\"font-size:17px;font-weight:500\"><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:#fff;font-weight:300\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\"><table width=\"100%\" cellPadding=\"0\" cellSpacing=\"0\"><tbody><tr><td><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:#fff;text-align:left;color:#0A1551;font-size:18px;font-weight:700;line-height:28px\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\">Here is a friendly reminder email of your appointment</td></tr></tbody></table></td></tr><tr><td height=\"18\"></td></tr><tr><td><table class=\"jmTable\" style=\"min-width:100%;max-width:100%;width:100%;background-color:rgba(233, 236, 249, 0.4);text-align:center;border-radius:4px;overflow:hidden\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\"><center><table cellPadding=\"0\" cellSpacing=\"0\" style=\"width:auto;max-width:100%;padding:15px 0\"><tbody><tr style=\"vertical-align:text-top\"><td><img src=\"https://emails.jotform.com/img/appointment/date.png?v=1.0\" alt=\"appointment icon\" width=\"14\" style=\"margin-right:5px\"/></td><td><table><tbody><tr><td><span style=\"color:#A5A8B3;font-size:12px;font-weight:400;line-height:20px\">Appointment</span></td></tr><tr><td><span style=\"color:#2B3245;font-size:14px;font-weight:400;line-height:20px\">{indicaUn5:date}</span></td></tr></tbody></table></td></tr><tr style=\"vertical-align:text-top\"><td><img src=\"https://emails.jotform.com/img/appointment/duration.png?v=1.0\" alt=\"appointment icon\" width=\"14\" style=\"margin-right:5px\"/></td><td><table><tbody><tr><td><span style=\"color:#A5A8B3;font-size:12px;font-weight:400;line-height:20px\">Duration</span></td></tr><tr><td><span style=\"color:#2B3245;font-size:14px;font-weight:400;line-height:20px\">{indicaUn5:duration}</span></td></tr></tbody></table></td></tr><tr style=\"vertical-align:text-top\"><td><img src=\"https://emails.jotform.com/img/appointment/timezone.png?v=1.0\" alt=\"appointment icon\" width=\"14\" style=\"margin-right:5px\"/></td><td><table><tbody><tr><td><span style=\"color:#A5A8B3;font-size:12px;font-weight:400;line-height:20px\">Timezone</span></td></tr><tr><td><span style=\"color:#2B3245;font-size:14px;font-weight:400;line-height:20px\">{indicaUn5:timezone}</span></td></tr></tbody></table></td></tr></tbody></table></center></td></tr></tbody></table></td></tr><tr><td height=\"18\"></td></tr><tr><td><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:#fff;text-align:center;font-size:14px;line-height:16px\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\">\n    Add to&nbsp;\n    <a style={{ textDecoration: 'none', color: '#0A1551' }} href=\"{googleCalendarLink:indicaUn5}\">Google</a>\n    &nbsp;&bull;&nbsp;\n    <a style={{ textDecoration: 'none', color: '#0A1551' }} href=\"{outlookLink:indicaUn5}\">Outlook</a>\n    &nbsp;&bull;&nbsp;\n    <a style={{ textDecoration: 'none', color: '#0A1551' }} href=\"{icalLink:indicaUn5}\">iCal</a>\n  </td></tr></tbody></table></td></tr><tr><td height=\"18\"></td></tr><tr><td><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:#fff;text-align:center\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\">\n  <a style=\"min-width: 64px; background-color: #FF6100; color: #fff; border-radius: 4px; font-size: 20px; font-weight: bold; line-height: 23px; text-align: center; padding: 16px 26px; display: inline-block; text-decoration: none; margin-top: 8px;\" href=\"{edit_link_v2}\">&nbsp;Reschedule or Cancel Appointment&nbsp;</a>\n  </td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></span></td><td width=\"40\"></td></tr><tr height=\"26\" style=\"min-height:26px\"><td colSpan=\"3\"> </td></tr></tbody></table></td></tr></tbody></table><br/><table class=\"jmTable-wrapper\" style=\"width:100%\" cellSpacing=\"0\" cellPadding=\"0\"><tbody><tr style=\"display:none\"><td height=\"64\" style=\"min-height:64px\"> </td></tr><tr><td align=\"center\"><table width=\"100%\" cellPadding=\"0\" cellSpacing=\"0\" style=\"max-width:720px\"><tbody><tr><td height=\"8\" bgcolor=\"#FF6100\" style=\"line-height:0;font-size:0;border-radius:4px 4px 0 0\"> </td></tr></tbody></table><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:#fff\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\"><table width=\"100%\" cellPadding=\"0\" cellSpacing=\"0\"><tbody><tr height=\"24\" style=\"min-height:24px\"><td colSpan=\"3\"> </td></tr><tr><td width=\"40\"></td><td><span style=\"font-size:18px;font-weight:700;color:#0A1551\" id=\"jmTitle-container\">{form_title}</span></td><td width=\"40\"></td></tr><tr height=\"16\" style=\"min-height:16px\"><td width=\"40\"></td><td style=\"border-bottom:1px solid #ECEDF2\"></td><td width=\"40\"></td></tr><tr><td colSpan=\"3\"><table class=\"jmSubmissionTable\" style=\"width:100%\" cellPadding=\"24\" cellSpacing=\"0\" id=\"jmSubmission-container\"><tbody id=\"emailFieldsTableBody\"><tr><td><table class=\"emailFieldsInnerTable\" width=\"100%\" cellPadding=\"12\" cellSpacing=\"0\" id=\"jmSubmission-container\"><tbody id=\"emailFieldsTableInnerBody\"><tr id=\"row_3\" class=\"questionRow\"><td width=\"40%\" bgcolor=\"transparent\" id=\"question_3\" class=\"questionColumn\" style=\"color:#6f76a7;font-size:14px\">Nome</td><td width=\"60%\" bgcolor=\"transparent\" id=\"value_3\" class=\"valueColumn\" style=\"color:#0a1551;font-size:14px\">{nome}</td></tr><tr id=\"row_4\" class=\"questionRow\"><td width=\"40%\" bgcolor=\"transparent\" id=\"question_4\" class=\"questionColumn\" style=\"color:#6f76a7;font-size:14px\">Email</td><td width=\"60%\" bgcolor=\"transparent\" id=\"value_4\" class=\"valueColumn\" style=\"color:#0a1551;font-size:14px\">{email}</td></tr><tr id=\"row_7\" class=\"questionRow\"><td width=\"40%\" bgcolor=\"transparent\" id=\"question_7\" class=\"questionColumn\" style=\"color:#6f76a7;font-size:14px\">Numero di Telefono</td><td width=\"60%\" bgcolor=\"transparent\" id=\"value_7\" class=\"valueColumn\" style=\"color:#0a1551;font-size:14px\">{numeroDi}</td></tr><tr id=\"row_6\" class=\"questionRow\"><td width=\"40%\" bgcolor=\"transparent\" id=\"question_6\" class=\"questionColumn\" style=\"color:#6f76a7;font-size:14px\">Indirizzo</td><td width=\"60%\" bgcolor=\"transparent\" id=\"value_6\" class=\"valueColumn\" style=\"color:#0a1551;font-size:14px\">{indirizzo}</td></tr><tr id=\"row_5\" class=\"questionRow\"><td width=\"40%\" bgcolor=\"transparent\" id=\"question_5\" class=\"questionColumn\" style=\"color:#6f76a7;font-size:14px\">Appuntamento</td><td width=\"60%\" bgcolor=\"transparent\" id=\"value_5\" class=\"valueColumn\" style=\"color:#0a1551;font-size:14px\">{indicaUn5}</td></tr><tr id=\"row_9\" class=\"questionRow\"><td width=\"40%\" bgcolor=\"transparent\" id=\"question_9\" class=\"questionColumn\" style=\"color:#6f76a7;font-size:14px\">Gli argomenti che vorresti trattare</td><td width=\"60%\" bgcolor=\"transparent\" id=\"value_9\" class=\"valueColumn\" style=\"color:#0a1551;font-size:14px\">{gliArgomenti}</td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td height=\"64\" style=\"min-height:64px\"> </td></tr></tbody></table></td></tr><tr><td height=\"116\" style=\"min-height:116px\"> </td></tr></tbody></table></td><td width=\"32\" style=\"width:32px;min-width:32px\"> </td></tr></tbody></table>", "senderName": "JotForm", "replyTo": "abolletta@netter.io", "branding21Email": "1" } } }, "type": { "hidden": true, "value": "control_appointment" }, "useReminderEmails": { "hidden": true, "value": "Yes" }, "id": { "toolbar": false, "value": "5" }, "qname": { "toolbar": false, "value": "q5_indicaUn5" }, "cdnconfig": { "CDN": "https://cdn.jotfor.ms/" }, "passive": false, "formProperties": { "products": false, "highlightLine": "Enabled", "coupons": false, "useStripeCoupons": false, "taxes": false, "comparePaymentForm": "", "paymentListSettings": false, "newPaymentUIForNewCreatedForms": "Yes", "formBackground": "#424756" }, "formID": 213034943936054, "themeVersion": "v2" });
+				})({ "text": { "text": "Question", "value": "Indica un orario in cui ti renderesti disponibile per una call" }, "labelAlign": { "text": "Label Align", "value": "Top", "dropdown": [["Auto", "Auto"], ["Left", "Left"], ["Right", "Right"], ["Top", "Top"]] }, "required": { "text": "Required", "value": "Yes", "dropdown": [["No", "No"], ["Yes", "Yes"]] }, "description": { "text": "Hover Text", "value": "", "textarea": true }, "slotDuration": { "text": "Slot Duration", "value": "15", "dropdown": [[15, "15 min"], [30, "30 min"], [45, "45 min"], [60, "60 min"], ["custom", "Custom min"]], "hint": "Select how long each slot will be." }, "startDate": { "text": "Start Date", "value": "" }, "endDate": { "text": "End Date", "value": "" }, "intervals": { "text": "Intervals", "value": [{ "from": "09:00", "to": "17:00", "days": ["Mon", "Tue", "Wed", "Thu", "Fri"] }], "hint": "The hours will be applied to the selected days and repeated." }, "useBlockout": { "text": "Blockout Custom Dates", "value": "No", "dropdown": [["No", "No"], ["Yes", "Yes"]], "hint": "Disable certain date(s) in the calendar." }, "blockoutDates": { "text": "Blockout dates", "value": [{ "startDate": "", "endDate": "" }] }, "useLunchBreak": { "text": "Lunch Time", "value": "Yes", "dropdown": [["No", "No"], ["Yes", "Yes"]], "hint": "Enable lunchtime in the calendar." }, "lunchBreak": { "text": "Lunchtime hours", "value": [{ "from": "12:00", "to": "14:00" }] }, "timezone": { "text": "Timezone", "value": "Europe/Rome (GMT+01:00)" }, "timeFormat": { "text": "Time Format", "value": "24 Hour", "dropdown": [["24 Hour", "24 Hour"], ["AM/PM", "AM/PM"]], "icon": "images/blank.gif", "iconClassName": "toolbar-time_format_24" }, "months": { "value": ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"], "hidden": true }, "days": { "value": ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"], "hidden": true }, "startWeekOn": { "text": "Start Week On", "value": "Monday", "dropdown": [["Monday", "Monday"], ["Sunday", "Sunday"]], "toolbar": false }, "rollingDays": { "text": "Rolling Days", "value": "", "toolbar": false }, "prevMonthButtonText": { "text": "Previous month", "value": "" }, "nextMonthButtonText": { "text": "Next month", "value": "" }, "prevYearButtonText": { "text": "Previous year", "value": "" }, "nextYearButtonText": { "text": "Next year", "value": "" }, "prevDayButtonText": { "text": "Previous day", "value": "" }, "nextDayButtonText": { "text": "Next day", "value": "" }, "appointmentType": { "hidden": true, "value": "multiple" }, "autoDetectTimezone": { "hidden": true, "value": "Yes" }, "dateFormat": { "hidden": true, "value": "dd/mm/yyyy" }, "maxAttendee": { "hidden": true, "value": "5" }, "maxEvents": { "hidden": true, "value": "" }, "minScheduleNotice": { "hidden": true, "value": "3" }, "name": { "hidden": true, "value": "indicaUn5" }, "order": { "hidden": true, "value": "8" }, "qid": { "toolbar": false, "value": "input_5" }, "reminderEmails": { "hidden": true, "value": { "schedule": [{ "value": "2", "unit": "hour" }, { "value": "4", "unit": "hour" }, { "value": "1", "unit": "day" }], "emailSettings": { "PDFPassword": "", "attachPDF": "false", "updateEmail": "true", "type": "APPOINTMENT_REMINDER", "to": [{ "id": "4", "value": "{email}", "name": "Email", "text": "Email", "isValid": "true", "isQuestion": "true" }], "subject": "Reminder: Your appointment is on {indicaUn5}", "content": "<table width=\"100%\" bgcolor=\"#ecedf2\" cellSpacing=\"0\" cellPadding=\"0\"><tbody><tr><td width=\"32\" style=\"width:32px;min-width:32px\"> </td><td><table class=\"jmTable-wrapper\" style=\"width:100%\" cellSpacing=\"0\" cellPadding=\"0\"><tbody><tr><td height=\"36\" style=\"min-height:36px\"> </td></tr><tr><td align=\"center\"><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:transparent;text-align:center\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\" id=\"jmLogo-container\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\"><img src=\"https://cdn.jotfor.ms/assets/img/logo2021/jotform-logo.png\" height=\"40\" alt=\"Jotform Logo\"/></td></tr></tbody></table><br/><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:#fff\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\" id=\"jmOutcome-container\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\"><table cellPadding=\"0\" cellSpacing=\"0\" width=\"100%\"><tbody><tr height=\"26\" style=\"min-height:26px\"><td colSpan=\"3\"> </td></tr><tr><td width=\"40\"></td><td id=\"jmButton-container\"><span id=\"jmOutcomeHeader-container\" style=\"font-size:17px;font-weight:500\"><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:#fff;font-weight:300\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\"><table width=\"100%\" cellPadding=\"0\" cellSpacing=\"0\"><tbody><tr><td><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:#fff;text-align:left;color:#0A1551;font-size:18px;font-weight:700;line-height:28px\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\">Here is a friendly reminder email of your appointment</td></tr></tbody></table></td></tr><tr><td height=\"18\"></td></tr><tr><td><table class=\"jmTable\" style=\"min-width:100%;max-width:100%;width:100%;background-color:rgba(233, 236, 249, 0.4);text-align:center;border-radius:4px;overflow:hidden\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\"><center><table cellPadding=\"0\" cellSpacing=\"0\" style=\"width:auto;max-width:100%;padding:15px 0\"><tbody><tr style=\"vertical-align:text-top\"><td><img src=\"https://emails.jotform.com/img/appointment/date.png?v=1.0\" alt=\"appointment icon\" width=\"14\" style=\"margin-right:5px\"/></td><td><table><tbody><tr><td><span style=\"color:#A5A8B3;font-size:12px;font-weight:400;line-height:20px\">Appointment</span></td></tr><tr><td><span style=\"color:#2B3245;font-size:14px;font-weight:400;line-height:20px\">{indicaUn5:date}</span></td></tr></tbody></table></td></tr><tr style=\"vertical-align:text-top\"><td><img src=\"https://emails.jotform.com/img/appointment/duration.png?v=1.0\" alt=\"appointment icon\" width=\"14\" style=\"margin-right:5px\"/></td><td><table><tbody><tr><td><span style=\"color:#A5A8B3;font-size:12px;font-weight:400;line-height:20px\">Duration</span></td></tr><tr><td><span style=\"color:#2B3245;font-size:14px;font-weight:400;line-height:20px\">{indicaUn5:duration}</span></td></tr></tbody></table></td></tr><tr style=\"vertical-align:text-top\"><td><img src=\"https://emails.jotform.com/img/appointment/timezone.png?v=1.0\" alt=\"appointment icon\" width=\"14\" style=\"margin-right:5px\"/></td><td><table><tbody><tr><td><span style=\"color:#A5A8B3;font-size:12px;font-weight:400;line-height:20px\">Timezone</span></td></tr><tr><td><span style=\"color:#2B3245;font-size:14px;font-weight:400;line-height:20px\">{indicaUn5:timezone}</span></td></tr></tbody></table></td></tr></tbody></table></center></td></tr></tbody></table></td></tr><tr><td height=\"18\"></td></tr><tr><td><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:#fff;text-align:center;font-size:14px;line-height:16px\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\">\n    Add to&nbsp;\n    <a style={{ textDecoration: 'none', color: '#0A1551' }} href=\"{googleCalendarLink:indicaUn5}\">Google</a>\n    &nbsp;&bull;&nbsp;\n    <a style={{ textDecoration: 'none', color: '#0A1551' }} href=\"{outlookLink:indicaUn5}\">Outlook</a>\n    &nbsp;&bull;&nbsp;\n    <a style={{ textDecoration: 'none', color: '#0A1551' }} href=\"{icalLink:indicaUn5}\">iCal</a>\n  </td></tr></tbody></table></td></tr><tr><td height=\"18\"></td></tr><tr><td><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:#fff;text-align:center\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\">\n  <a style=\"min-width: 64px; background-color: #FF6100; color: #fff; border-radius: 4px; font-size: 20px; font-weight: bold; line-height: 23px; text-align: center; padding: 16px 26px; display: inline-block; text-decoration: none; margin-top: 8px;\" href=\"{edit_link_v2}\">&nbsp;Reschedule or Cancel Appointment&nbsp;</a>\n  </td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></span></td><td width=\"40\"></td></tr><tr height=\"26\" style=\"min-height:26px\"><td colSpan=\"3\"> </td></tr></tbody></table></td></tr></tbody></table><br/><table class=\"jmTable-wrapper\" style=\"width:100%\" cellSpacing=\"0\" cellPadding=\"0\"><tbody><tr style=\"display:none\"><td height=\"64\" style=\"min-height:64px\"> </td></tr><tr><td align=\"center\"><table width=\"100%\" cellPadding=\"0\" cellSpacing=\"0\" style=\"max-width:720px\"><tbody><tr><td height=\"8\" bgcolor=\"#FF6100\" style=\"line-height:0;font-size:0;border-radius:4px 4px 0 0\"> </td></tr></tbody></table><table class=\"jmTable\" style=\"min-width:480px;max-width:720px;width:100%;background-color:#fff\" cellSpacing=\"0\" cellPadding=\"0\" width=\"100%\"><tbody><tr><td style=\"width:100%;max-width:100%;min-width:100%\"><table width=\"100%\" cellPadding=\"0\" cellSpacing=\"0\"><tbody><tr height=\"24\" style=\"min-height:24px\"><td colSpan=\"3\"> </td></tr><tr><td width=\"40\"></td><td><span style=\"font-size:18px;font-weight:700;color:#0A1551\" id=\"jmTitle-container\">{form_title}</span></td><td width=\"40\"></td></tr><tr height=\"16\" style=\"min-height:16px\"><td width=\"40\"></td><td style=\"border-bottom:1px solid #ECEDF2\"></td><td width=\"40\"></td></tr><tr><td colSpan=\"3\"><table class=\"jmSubmissionTable\" style=\"width:100%\" cellPadding=\"24\" cellSpacing=\"0\" id=\"jmSubmission-container\"><tbody id=\"emailFieldsTableBody\"><tr><td><table class=\"emailFieldsInnerTable\" width=\"100%\" cellPadding=\"12\" cellSpacing=\"0\" id=\"jmSubmission-container\"><tbody id=\"emailFieldsTableInnerBody\"><tr id=\"row_3\" class=\"questionRow\"><td width=\"40%\" bgcolor=\"transparent\" id=\"question_3\" class=\"questionColumn\" style=\"color:#6f76a7;font-size:14px\">Nome</td><td width=\"60%\" bgcolor=\"transparent\" id=\"value_3\" class=\"valueColumn\" style=\"color:#0a1551;font-size:14px\">{nome}</td></tr><tr id=\"row_4\" class=\"questionRow\"><td width=\"40%\" bgcolor=\"transparent\" id=\"question_4\" class=\"questionColumn\" style=\"color:#6f76a7;font-size:14px\">Email</td><td width=\"60%\" bgcolor=\"transparent\" id=\"value_4\" class=\"valueColumn\" style=\"color:#0a1551;font-size:14px\">{email}</td></tr><tr id=\"row_7\" class=\"questionRow\"><td width=\"40%\" bgcolor=\"transparent\" id=\"question_7\" class=\"questionColumn\" style=\"color:#6f76a7;font-size:14px\">Numero di Telefono</td><td width=\"60%\" bgcolor=\"transparent\" id=\"value_7\" class=\"valueColumn\" style=\"color:#0a1551;font-size:14px\">{numeroDi}</td></tr><tr id=\"row_6\" class=\"questionRow\"><td width=\"40%\" bgcolor=\"transparent\" id=\"question_6\" class=\"questionColumn\" style=\"color:#6f76a7;font-size:14px\">Indirizzo</td><td width=\"60%\" bgcolor=\"transparent\" id=\"value_6\" class=\"valueColumn\" style=\"color:#0a1551;font-size:14px\">{indirizzo}</td></tr><tr id=\"row_5\" class=\"questionRow\"><td width=\"40%\" bgcolor=\"transparent\" id=\"question_5\" class=\"questionColumn\" style=\"color:#6f76a7;font-size:14px\">Appuntamento</td><td width=\"60%\" bgcolor=\"transparent\" id=\"value_5\" class=\"valueColumn\" style=\"color:#0a1551;font-size:14px\">{indicaUn5}</td></tr><tr id=\"row_9\" class=\"questionRow\"><td width=\"40%\" bgcolor=\"transparent\" id=\"question_9\" class=\"questionColumn\" style=\"color:#6f76a7;font-size:14px\">Gli argomenti che vorresti trattare</td><td width=\"60%\" bgcolor=\"transparent\" id=\"value_9\" class=\"valueColumn\" style=\"color:#0a1551;font-size:14px\">{gliArgomenti}</td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td height=\"64\" style=\"min-height:64px\"> </td></tr></tbody></table></td></tr><tr><td height=\"116\" style=\"min-height:116px\"> </td></tr></tbody></table></td><td width=\"32\" style=\"width:32px;min-width:32px\"> </td></tr></tbody></table>", "senderName": "JotForm", "replyTo": "abolletta@netter.io", "branding21Email": "1" } } }, "type": { "hidden": true, "value": "control_appointment" }, "useReminderEmails": { "hidden": true, "value": "Yes" }, "id": { "toolbar": false, "value": "5" }, "qname": { "toolbar": false, "value": "q5_indicaUn5" }, "cdnconfig": { "CDN": "https://cdn.jotfor.ms/" }, "passive": false, "formProperties": { "products": false, "highlightLine": "Enabled", "coupons": false, "useStripeCoupons": false, "taxes": false, "comparePaymentForm": "", "paymentListSettings": false, "newPaymentUIForNewCreatedForms": "Yes", "formBackground": "#424756" }, "formID": 213034943936054, "themeVersion": "v2" });
 				JotForm.alterTexts({ "ageVerificationError": "Devi essere più grande di {minAge} anni di età per inviare questo modulo.", "alphabetic": "Questo campo può contenere solo lettere", "alphanumeric": "Questo campo può contenere solo lettere e numeri.", "appointmentSelected": "Hai selezionato {time} e {date}", "ccDonationMinLimitError": "L&amp;#039;importo minimo è {minAmount} {currency}", "ccInvalidCVC": "Il numero di CVC non è valido", "ccInvalidExpireDate": "La data di scadenza non è valida", "ccInvalidNumber": "Il Numero della Carta di Credito non è valido.", "ccMissingDetails": "Please fill up the credit card details.", "ccMissingDonation": "Inserisci valori numerici per l&amp;#039;ammontare della donazione.", "ccMissingProduct": "Per favore scegli almeno un prodotto.", "characterLimitError": "Troppi caratteri. Il limite è", "characterMinLimitError": "Troppi pochi caratteri. Il minimo è", "confirmClearForm": "Sei sicuro di voler cancellare il contenuto del form?", "confirmEmail": "L&amp;#039;e-mail non corrisponde", "currency": "Questo campo può contenere solo valori di valuta.", "cyrillic": "Questo campo può contenere solo caratteri cirillici", "dateInvalid": "Questa data non è valida. Il formato per la data è {format}", "dateInvalidSeparate": "Questa data non è valida. Inserisci un {element} valido.", "dateLimited": "Questa data non è disponibile.", "disallowDecimals": "Inserisci un numero intero.", "dragAndDropFilesHere_infoMessage": "Trascina e Rilascia i file qui", "email": "Inserire un indirizzo e-mail valido", "fillMask": "Il valore del campo deve riempire la maschera.", "freeEmailError": "Gli account di email liberi non sono permessi", "generalError": "Ci sono errori nel modulo. Si prega di correggerli prima di continuare.", "generalPageError": "Ci sono errori su questa pagina. Si prega di correggerli prima di continuare.", "gradingScoreError": "Il punteggio totale dovrebbe essere minore o uguale a", "incompleteFields": "Ci sono campi obbligatori incompleti. Per favore completali.", "inputCarretErrorA": "Il valore inserito non dovrebbe essere inferiore al valore minimo:", "inputCarretErrorB": "Il valore inserito non deve essere maggiore del valore massimo:", "justSoldOut": "Just Sold Out", "lessThan": "Il tuo punteggio dovrebbe essere inferiore a o uguale a", "maxDigitsError": "Il massimo numero di cifre consentito è", "maxFileSize_infoMessage": "Max. dimensione del file", "maxSelectionsError": "The maximum number of selections allowed is ", "minSelectionsError": "Il numero minimo di selezioni richieste è", "multipleFileUploads_emptyError": "{file} è vuoto, seleziona di nuovo i file omettendolo.", "multipleFileUploads_fileLimitError": "Sono ammessi solo {fileLimit} file.", "multipleFileUploads_minSizeError": "{file} è troppo piccolo, la dimensione minima è {minSizeLimit}", "multipleFileUploads_onLeave": "Sto caricando i file, se lasci ora l&amp;#039;upload verrà annullato.", "multipleFileUploads_sizeError": "{file} è troppo grande, la dimensione massima del file è {sizeLimit}.", "multipleFileUploads_typeError": "{file} ha un&amp;#039;estensione non valida. Sono ammesse solo queste estensioni: {extensions}.", "multipleFileUploads_uploadFailed": "File upload failed, please remove it and upload the file again.", "noSlotsAvailable": "Nessuna fascia oraria disponibile", "notEnoughStock": "Not enough stock for the current selection", "notEnoughStock_remainedItems": "Not enough stock for the current selection ({count} items left)", "noUploadExtensions": "File has no extension file type (e.g. .txt, .png, .jpeg)", "numeric": "Questo campo può contenere solo valori numerici", "pastDatesDisallowed": "La data non può essere trascorsa.", "pleaseWait": "Attendere prego...", "required": "Questo campo è obbligatorio.", "requireEveryCell": "Tutte le celle sono obbligatorie.", "requireEveryRow": "Tutte le righe sono obbligatorie.", "requireOne": "È richiesto almeno un campo.", "restrictedDomain": "This domain is not allowed", "selectionSoldOut": "Selection Sold Out", "slotUnavailable": "{time} e {date} sono stati presi. Seleziona per favore un&amp;#039;altra fascia oraria.", "soldOut": "Sold Out", "subProductItemsLeft": "({count} items left)", "uploadExtensions": "È possibile caricare solo i seguenti file:", "uploadFilesize": "Il file non può pesare più di:", "uploadFilesizemin": "La dimensione del file non può essere inferiore a:", "url": "Questo campo può contenere solo un&amp;#039;URL valida", "validateEmail": "You need to validate this e-mail", "wordLimitError": "Troppe parole. Il limite è", "wordMinLimitError": "Troppe poche parole. Il minimo è" });
 				/*INIT-END*/
 			});
 
-			JotForm.prepareCalculationsOnTheFly([null, { "name": "richiediUna", "qid": "1", "text": "Richiedi una demo", "type": "control_head" }, { "name": "submit2", "qid": "2", "text": "Invia", "type": "control_button" }, { "description": "", "name": "nome", "qid": "3", "text": "Nome", "type": "control_fullname" }, { "description": "", "name": "email", "qid": "4", "subLabel": "esempio@esempio.com", "text": "Email", "type": "control_email" }, { "description": "", "name": "indicaUn5", "qid": "5", "text": "Indica un orario in cui ti renderesti disponibile per una call", "type": "control_appointment" }, { "description": "", "name": "indirizzo", "qid": "6", "text": "Indirizzo", "type": "control_address" }, { "description": "", "name": "numeroDi", "qid": "7", "text": "Numero di Telefono", "type": "control_phone" }, null, { "description": "", "name": "gliArgomenti", "qid": "9", "text": "Gli argomenti che vorresti trattare", "type": "control_checkbox" }]);
+			JotForm.prepareCalculationsOnTheFly([null, { "name": "richiediUna", "qid": "1", "text": "Richiedi una demo", "type": "control_head" }, { "name": "submit2", "qid": "2", "text": "Invia", "type": "control_button" }, { "description": "", "name": "nome", "qid": "3", "text": "Nome", "type": "control_fullname" }, { "description": "", "name": "email", "qid": "4", "subLabel": "esempio@esempio.com", "text": "Email", "type": "control_email" }, { "description": "", "name": "indicaUn5", "qid": "5", "text": "Indica un orario in cui ti renderesti disponibile per una call", "type": "control_appointment" }, { "description": "", "name": "indirizzo", "qid": "6", "text": "Indirizzo", "type": "control_address" }, { "description": "", "name": "numeroDi", "qid": "7", "text": "Numero di Telefono", "type": "control_phone" }, null, { "description": "", "name": "gliArgomenti", "qid": "9", "text": "Gli argomenti che vorresti trattare", "type": "control_checkbox" }, { "description": "", "name": "azienda", "qid": "10", "subLabel": "Nome azienda", "text": "Azienda", "type": "control_textbox" }, { "description": "", "name": "ruoloIn", "qid": "11", "subLabel": "CTO, CEO, altro", "text": "Ruolo in azienda", "type": "control_textbox" }, { "description": "", "name": "perFavore", "qid": "12", "text": "Per favore verifica di essere umano", "type": "control_captcha" }]);
 			setTimeout(function () {
-				JotForm.paymentExtrasOnTheFly([null, { "name": "richiediUna", "qid": "1", "text": "Richiedi una demo", "type": "control_head" }, { "name": "submit2", "qid": "2", "text": "Invia", "type": "control_button" }, { "description": "", "name": "nome", "qid": "3", "text": "Nome", "type": "control_fullname" }, { "description": "", "name": "email", "qid": "4", "subLabel": "esempio@esempio.com", "text": "Email", "type": "control_email" }, { "description": "", "name": "indicaUn5", "qid": "5", "text": "Indica un orario in cui ti renderesti disponibile per una call", "type": "control_appointment" }, { "description": "", "name": "indirizzo", "qid": "6", "text": "Indirizzo", "type": "control_address" }, { "description": "", "name": "numeroDi", "qid": "7", "text": "Numero di Telefono", "type": "control_phone" }, null, { "description": "", "name": "gliArgomenti", "qid": "9", "text": "Gli argomenti che vorresti trattare", "type": "control_checkbox" }]);
+				JotForm.paymentExtrasOnTheFly([null, { "name": "richiediUna", "qid": "1", "text": "Richiedi una demo", "type": "control_head" }, { "name": "submit2", "qid": "2", "text": "Invia", "type": "control_button" }, { "description": "", "name": "nome", "qid": "3", "text": "Nome", "type": "control_fullname" }, { "description": "", "name": "email", "qid": "4", "subLabel": "esempio@esempio.com", "text": "Email", "type": "control_email" }, { "description": "", "name": "indicaUn5", "qid": "5", "text": "Indica un orario in cui ti renderesti disponibile per una call", "type": "control_appointment" }, { "description": "", "name": "indirizzo", "qid": "6", "text": "Indirizzo", "type": "control_address" }, { "description": "", "name": "numeroDi", "qid": "7", "text": "Numero di Telefono", "type": "control_phone" }, null, { "description": "", "name": "gliArgomenti", "qid": "9", "text": "Gli argomenti che vorresti trattare", "type": "control_checkbox" }, { "description": "", "name": "azienda", "qid": "10", "subLabel": "Nome azienda", "text": "Azienda", "type": "control_textbox" }, { "description": "", "name": "ruoloIn", "qid": "11", "subLabel": "CTO, CEO, altro", "text": "Ruolo in azienda", "type": "control_textbox" }, { "description": "", "name": "perFavore", "qid": "12", "text": "Per favore verifica di essere umano", "type": "control_captcha" }]);
 			}, 20); 
 		</script>
 		<style type="text/css">
@@ -1386,24 +1365,6 @@
 			href="https://cdn03.jotfor.ms/css/styles/payment/payment_feature.css?3.3.28746" />
 		<style type="text/css" id="form-designer-style">
 			/* Injected CSS Code */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			/*PREFERENCES STYLE*/
 			/* NEW THEME STYLE */
 
@@ -1893,14 +1854,7 @@
 				font-family: Inter, sans-serif;
 			}
 
-			.form-label.form-label-auto {
 
-				display: block;
-				float: none;
-				text-align: left;
-				width: 100%;
-
-			}
 
 			.form-line {
 				margin-top: 12px;
@@ -2030,6 +1984,15 @@
 
 			/*PREFERENCES STYLE*/
 			/*__INSPECT_SEPERATOR__*/
+			.form-label.form-label-auto {
+
+				display: block;
+				float: none;
+				text-align: left;
+				width: 100%;
+
+			}
+
 			/* Injected CSS Code */
 		</style>
 
@@ -2197,6 +2160,42 @@
 							</div>
 						</div>
 					</li>
+					<li class="form-line jf-required" data-type="control_textbox" id="id_10">
+						<label class="form-label form-label-top form-label-auto" id="label_10" for="input_10">
+							Azienda
+							<span class="form-required">
+								*
+							</span>
+						</label>
+						<div id="cid_10" class="form-input-wide jf-required" data-layout="half">
+							<span class="form-sub-label-container" style="vertical-align:top">
+								<input type="text" id="input_10" name="q10_azienda" data-type="input-textbox"
+									class="form-textbox validate[required]" data-defaultvalue="" style="width:310px"
+									size="310" value="" data-component="textbox"
+									aria-labelledby="label_10 sublabel_input_10" required="" />
+								<label class="form-sub-label" for="input_10" id="sublabel_input_10"
+									style="min-height:13px" aria-hidden="false"> Nome azienda </label>
+							</span>
+						</div>
+					</li>
+					<li class="form-line jf-required" data-type="control_textbox" id="id_11">
+						<label class="form-label form-label-top form-label-auto" id="label_11" for="input_11">
+							Ruolo in azienda
+							<span class="form-required">
+								*
+							</span>
+						</label>
+						<div id="cid_11" class="form-input-wide jf-required" data-layout="half">
+							<span class="form-sub-label-container" style="vertical-align:top">
+								<input type="text" id="input_11" name="q11_ruoloIn" data-type="input-textbox"
+									class="form-textbox validate[required]" data-defaultvalue="" style="width:310px"
+									size="310" value="" data-component="textbox"
+									aria-labelledby="label_11 sublabel_input_11" required="" />
+								<label class="form-sub-label" for="input_11" id="sublabel_input_11"
+									style="min-height:13px" aria-hidden="false"> CTO, CEO, altro </label>
+							</span>
+						</div>
+					</li>
 					<li class="form-line jf-required" data-type="control_appointment" id="id_5">
 						<label class="form-label form-label-top" id="label_5" for="input_5">
 							Indica un orario in cui ti renderesti disponibile per una call
@@ -2270,6 +2269,43 @@
 							</div>
 						</div>
 					</li>
+					<li class="form-line jf-required" data-type="control_captcha" id="id_12">
+						<label class="form-label form-label-top form-label-auto" id="label_12" for="input_12">
+							Per favore verifica di essere umano
+							<span class="form-required">
+								*
+							</span>
+						</label>
+						<div id="cid_12" class="form-input-wide jf-required" data-layout="full">
+							<section data-wrapper-react="true">
+								<div id="hcaptcha_input_12" class="h-captcha"
+									data-siteKey="772f4a50-7161-425e-8cd5-4d7e361ab765"
+									data-callback="hcaptchaCallbackinput_12"
+									data-expired-callback="hcaptchaExpiredCallbackinput_12">
+								</div>
+								<input type="hidden" id="input_12" class="hidden validate[required]"
+									name="hcaptcha_visible" required="" />
+								<script type="text/javascript" src="https://hcaptcha.com/1/api.js"></script>
+								<script type="text/javascript">
+									var hcaptchaCallbackinput_12 = function (token) {
+										var hiddenInput = $("input_12");
+										hiddenInput.setValue(1);
+										if (hiddenInput.validateInput) {
+											hiddenInput.validateInput();
+										}
+									}
+
+									var hcaptchaExpiredCallbackinput_12 = function () {
+										var hiddenInput = $("input_12");
+										hiddenInput.writeAttribute("value", false);
+										if (hiddenInput.validateInput) {
+											hiddenInput.validateInput();
+										}
+									}
+								</script>
+							</section>
+						</div>
+					</li>
 					<li class="form-line" data-type="control_button" id="id_2">
 						<div id="cid_2" class="form-input-wide" data-layout="full">
 							<div data-align="auto"
@@ -2308,7 +2344,6 @@
 		<script src="https://cdn.jotfor.ms//js/vendor/smoothscroll.min.js?v=3.3.28746"></script>
 		<script src="https://cdn.jotfor.ms//js/errorNavigation.js?v=3.3.28746"></script>
 
-
 	</div>
 	<footer>
 		<div class="text">
@@ -2327,12 +2362,17 @@
 			(function (a) { if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true; })(navigator.userAgent || navigator.vendor || window.opera);
 			return check;
 		};
-		if (window.mobileCheck()) {
-			document.addEventListener('DOMContentLoaded', (event) => {
-				const demo = document.getElementById("demo");
-				demo.innerHTML = '<a href="form.html">Demo</a>';
-			})
-		}
+		document.addEventListener('DOMContentLoaded', (event) => {
+			const demo = document.getElementById("demo");
+			const lang = navigator.language;
+			if (/^it\b/.test(navigator.language)) {
+				const text = window.mobileCheck() ? "Demo" : "Richiedi una demo";
+				demo.innerHTML = '<a href="form_it.html">' + text + '</a>';
+			} else {
+				const text = window.mobileCheck() ? "Demo" : "Ask for a demo";
+				demo.innerHTML = '<a href="form_en.html">' + text + '</a>';
+			}
+		})
 	</script>
 
 </body>
