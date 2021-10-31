@@ -7,10 +7,20 @@
   color: white;
   font-family: "Rubik", Fallback, sans-serif;
 }
-.footer {
+/* .footer {
   width: 100%;
   height: 40px;
   display: flex;
+  
+  justify-content: space-between;
+  line-height: 40px;
+} */
+
+footer {
+  clear: both;
+  position: absolute;
+  height: 200px;
+  margin-top: -200px;
   background-image: linear-gradient(
     to left,
     #060e35,
@@ -18,9 +28,8 @@
     #22305d 75%,
     #060e35 100%
   );
-  justify-content: space-between;
-  line-height: 40px;
 }
+
 .topbar {
   position: relative;
   width: 100%;
@@ -40,7 +49,7 @@
 .logo {
   margin: auto;
   display: block;
-  width: 150px;
+  width: 100px;
 }
 .logo img {
   height: 40px;
