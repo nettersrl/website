@@ -62,3 +62,7 @@ iframe {
   line-height: 70px;
   cursor: pointer;
 }
+
+body {
+  background-color: #11111B !important;
+}
