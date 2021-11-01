@@ -7,20 +7,13 @@
   color: white;
   font-family: "Rubik", Fallback, sans-serif;
 }
-/* .footer {
-  width: 100%;
-  height: 40px;
-  display: flex;
-  
-  justify-content: space-between;
-  line-height: 40px;
-} */
 
-footer {
-  clear: both;
-  position: absolute;
-  height: 200px;
-  margin-top: -200px;
+.footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  line-height: 50px;
+  height: 50px;
   background-image: linear-gradient(
     to left,
     #060e35,
@@ -44,7 +37,11 @@ footer {
 }
 .video {
   width: 100%;
-  height: calc(100vh - 110px);
+  height: calc(100vh - 120px);
+}
+.form {
+  width: 100%;
+  height: min-content;
 }
 .logo {
   margin: auto;
@@ -73,5 +70,5 @@ iframe {
 }
 
 body {
-  background-color: #11111B !important;
+  background-color: #11111b !important;
 }
