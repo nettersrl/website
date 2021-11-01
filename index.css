@@ -7,13 +7,16 @@
   color: white;
   font-family: "Rubik", Fallback, sans-serif;
 }
-
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 .footer {
   position: relative;
   display: flex;
   justify-content: space-between;
   line-height: 50px;
-  height: 50px;
   background-image: linear-gradient(
     to left,
     #060e35,
@@ -21,6 +24,11 @@
     #22305d 75%,
     #060e35 100%
   );
+}
+@media screen and (max-width: 1180px) {
+  .footer {
+    line-height: 30px;
+  }
 }
 
 .topbar {
@@ -37,7 +45,7 @@
 }
 .video {
   width: 100%;
-  height: calc(100vh - 120px);
+  flex: 1 0 auto;
 }
 .form {
   width: 100%;
