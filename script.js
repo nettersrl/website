@@ -14,7 +14,7 @@ if (/^it\b/.test(navigator.language)) {
     demoButton.innerHTML = '<a href="form_en.html">' + text + '</a>';
 }
 
-if(isMobile) {
+/* if(isMobile) {
     const classes = document.getElementsByClassName("footerText");
     for(let i = 0; i < classes.length; i++) {
         classes[i].style.fontSize = "x-small";
@@ -24,4 +24,4 @@ if(isMobile) {
             classes[i].style["text-align"] = "right";
         }
     }   
-}
+} */
