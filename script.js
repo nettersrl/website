@@ -32,11 +32,12 @@ if (isMobile) {
     let toolbarVis = window.toolbar.visible ? "toolbar visible" : "toolbar invisible";
 
     if (locationBarVis || menuBarVis || toolbarVis) {
-        const footer = classes[0].parentElement;
+        
         //footer.style.position = "absolute";
 
         // const video = document.getElementById("video");
     }
+    const footer = classes[0].parentElement;
     footer.style.bottom = "0";
     footer.style.height = "65px";
 }
