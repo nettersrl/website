@@ -14,14 +14,29 @@ if (/^it\b/.test(navigator.language)) {
     demoButton.innerHTML = '<a href="form_en.html">' + text + '</a>';
 }
 
-/* if(isMobile) {
+if (isMobile) {
     const classes = document.getElementsByClassName("footerText");
-    for(let i = 0; i < classes.length; i++) {
+    for (let i = 0; i < classes.length; i++) {
         classes[i].style.fontSize = "x-small";
         classes[i].style["line-height"] = "1.5";
         classes[i].style["padding"] = "10px 20px 10px 20px";
-        if(i === 1) {
+        if (i === 1) {
             classes[i].style["text-align"] = "right";
         }
-    }   
-} */
+    }
+    // check if location bar is visible
+    let locationBarVis = window.locationbar.visible ? "location bar visible" : "location bar invisible";
+    // check if menu bar is visible
+    let menuBarVis = window.menubar.visible ? "menu bar visible" : "menu bar invisible";
+    // check if toolbar is visible
+    let toolbarVis = window.toolbar.visible ? "toolbar visible" : "toolbar invisible";
+
+    if (locationBarVis || menuBarVis || toolbarVis) {
+        const footer = classes[0].parentElement;
+        //footer.style.position = "absolute";
+
+        // const video = document.getElementById("video");
+    }
+    footer.style.bottom = "0";
+    footer.style.height = "65px";
+}
