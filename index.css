@@ -7,10 +7,14 @@
   color: white;
   font-family: "Rubik", Fallback, sans-serif;
 }
+html, body {
+  height: 100%;
+}
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
 }
 .footer {
   position: relative;

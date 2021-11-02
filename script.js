@@ -24,7 +24,7 @@ if (isMobile) {
             classes[i].style["text-align"] = "right";
         }
     }
-    // check if location bar is visible
+    /* // check if location bar is visible
     let locationBarVis = window.locationbar.visible ? "location bar visible" : "location bar invisible";
     // check if menu bar is visible
     let menuBarVis = window.menubar.visible ? "menu bar visible" : "menu bar invisible";
@@ -32,12 +32,14 @@ if (isMobile) {
     let toolbarVis = window.toolbar.visible ? "toolbar visible" : "toolbar invisible";
 
     if (locationBarVis || menuBarVis || toolbarVis) {
-        
-        //footer.style.position = "absolute";
 
-        // const video = document.getElementById("video");
     }
+
     const footer = classes[0].parentElement;
     footer.style.bottom = "0";
     footer.style.height = "65px";
+    footer.style.position = "absolute";
+
+    const video = document.getElementById("video"); */
+
 }
