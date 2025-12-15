@@ -17,14 +17,14 @@ i18n
     resources,
     fallbackLng: 'en',
     supportedLngs: ['en', 'it'],
-    debug: false,
+    load: 'languageOnly',
+    nonExplicitSupportedLngs: true,
     interpolation: {
       escapeValue: false,
     },
     detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage'],
-      lookupLocalStorage: 'preferred-language',
+      order: ['navigator'],
+      caches: [],
     },
   });
 

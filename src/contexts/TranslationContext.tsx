@@ -27,7 +27,6 @@ export function TranslationProvider({ children }: TranslationProviderProps) {
 
   const setLanguage = (lang: Language) => {
     i18n.changeLanguage(lang);
-    localStorage.setItem('preferred-language', lang);
   };
 
   return (

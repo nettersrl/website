@@ -1,9 +1,12 @@
+import { lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
-import { ConsultancyTileAnimation } from '@/components/ui/ConsultancyTileAnimation';
-import { ProductsTileAnimation } from '@/components/ui/ProductsTileAnimation';
 import { NewsSection } from '@/components/NewsSection';
 import { Terminal, ArrowRight, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+
+// Lazy load 3D animations to prevent SSR/hydration issues
+const ConsultancyTileAnimation = lazy(() => import('@/components/ui/ConsultancyTileAnimation').then(m => ({ default: m.ConsultancyTileAnimation })));
+const ProductsTileAnimation = lazy(() => import('@/components/ui/ProductsTileAnimation').then(m => ({ default: m.ProductsTileAnimation })));
 
 export function Home() {
   const { t } = useTranslation();
@@ -32,7 +35,9 @@ export function Home() {
         <div className="grid gap-8 lg:gap-12">
           {/* Consultancy Services */}
           <div className="bg-white p-8 border border-border relative overflow-hidden">
-            <ConsultancyTileAnimation />
+            <Suspense fallback={null}>
+              <ConsultancyTileAnimation />
+            </Suspense>
             <div className="relative z-10 backdrop-blur-sm bg-white/10 p-6 w-full lg:w-1/2 shadow-lg" style={{ mixBlendMode: 'difference', boxShadow: '0 10px 15px -3px rgba(107, 114, 128, 0.1), 0 4px 6px -2px rgba(107, 114, 128, 0.05)' }}>
               <Terminal className="h-12 w-12 text-white mb-4" />
               <h2 className="text-2xl font-bold tracking-tight mb-4 text-white">
@@ -66,7 +71,9 @@ export function Home() {
 
           {/* Software Products */}
           <div className="bg-gray-900 p-8 border border-border relative overflow-hidden">
-            <ProductsTileAnimation />
+            <Suspense fallback={null}>
+              <ProductsTileAnimation />
+            </Suspense>
             <div className="relative z-10 backdrop-blur-sm bg-white/10 p-6 w-full lg:w-1/2 shadow-lg" style={{ mixBlendMode: 'difference', boxShadow: '0 10px 15px -3px rgba(107, 114, 128, 0.1), 0 4px 6px -2px rgba(107, 114, 128, 0.05)' }}>
               <Sparkles className="h-12 w-12 text-white mb-4" />
               <h2 className="text-2xl font-bold tracking-tight mb-4 text-white">
