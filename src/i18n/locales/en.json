@@ -1,0 +1,1641 @@
+{
+  "common": {
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us",
+    "readMore": "Read More",
+    "viewDetails": "View Details",
+    "allRightsReserved": "All rights reserved",
+    "aboutUs": "About Us",
+    "scheduleConsultation": "Schedule a Consultation",
+    "scheduleAConsultation": "Schedule a Consultation",
+    "viewCaseStudies": "View Case Studies",
+    "viewPortfolio": "View Our Portfolio",
+    "downloadGuide": "Download Migration Guide",
+    "viewArchitectureDiagrams": "View Architecture Diagrams",
+    "viewNetworkDiagrams": "View Network Diagrams",
+    "viewSuccessStories": "View Success Stories",
+    "download": "Download",
+    "contactSales": "Contact Sales",
+    "tryCloud": "Try Cloud",
+    "viewDocumentation": "View Documentation",
+    "workWithUs": "Work With Us",
+    "startYourProject": "Start Your Project",
+    "scheduleConsultationAlt": "Schedule Consultation"
+  },
+  "header": {
+    "home": "Home",
+    "products": "Products",
+    "services": "Services",
+    "about": "About",
+    "partnerships": "Partnerships",
+    "careers": "Careers"
+  },
+  "contact": {
+    "badge": "Get in Touch",
+    "title": "Contact Us",
+    "subtitle": "Have a question or ready to start your project? We'd love to hear from you.",
+    "formTitle": "Send us a message",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "your.email@company.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us about your project or ask us a question...",
+    "submit": "Send Message",
+    "submitting": "Sending...",
+    "successTitle": "Thank you for reaching out!",
+    "successMessage": "We've received your message and will get back to you shortly.",
+    "info": {
+      "email": {
+        "title": "Email Us",
+        "description": "Send us an email and we'll respond within 24 hours."
+      },
+      "phone": {
+        "title": "Call Us",
+        "description": "Speak with our team during business hours.",
+        "hours": "Monday - Friday, 9AM - 6PM EST"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Let's build your cloud together.",
+    "company": {
+      "name": "Netter S.r.l.",
+      "address": "Via Indipendenza",
+      "city": "06081 Assisi, Italy",
+      "vat": "VAT code: IT03569900545"
+    }
+  },
+  "home": {
+    "badge": "System & Software Engineering",
+    "title": "Let's build",
+    "titleHighlight": "your modern IT infrastructure.",
+    "subtitle": "Products, services, expertise to build your own modern IT infrastructure.",
+    "consultancy": {
+      "title": "IT Consultancy Services",
+      "description": "Expert guidance for software and system engineering. We help Tech Companies optimize their technology infrastructure and implement best practices for scalable growth.",
+      "features": {
+        "architecture": "Software Architecture & Design",
+        "systemEngineering": "System Engineering & Integration",
+        "technologyStrategy": "Technology Strategy & Planning"
+      },
+      "cta": "Explore Consultancy"
+    },
+    "products": {
+      "title": "Cloud Native Products",
+      "description": "Cutting-edge software products for distributed cloud native applications. Built for modern enterprises that demand reliability, scalability, and performance.",
+      "features": {
+        "distributedSystems": "Distributed System Solutions",
+        "cloudNative": "Cloud-Native Applications",
+        "microservices": "Microservices & Container Platforms"
+      },
+      "cta": "View Products"
+    }
+  },
+  "about": {
+    "badge": "About Netter",
+    "title": "Effective Solutions for",
+    "titleHighlight": "for Tech Companies",
+    "subtitle": "We specialize in delivering technology solutions that meet the sophisticated needs of high tech organizations.",
+    "mission": {
+      "heading": "Our Mission",
+      "paragraph1": "At Netter, we understand that Tech Companies require more than standard solutions. They need partners who can navigate complex technical challenges and deliver results that drive meaningful business impact.",
+      "paragraph2": "Our team combines deep technical expertise with business acumen to create solutions that don't just work—they excel in demanding enterprise environments.",
+      "cta": "Work With Us"
+    },
+    "achievements": {
+      "heading": "What Sets Us Apart",
+      "companiesServed": "50+ Tech Companies Served",
+      "uptime": "99.9% System Uptime Maintained",
+      "projectsDelivered": "200+ Successful Projects Delivered",
+      "support": "24/7 Dedicated Support Team"
+    },
+    "values": {
+      "heading": "Our Core Values",
+      "subtitle": "These principles guide every solution we create and every relationship we build.",
+      "precision": {
+        "title": "Precision",
+        "description": "We deliver exactly what Tech Companies need, when they need it."
+      },
+      "efficiency": {
+        "title": "Efficiency",
+        "description": "Our solutions streamline operations and maximize productivity for our clients."
+      },
+      "reliability": {
+        "title": "Reliability",
+        "description": "Built on robust foundations that Tech Companies can depend on."
+      },
+      "scale": {
+        "title": "Scale",
+        "description": "Solutions designed to grow with your company's expanding needs."
+      }
+    },
+    "cta": {
+      "heading": "Ready to Transform Your Technology?",
+      "description": "Let's discuss how Netter can deliver effective solutions tailored to your advanced company's unique needs.",
+      "primaryButton": "Start Your Project",
+      "secondaryButton": "Schedule Consultation"
+    }
+  },
+  "products": {
+    "netterDSQL": {
+      "name": "D-SQL",
+      "description": "Beyond Distributed SQL Database"
+    },
+    "obstack": {
+      "name": "Obstack",
+      "description": "Complete observability stack for modern infrastructure"
+    },
+    "hadron": {
+      "name": "Hadron",
+      "description": "Next-generation cloud-native platform"
+    },
+    "dcache": {
+      "name": "DCache",
+      "description": "High-performance database caching for MySQL and PostgreSQL"
+    }
+  },
+  "services": {
+    "observabilitySRE": {
+      "name": "Observability & SRE",
+      "description": "Build reliable systems at scale",
+      "badge": "Observability & Site Reliability Engineering",
+      "title": "Observability & SRE Services",
+      "subtitle": "Build reliable, observable systems with comprehensive monitoring, SRE culture, incident management, and distributed operational tooling for global scale.",
+      "buttons": {
+        "getStarted": "Get Started",
+        "contactUs": "Contact Us"
+      },
+      "threePillars": {
+        "title": "The Three Pillars of Observability",
+        "subtitle": "Complete visibility into your systems through logs, metrics, and traces - the foundation of reliable operations.",
+        "logs": {
+          "title": "Logs",
+          "description": "Structured and unstructured log data providing detailed event records and debugging context across your infrastructure."
+        },
+        "metrics": {
+          "title": "Metrics",
+          "description": "Time-series data revealing system performance, resource utilization, and business KPIs at a glance."
+        },
+        "traces": {
+          "title": "Traces",
+          "description": "Distributed request tracing showing the complete journey of transactions through microservices architectures."
+        }
+      },
+      "servicesSection": {
+        "title": "Our Services",
+        "subtitle": "End-to-end observability and SRE services from infrastructure setup to culture transformation.",
+        "logMetricsInfra": {
+          "title": "High-Frequency Log, Traces, Metrics Ingestors & Data Retention",
+          "description": "Cost-effective observability infrastructure capable of ingesting high volumes of logs, traces, and metrics. Grafana-based visualization, OpenTelemetry integration, and compliance-ready data retention policies. Expert implementation of both open-source and commercial solutions including Datadog.",
+          "openSourceStack": {
+            "title": "Open-Source Stack",
+            "grafana": "Grafana for unified dashboards and visualization",
+            "loki": "Loki for log aggregation and querying",
+            "prometheus": "Prometheus & Thanos for metrics storage",
+            "tempo": "Tempo for distributed tracing",
+            "opentelemetry": "OpenTelemetry for standardized instrumentation"
+          },
+          "enterpriseSolutions": {
+            "title": "Enterprise Solutions",
+            "datadog": "Datadog expertise and optimization",
+            "retention": "Cost-effective data retention strategies",
+            "compliance": "Compliance-ready archival and purging",
+            "ingestion": "High-volume ingestion pipelines",
+            "multitenancy": "Multi-tenancy and data isolation"
+          }
+        },
+        "srePrinciples": {
+          "title": "SRE Principles Classrooms & Culture Spreading",
+          "description": "Transform your organization with Site Reliability Engineering principles. We provide comprehensive training on on-call support, tiered support structures, customer-facing support excellence, and internal team cooperation to build a culture of reliability.",
+          "trainingPrograms": {
+            "title": "SRE Training Programs",
+            "description": "Workshops on error budgets, SLIs, SLOs, and SLAs"
+          },
+          "onCallBestPractices": {
+            "title": "On-Call Best Practices",
+            "description": "Rotation schedules, escalation policies, and burnout prevention"
+          },
+          "tieredSupport": {
+            "title": "Tiered Support Structure",
+            "description": "L1, L2, L3 support organization and responsibilities"
+          },
+          "customerFacing": {
+            "title": "Customer-Facing Support",
+            "description": "Communication skills and customer empathy training"
+          },
+          "internalCooperation": {
+            "title": "Internal Team Cooperation",
+            "description": "Dev and Ops collaboration, shared responsibility"
+          },
+          "continuousImprovement": {
+            "title": "Continuous Improvement",
+            "description": "Blameless culture and learning from failures"
+          }
+        },
+        "incidentManagement": {
+          "title": "Incident Rooms, Post Mortems, RCA & SRE Team Onboarding",
+          "description": "Establish robust incident management processes including war rooms, post-incident reviews, and root cause analysis. Comprehensive SRE team onboarding programs to ensure your teams are prepared to handle production incidents effectively.",
+          "incidentResponse": {
+            "title": "Incident Response",
+            "warRoom": "Virtual war room setup and tooling",
+            "commanderRole": "Incident commander role definition",
+            "communication": "Communication templates and runbooks",
+            "severityClassification": "Severity classification and triage",
+            "statusPage": "Status page and stakeholder updates"
+          },
+          "postIncident": {
+            "title": "Post-Incident Process",
+            "blameless": "Blameless post-mortem culture",
+            "rca": "Root cause analysis (RCA) methodologies",
+            "actionTracking": "Action item tracking and remediation",
+            "knowledgeBase": "Knowledge base documentation",
+            "onboarding": "SRE team onboarding and mentorship"
+          }
+        },
+        "distributedOps": {
+          "title": "Distributed Operational Tooling for Global Infrastructure",
+          "description": "Deploy and manage operational tooling across globally distributed infrastructure. Unified control planes, multi-region observability, and automation frameworks designed for planetary-scale systems.",
+          "multiRegion": {
+            "title": "Multi-Region Observability",
+            "description": "Global view of distributed systems and services"
+          },
+          "controlPlane": {
+            "title": "Unified Control Plane",
+            "description": "Centralized management across regions and clouds"
+          },
+          "gitops": {
+            "title": "GitOps at Scale",
+            "description": "Infrastructure as code for global deployments"
+          },
+          "crossRegion": {
+            "title": "Cross-Region Automation",
+            "description": "Orchestration frameworks for distributed operations"
+          },
+          "edge": {
+            "title": "Edge Computing Support",
+            "description": "Observability for edge and IoT deployments"
+          },
+          "dr": {
+            "title": "Disaster Recovery",
+            "description": "Failover automation and recovery orchestration"
+          }
+        }
+      },
+      "corePrinciples": {
+        "title": "Core SRE Principles",
+        "subtitle": "We implement these fundamental SRE principles to ensure reliable, scalable systems.",
+        "errorBudgets": {
+          "title": "Error Budgets",
+          "description": "Balance velocity with reliability through quantified risk tolerance"
+        },
+        "slo": {
+          "title": "Service Level Objectives",
+          "description": "Define and measure user-centric reliability targets"
+        },
+        "toilReduction": {
+          "title": "Toil Reduction",
+          "description": "Automate repetitive tasks to focus on value-adding work"
+        },
+        "blamelessCulture": {
+          "title": "Blameless Culture",
+          "description": "Learn from failures without assigning personal blame"
+        }
+      },
+      "cta": {
+        "title": "Build Reliable, Observable Systems",
+        "description": "Transform your operations with comprehensive observability, SRE best practices, and battle-tested incident management processes.",
+        "primaryButton": "Schedule a Consultation",
+        "secondaryButton": "Download SRE Guide"
+      }
+    },
+    "backend": {
+      "name": "Backend Development",
+      "description": "Rust, Node.js, and Golang services",
+      "badge": "Backend Web Software Development",
+      "title": "Backend Development Services",
+      "subtitle": "Expert backend development services using Rust, Node.js, and Golang. From individual contributors to full project management and technical training.",
+      "buttons": {
+        "getStarted": "Get Started",
+        "contactUs": "Contact Us"
+      },
+      "techStack": {
+        "title": "Our Technology Stack",
+        "subtitle": "We specialize in modern, high-performance backend technologies that power scalable web applications.",
+        "rust": {
+          "title": "Rust",
+          "description": "High-performance, memory-safe systems programming for mission-critical services and microservices architectures."
+        },
+        "nodejs": {
+          "title": "Node.js",
+          "description": "Fast, event-driven JavaScript runtime ideal for real-time applications, APIs, and microservices with rich ecosystem support."
+        },
+        "golang": {
+          "title": "Golang",
+          "description": "Efficient, concurrent programming language perfect for cloud-native applications, containerized services, and distributed systems."
+        }
+      },
+      "servicesSection": {
+        "title": "Our Services",
+        "subtitle": "Comprehensive backend development services tailored to your needs, from augmenting your team to managing entire projects.",
+        "ic": {
+          "title": "Individual Contributor (IC) Outsourcing",
+          "description": "Augment your team with experienced backend engineers who seamlessly integrate into your workflow. Our ICs work directly within your development processes, providing immediate impact.",
+          "seamlessIntegration": {
+            "title": "Seamless Integration",
+            "description": "Work directly with your team using your tools and processes"
+          },
+          "flexibleEngagement": {
+            "title": "Flexible Engagement",
+            "description": "Scale up or down based on project demands"
+          },
+          "rapidOnboarding": {
+            "title": "Rapid Onboarding",
+            "description": "Quick ramp-up to maintain development velocity"
+          },
+          "expertiseOnDemand": {
+            "title": "Expertise on Demand",
+            "description": "Access specialized skills when you need them"
+          }
+        },
+        "projectManagement": {
+          "title": "Project Management",
+          "description": "End-to-end project management for your backend initiatives. We handle everything from requirements gathering to deployment, ensuring successful delivery on time and within budget.",
+          "completeOwnership": {
+            "title": "Complete Ownership",
+            "description": "Full responsibility from conception to deployment"
+          },
+          "architectureDesign": {
+            "title": "Architecture Design",
+            "description": "Scalable system design and technology selection"
+          },
+          "teamCoordination": {
+            "title": "Team Coordination",
+            "description": "Manage timelines, resources, and stakeholder communication"
+          },
+          "qualityAssurance": {
+            "title": "Quality Assurance",
+            "description": "Comprehensive testing and code review processes"
+          },
+          "devopsIntegration": {
+            "title": "DevOps Integration",
+            "description": "CI/CD pipelines and infrastructure automation"
+          },
+          "riskManagement": {
+            "title": "Risk Management",
+            "description": "Proactive identification and mitigation of project risks"
+          }
+        },
+        "technicalDebt": {
+          "title": "Technical Debt Classification & Technical Classes",
+          "description": "Comprehensive technical debt assessment and customized training programs. We help your team understand, prioritize, and eliminate technical debt while building internal expertise.",
+          "assessment": {
+            "title": "Technical Debt Assessment",
+            "codebaseAnalysis": "Comprehensive codebase analysis and documentation",
+            "classification": "Classification by impact and remediation effort",
+            "roadmap": "Prioritized roadmap for debt reduction",
+            "metrics": "Metrics and KPIs for tracking progress"
+          },
+          "training": {
+            "title": "Technical Training Programs",
+            "curriculum": "Customized curriculum for Rust, Node.js, and Go",
+            "inHouseRemote": "In-house or remote training sessions",
+            "bestPractices": "Best practices and design patterns workshops",
+            "handsOn": "Hands-on coding exercises and code reviews"
+          }
+        }
+      },
+      "whyChooseUs": {
+        "title": "Why Choose Our Backend Services",
+        "subtitle": "We bring deep expertise, proven methodologies, and a commitment to excellence in every engagement.",
+        "modernPractices": {
+          "title": "Modern Practices",
+          "description": "Test-driven development, continuous integration, and agile methodologies baked into every project."
+        },
+        "innovation": {
+          "title": "Innovation Focus",
+          "description": "Stay ahead with cutting-edge technologies and architectural patterns that drive competitive advantage."
+        },
+        "security": {
+          "title": "Security First",
+          "description": "Security best practices integrated from day one, ensuring robust and secure backend systems."
+        }
+      },
+      "cta": {
+        "title": "Ready to Build Something Great?",
+        "description": "Whether you need a dedicated developer, full project management, or technical training, we're here to help your team succeed.",
+        "primaryButton": "Schedule a Consultation",
+        "secondaryButton": "View Case Studies"
+      }
+    },
+    "frontend": {
+      "name": "Frontend Development",
+      "description": "Angular and React applications",
+      "badge": "Frontend Web Software Development",
+      "title": "Frontend Development Services",
+      "subtitle": "Expert frontend development with Angular and React. From individual contributors and UX/UI design to cutting-edge WASM components and secure real-time communications.",
+      "buttons": {
+        "getStarted": "Get Started",
+        "contactUs": "Contact Us"
+      },
+      "techStack": {
+        "title": "Our Frontend Technologies",
+        "subtitle": "We build modern, responsive web applications using industry-leading frameworks and cutting-edge technologies.",
+        "angular": {
+          "title": "Angular",
+          "description": "Enterprise-grade framework for building scalable, maintainable applications with TypeScript, comprehensive tooling, and robust architecture patterns."
+        },
+        "react": {
+          "title": "React",
+          "description": "Modern component-based library for building dynamic user interfaces with excellent performance, rich ecosystem, and flexible architecture."
+        }
+      },
+      "servicesSection": {
+        "title": "Our Services",
+        "subtitle": "Comprehensive frontend development services from team augmentation to specialized expertise in design, performance, and security.",
+        "ic": {
+          "title": "Individual Contributor (IC)",
+          "description": "Experienced frontend developers who integrate seamlessly with your team. Our ICs bring deep expertise in Angular and React, contributing to your projects with immediate impact and maintaining your development momentum.",
+          "frameworkExpertise": {
+            "title": "Framework Expertise",
+            "description": "Deep knowledge of Angular and React best practices"
+          },
+          "modernTooling": {
+            "title": "Modern Tooling",
+            "description": "Proficient with latest development tools and workflows"
+          },
+          "componentDevelopment": {
+            "title": "Component Development",
+            "description": "Reusable, well-tested component libraries"
+          },
+          "performanceFocus": {
+            "title": "Performance Focus",
+            "description": "Optimization and best practices for fast applications"
+          }
+        },
+        "uxui": {
+          "title": "UX/UI Designer",
+          "description": "Creating exceptional user experiences through thoughtful design. Our designers combine aesthetic excellence with usability principles to deliver interfaces that users love and understand intuitively.",
+          "userResearch": {
+            "title": "User Research",
+            "description": "Data-driven insights to inform design decisions"
+          },
+          "wireframing": {
+            "title": "Wireframing & Prototyping",
+            "description": "Interactive prototypes for validation and testing"
+          },
+          "visualDesign": {
+            "title": "Visual Design",
+            "description": "Beautiful, cohesive design systems and interfaces"
+          },
+          "designSystems": {
+            "title": "Design Systems",
+            "description": "Scalable component libraries and style guides"
+          },
+          "accessibility": {
+            "title": "Accessibility",
+            "description": "WCAG-compliant designs for inclusive experiences"
+          },
+          "usabilityTesting": {
+            "title": "Usability Testing",
+            "description": "Iterative testing to ensure optimal user experience"
+          }
+        },
+        "wasm": {
+          "title": "WASM-Backed Components",
+          "description": "Leverage the power of WebAssembly for performance-critical components. We build high-performance UI components that execute at near-native speeds, perfect for computation-heavy tasks, data visualization, and complex interactions.",
+          "performanceBenefits": {
+            "title": "Performance Benefits",
+            "nativeSpeed": "Near-native execution speeds for complex calculations",
+            "memoryManagement": "Efficient memory management and smaller bundle sizes",
+            "smooth60fps": "Smooth 60fps experiences even with heavy workloads",
+            "reducedBlocking": "Reduced main thread blocking for better responsiveness"
+          },
+          "useCases": {
+            "title": "Use Cases",
+            "dataVisualization": "Complex data visualization and charting",
+            "imageVideo": "Image and video processing in the browser",
+            "scientific": "Scientific computing and simulation",
+            "cryptography": "Cryptography and data compression"
+          }
+        },
+        "networking": {
+          "title": "Tailor-Made Networking for Secure Real-Time Communications",
+          "description": "Custom networking solutions built for secure, real-time data exchange. We implement WebSockets, WebRTC, and other protocols with enterprise-grade security for applications requiring instant, reliable communication.",
+          "realTimeTech": {
+            "title": "Real-Time Technologies",
+            "websocket": "WebSocket connections for bidirectional communication",
+            "webrtc": "WebRTC for peer-to-peer audio, video, and data",
+            "sse": "Server-Sent Events for efficient push updates",
+            "custom": "Custom protocols for specialized requirements"
+          },
+          "security": {
+            "title": "Security & Reliability",
+            "e2e": "End-to-end encryption for sensitive data",
+            "auth": "Authentication and authorization mechanisms",
+            "reconnection": "Automatic reconnection and state management",
+            "rateLimit": "Rate limiting and DDoS protection"
+          }
+        }
+      },
+      "whyChooseUs": {
+        "title": "Why Choose Our Frontend Services",
+        "subtitle": "We combine technical excellence with design thinking to deliver exceptional user experiences.",
+        "responsiveDesign": {
+          "title": "Responsive Design",
+          "description": "Mobile-first approach ensuring flawless experiences across all devices and screen sizes."
+        },
+        "innovationDriven": {
+          "title": "Innovation Driven",
+          "description": "Leveraging cutting-edge technologies like WASM to push the boundaries of web capabilities."
+        },
+        "securityMinded": {
+          "title": "Security Minded",
+          "description": "Built-in security practices for frontend code and secure communication protocols."
+        }
+      },
+      "cta": {
+        "title": "Let's Build Amazing User Experiences",
+        "description": "From beautiful designs to high-performance components and secure real-time features, we deliver frontend solutions that exceed expectations.",
+        "primaryButton": "Schedule a Consultation",
+        "secondaryButton": "View Our Portfolio"
+      }
+    },
+    "dba": {
+      "name": "Database Administration",
+      "description": "MySQL, PostgreSQL, MongoDB, Redis",
+      "badge": "Database Administration Services",
+      "title": "Expert DBA Services",
+      "subtitle": "Comprehensive database administration for MySQL, PostgreSQL, MongoDB, and Redis. From design engineering to performance tuning and technical training.",
+      "buttons": {
+        "getStarted": "Get Started",
+        "contactUs": "Contact Us"
+      },
+      "expertise": {
+        "title": "Database Expertise",
+        "subtitle": "Deep expertise across the most popular relational, document-based, and in-memory database systems.",
+        "mysql": {
+          "title": "MySQL",
+          "description": "World's most popular open-source relational database. Expert optimization, replication, and high-availability configurations."
+        },
+        "postgresql": {
+          "title": "PostgreSQL",
+          "description": "Advanced open-source relational database with powerful features. Expertise in complex queries, extensions, and scalability."
+        },
+        "mongodb": {
+          "title": "MongoDB",
+          "description": "Leading NoSQL document database. Specialized in schema design, sharding, replica sets, and performance optimization."
+        },
+        "redis": {
+          "title": "Redis",
+          "description": "High-performance in-memory data store. Expert in caching strategies, pub/sub, data structures, and cluster configurations."
+        }
+      },
+      "servicesSection": {
+        "title": "Our Services",
+        "subtitle": "End-to-end database administration services from initial design to ongoing optimization and training.",
+        "design": {
+          "title": "Relational and Document-Based Database Design Engineering",
+          "description": "Expert database architecture and design for both relational (MySQL, PostgreSQL) and document-based (MongoDB) systems. We create scalable, efficient database schemas optimized for your specific use case and access patterns.",
+          "schemaNormalization": {
+            "title": "Schema Design & Normalization",
+            "description": "Optimal data structure for relational databases"
+          },
+          "documentModeling": {
+            "title": "Document Modeling",
+            "description": "Efficient document structures for NoSQL databases"
+          },
+          "relationships": {
+            "title": "Data Relationships",
+            "description": "Foreign keys, constraints, and referential integrity"
+          },
+          "scalability": {
+            "title": "Scalability Planning",
+            "description": "Design for future growth and performance"
+          },
+          "migration": {
+            "title": "Migration Strategies",
+            "description": "Safe schema evolution and data migration"
+          },
+          "bestPractices": {
+            "title": "Best Practices",
+            "description": "Industry standards and proven patterns"
+          }
+        },
+        "maintenance": {
+          "title": "Database Maintenance and Administrative Tooling",
+          "description": "Custom utilities and automated solutions for perfect database maintenance. We build specialized tools for your specific needs, including fast backup solutions designed for large-scale databases.",
+          "customUtilities": {
+            "title": "Custom Maintenance Utilities",
+            "monitoring": "Automated monitoring and alerting systems",
+            "healthCheck": "Intelligent health check and diagnostics tools",
+            "cleanup": "Automated cleanup and maintenance scripts",
+            "configManagement": "Configuration management automation"
+          },
+          "backup": {
+            "title": "Fast Backup Solutions",
+            "highSpeed": "High-speed backup systems for large databases",
+            "incremental": "Incremental and differential backup strategies",
+            "pointInTime": "Point-in-time recovery capabilities",
+            "validation": "Backup validation and restoration testing"
+          }
+        },
+        "tuning": {
+          "title": "Database Performance Tuning",
+          "description": "Comprehensive performance optimization services to maximize database efficiency and speed. From engine parameters to clustering solutions, we optimize every aspect of your database infrastructure.",
+          "engineParams": {
+            "title": "DB Engine Parameters Optimization",
+            "description": "Fine-tune memory, cache, buffers, and engine-specific settings"
+          },
+          "indexing": {
+            "title": "Database Indexing Tuning",
+            "description": "Strategic index creation and optimization for faster queries"
+          },
+          "clustering": {
+            "title": "DB Clustering Solutions",
+            "description": "Sync/async replication for high availability and load distribution"
+          },
+          "geoReplication": {
+            "title": "Geo-Replication",
+            "description": "Multi-region data distribution for global applications"
+          },
+          "autoScaling": {
+            "title": "Automated Scaling Solutions",
+            "description": "Horizontal and vertical scaling based on demand"
+          },
+          "reverseProxies": {
+            "title": "Reverse Proxies",
+            "description": "Load balancing and connection management layers"
+          },
+          "connectionPooling": {
+            "title": "Connection Pooling",
+            "description": "Efficient connection management to reduce overhead"
+          },
+          "caching": {
+            "title": "Smart Query Caching Layers",
+            "description": "Transparent caching for frequently accessed data"
+          },
+          "hardwareGaps": {
+            "title": "Hardware Gaps & Benchmarks",
+            "description": "Identify bottlenecks and performance testing"
+          },
+          "queryOptimization": {
+            "title": "Queries Optimization",
+            "description": "Analyze and rewrite slow queries for better performance"
+          }
+        },
+        "training": {
+          "title": "Classrooms for Technical Debt Reduction",
+          "description": "Specialized training programs focused on identifying, understanding, and eliminating database technical debt. We empower your team with the knowledge and skills to maintain healthy, efficient database systems.",
+          "antiPatterns": {
+            "title": "Database Anti-Patterns",
+            "description": "Identify and fix common database design mistakes"
+          },
+          "performanceAnalysis": {
+            "title": "Performance Analysis",
+            "description": "Tools and techniques for query profiling"
+          },
+          "migrationBestPractices": {
+            "title": "Migration Best Practices",
+            "description": "Safe schema changes and data migrations"
+          },
+          "monitoring": {
+            "title": "Monitoring & Alerting",
+            "description": "Set up proactive database health monitoring"
+          },
+          "handsOnWorkshops": {
+            "title": "Hands-On Workshops",
+            "description": "Practical exercises with real-world scenarios"
+          },
+          "customCurriculum": {
+            "title": "Custom Curriculum",
+            "description": "Tailored to your specific database stack and challenges"
+          }
+        }
+      },
+      "whyChooseUs": {
+        "title": "Why Choose Our DBA Services",
+        "subtitle": "Decades of combined experience managing mission-critical database systems at scale.",
+        "dataIntegrity": {
+          "title": "Data Integrity First",
+          "description": "Every optimization and change prioritizes data safety and consistency above all else."
+        },
+        "performanceObsessed": {
+          "title": "Performance Obsessed",
+          "description": "Relentless focus on squeezing every ounce of performance from your database infrastructure."
+        },
+        "knowledgeTransfer": {
+          "title": "Knowledge Transfer",
+          "description": "We don't just fix problems—we teach your team to prevent them in the future."
+        }
+      },
+      "cta": {
+        "title": "Optimize Your Database Infrastructure",
+        "description": "From initial design to ongoing performance tuning and team training, we provide comprehensive DBA services that keep your databases running at peak efficiency.",
+        "primaryButton": "Schedule a Database Audit",
+        "secondaryButton": "View Success Stories"
+      }
+    },
+    "virtualization": {
+      "name": "Virtualization Infrastructure",
+      "description": "KVM, Hyper-V, and VMware expertise",
+      "badge": "Virtualization Infrastructure Consultancy",
+      "title": "Virtualization Infrastructure Services",
+      "subtitle": "Carrier-grade virtualization solutions for providers and enterprises. Expert consultancy in KVM, Hyper-V, and VMware with complete infrastructure management.",
+      "buttons": {
+        "getStarted": "Get Started",
+        "contactUs": "Contact Us"
+      },
+      "targetAudience": {
+        "title": "Built for Scale and Reliability",
+        "subtitle": "Our virtualization solutions serve both service providers offering infrastructure-as-a-service and enterprises requiring mission-critical virtualization platforms.",
+        "serviceProviders": {
+          "title": "Service Providers",
+          "description": "Build carrier-grade infrastructure to offer VPS, dedicated servers, and cloud services to your customers with complete billing and management automation."
+        },
+        "enterprise": {
+          "title": "Enterprise Organizations",
+          "description": "Deploy robust private cloud infrastructure with high availability, disaster recovery, and centralized management for your organization's workloads."
+        }
+      },
+      "hypervisors": {
+        "title": "Hypervisor Expertise",
+        "subtitle": "Deep expertise across all major virtualization platforms with best practices for each technology.",
+        "kvm": {
+          "title": "KVM",
+          "description": "Linux kernel-based virtualization with excellent performance and flexibility. Ideal for large-scale deployments and service providers."
+        },
+        "hyperv": {
+          "title": "Hyper-V",
+          "description": "Microsoft's enterprise hypervisor with seamless Windows integration. Perfect for organizations with Windows-centric infrastructure."
+        },
+        "vmware": {
+          "title": "VMware",
+          "description": "Industry-leading virtualization with advanced features. The gold standard for enterprise virtualization and cloud infrastructure."
+        }
+      },
+      "servicesSection": {
+        "title": "Our Services",
+        "subtitle": "Comprehensive virtualization infrastructure services from design to deployment and ongoing management.",
+        "carrierGrade": {
+          "title": "Carrier-Grade Infrastructure Solutioning",
+          "description": "Design and deploy carrier-grade virtualization infrastructure for both service providers and enterprises. We build resilient, scalable platforms that meet the highest standards for reliability and performance.",
+          "serviceProviderSolutions": {
+            "title": "Service Provider Solutions",
+            "description": "Multi-tenant infrastructure for VPS and cloud hosting"
+          },
+          "enterprisePrivateCloud": {
+            "title": "Enterprise Private Cloud",
+            "description": "Dedicated infrastructure with enterprise features"
+          },
+          "capacityPlanning": {
+            "title": "Capacity Planning",
+            "description": "Right-sized infrastructure for current and future needs"
+          },
+          "redundancyResilience": {
+            "title": "Redundancy & Resilience",
+            "description": "No single points of failure, fault-tolerant design"
+          },
+          "networkArchitecture": {
+            "title": "Network Architecture",
+            "description": "Optimized networking for virtualized environments"
+          },
+          "storageSolutions": {
+            "title": "Storage Solutions",
+            "description": "SAN, NAS, and distributed storage systems"
+          }
+        },
+        "virtualMachines": {
+          "title": "Virtual Machines and MicroVM",
+          "description": "Deploy traditional virtual machines for full OS isolation or lightweight microVMs for containerized workloads. We optimize VM configurations for performance, security, and resource efficiency.",
+          "traditional": {
+            "title": "Traditional Virtual Machines",
+            "fullOS": "Full OS virtualization with complete isolation",
+            "anyOS": "Support for any operating system and workload",
+            "hardwareIsolation": "Hardware-level isolation for security",
+            "snapshots": "Snapshots, cloning, and live migration"
+          },
+          "microvm": {
+            "title": "MicroVM Technology",
+            "lightweight": "Lightweight VMs with minimal overhead",
+            "fastBoot": "Sub-second boot times for rapid scaling",
+            "serverless": "Ideal for serverless and edge computing",
+            "density": "Better density and resource utilization"
+          }
+        },
+        "highAvailability": {
+          "title": "High Availability, Automation & Horizontal Scaling",
+          "description": "Build resilient infrastructure that never goes down. Automated failover, load balancing, and horizontal scaling ensure your services remain available and performant under any conditions.",
+          "haClusters": {
+            "title": "High Availability Clusters",
+            "description": "Automatic VM failover with no service interruption"
+          },
+          "automation": {
+            "title": "Infrastructure Automation",
+            "description": "Terraform, Ansible, and custom orchestration"
+          },
+          "autoScaling": {
+            "title": "Auto-Scaling",
+            "description": "Dynamic resource allocation based on demand"
+          },
+          "loadBalancing": {
+            "title": "Load Balancing",
+            "description": "Distribute workloads across multiple hosts"
+          },
+          "performanceMonitoring": {
+            "title": "Performance Monitoring",
+            "description": "Real-time metrics and alerting systems"
+          },
+          "disasterRecovery": {
+            "title": "Disaster Recovery",
+            "description": "Backup, replication, and recovery automation"
+          }
+        },
+        "billing": {
+          "title": "Billing Solutions",
+          "description": "Integrated billing systems for service providers offering virtualization services. Track resource usage, generate invoices, and automate payment processing with flexible pricing models.",
+          "usageBased": {
+            "title": "Usage-Based Billing",
+            "description": "Hourly, monthly, or resource-based pricing"
+          },
+          "automatedInvoicing": {
+            "title": "Automated Invoicing",
+            "description": "Generate and send invoices automatically"
+          },
+          "paymentGateway": {
+            "title": "Payment Gateway Integration",
+            "description": "Accept credit cards, PayPal, and crypto"
+          },
+          "resourceMetering": {
+            "title": "Resource Metering",
+            "description": "Accurate tracking of CPU, RAM, storage, bandwidth"
+          },
+          "pricingTiers": {
+            "title": "Custom Pricing Tiers",
+            "description": "Flexible plans and promotional pricing"
+          },
+          "financialReports": {
+            "title": "Financial Reports",
+            "description": "Revenue analytics and customer insights"
+          }
+        },
+        "selfManagement": {
+          "title": "Self-Management Panels",
+          "description": "Custom control panels for customers and administrators. Empower users to manage their virtual machines while maintaining centralized control and automation.",
+          "customerPortal": {
+            "title": "Customer Portal",
+            "provisioning": "VM provisioning, start/stop, restart controls",
+            "consoleAccess": "Console access and VNC/SPICE connections",
+            "resourceMonitoring": "Resource monitoring and usage graphs",
+            "isoMounting": "ISO mounting and OS reinstallation"
+          },
+          "adminDashboard": {
+            "title": "Admin Dashboard",
+            "centralized": "Centralized management of all infrastructure",
+            "userManagement": "User management and permissions system",
+            "healthCapacity": "Infrastructure health and capacity planning",
+            "auditLogs": "Audit logs and security monitoring"
+          }
+        }
+      },
+      "whyChooseUs": {
+        "title": "Why Choose Our Virtualization Services",
+        "subtitle": "Years of experience building and managing large-scale virtualization infrastructure for demanding environments.",
+        "carrierGradeQuality": {
+          "title": "Carrier-Grade Quality",
+          "description": "Infrastructure built to telco standards with redundancy, monitoring, and 99.9%+ uptime guarantees."
+        },
+        "performanceOptimized": {
+          "title": "Performance Optimized",
+          "description": "Tuned configurations for maximum VM density and performance on your hardware investments."
+        },
+        "fullyAutomated": {
+          "title": "Fully Automated",
+          "description": "Reduce operational overhead with comprehensive automation and self-service capabilities."
+        }
+      },
+      "cta": {
+        "title": "Build Your Virtualization Infrastructure",
+        "description": "Whether you're a service provider launching a new cloud platform or an enterprise modernizing your data center, we deliver virtualization solutions that scale.",
+        "primaryButton": "Schedule a Consultation",
+        "secondaryButton": "View Architecture Diagrams"
+      }
+    },
+    "networking": {
+      "name": "Network Infrastructure",
+      "description": "TCP/IP, OpenWRT, VyOS, OPNSense",
+      "badge": "Network Infrastructure Consultancy",
+      "title": "Network Infrastructure Services",
+      "subtitle": "Carrier-grade network solutions for providers and enterprises. Expert consultancy in TCP/IP, OpenWRT, VyOS, OPNSense with custom development and advanced security.",
+      "buttons": {
+        "getStarted": "Get Started",
+        "contactUs": "Contact Us"
+      },
+      "targetAudience": {
+        "title": "Built for Scale and Security",
+        "subtitle": "Our network infrastructure solutions serve both service providers offering networking services and enterprises requiring robust, secure network architectures.",
+        "serviceProviders": {
+          "title": "Service Providers",
+          "description": "Build carrier-grade network infrastructure to offer connectivity, VPN services, security solutions, and managed networking to your customers."
+        },
+        "enterprise": {
+          "title": "Enterprise Organizations",
+          "description": "Deploy secure, high-performance network infrastructure with advanced routing, security policies, and redundancy for mission-critical operations."
+        }
+      },
+      "platforms": {
+        "title": "Platform Expertise",
+        "subtitle": "Deep expertise across open-source and enterprise networking platforms with proven deployment experience.",
+        "openwrt": {
+          "title": "OpenWRT",
+          "description": "Flexible Linux-based OS for routers and embedded devices. Perfect for custom networking solutions and IoT deployments."
+        },
+        "vyos": {
+          "title": "VyOS",
+          "description": "Enterprise-grade network OS with advanced routing capabilities. Ideal for software-defined networking and cloud environments."
+        },
+        "opnsense": {
+          "title": "OPNSense",
+          "description": "Open-source firewall and routing platform with advanced security features. The go-to solution for secure network perimeters."
+        }
+      },
+      "servicesSection": {
+        "title": "Our Services",
+        "subtitle": "Comprehensive network infrastructure services from design and implementation to ongoing optimization and security.",
+        "carrierGrade": {
+          "title": "Carrier-Grade Infrastructure Solutioning",
+          "description": "Design and deploy carrier-grade network infrastructure for both service providers and enterprises. We build resilient, high-performance networks that meet the highest standards for reliability and throughput.",
+          "serviceProviderNetworks": {
+            "title": "Service Provider Networks",
+            "description": "BGP, MPLS, and carrier-grade routing infrastructure"
+          },
+          "enterpriseCampus": {
+            "title": "Enterprise Campus Networks",
+            "description": "Multi-site connectivity with centralized management"
+          },
+          "architecture": {
+            "title": "Network Architecture Design",
+            "description": "Scalable topologies for current and future growth"
+          },
+          "haDesign": {
+            "title": "High Availability Design",
+            "description": "Redundant paths, failover, and zero downtime"
+          },
+          "performance": {
+            "title": "Performance Optimization",
+            "description": "Traffic engineering and QoS implementation"
+          },
+          "capacity": {
+            "title": "Capacity Planning",
+            "description": "Right-sized infrastructure for bandwidth demands"
+          }
+        },
+        "tcpipExpertise": {
+          "title": "Strong TCP/IP, OpenWRT, VyOS, OPNSense Expertise",
+          "description": "Deep understanding of networking fundamentals and expert-level proficiency with leading open-source network platforms. We implement, configure, and optimize network infrastructure using best-in-class tools.",
+          "tcpip": {
+            "title": "TCP/IP Mastery",
+            "routing": "Advanced routing protocols (BGP, OSPF, IS-IS)",
+            "dualStack": "IPv4 and IPv6 dual-stack implementations",
+            "troubleshooting": "Network troubleshooting and packet analysis",
+            "tuning": "Performance tuning and optimization"
+          },
+          "platformConfig": {
+            "title": "Platform Configuration",
+            "openwrt": "OpenWRT customization and package development",
+            "vyos": "VyOS deployment and advanced routing features",
+            "opnsense": "OPNSense firewall rules and security policies",
+            "integration": "Integration with automation and monitoring tools"
+          }
+        },
+        "customSolutions": {
+          "title": "Custom Solutions Development",
+          "description": "Tailored network solutions built to your exact specifications. We develop custom networking software, plugins, and integrations that extend platform capabilities and solve unique challenges.",
+          "customProtocol": {
+            "title": "Custom Protocol Implementation",
+            "description": "Develop specialized network protocols and handlers"
+          },
+          "networkAutomation": {
+            "title": "Network Automation",
+            "description": "Scripts and tools for configuration management"
+          },
+          "apiDevelopment": {
+            "title": "API Development",
+            "description": "RESTful APIs for network device management"
+          },
+          "pluginExtensions": {
+            "title": "Plugin Extensions",
+            "description": "Custom modules for OpenWRT, VyOS, OPNSense"
+          },
+          "integrations": {
+            "title": "Integration Solutions",
+            "description": "Connect networking with existing systems and workflows"
+          },
+          "managementInterfaces": {
+            "title": "Management Interfaces",
+            "description": "Custom dashboards and control panels"
+          }
+        },
+        "meshVpn": {
+          "title": "Mesh Networking and VPN Protocols",
+          "description": "Deploy resilient mesh networks and secure VPN solutions for distributed organizations. We implement modern protocols for encrypted, high-performance connectivity across sites and remote users.",
+          "mesh": {
+            "title": "Mesh Networking",
+            "selfHealing": "Self-healing network topologies",
+            "dynamicRouting": "Dynamic routing and automatic failover",
+            "batman": "BATMAN, B.A.T.M.A.N.-adv implementations",
+            "wireless": "Wireless and wired mesh networks"
+          },
+          "vpn": {
+            "title": "VPN Solutions",
+            "wireguard": "WireGuard: Modern, fast, and secure VPN",
+            "ipsec": "IPsec/IKEv2: Enterprise-grade site-to-site VPN",
+            "openvpn": "OpenVPN: Flexible SSL-based VPN solutions",
+            "ztna": "Zero Trust network access (ZTNA)"
+          }
+        },
+        "deepInspection": {
+          "title": "Deep Inspection (L7) and WAF Solutions",
+          "description": "Advanced security with Layer 7 deep packet inspection and Web Application Firewall protection. Detect and block sophisticated attacks at the application layer with real-time threat intelligence.",
+          "dpi": {
+            "title": "Deep Packet Inspection (DPI)",
+            "description": "Analyze application-layer traffic for threats and policy violations"
+          },
+          "idsIps": {
+            "title": "Intrusion Detection/Prevention",
+            "description": "IDS/IPS with Suricata and custom rule development"
+          },
+          "sslInspection": {
+            "title": "SSL/TLS Inspection",
+            "description": "Decrypt and inspect encrypted traffic for hidden threats"
+          },
+          "waf": {
+            "title": "Web Application Firewall",
+            "description": "Protect web apps from OWASP Top 10 vulnerabilities"
+          },
+          "ddosMitigation": {
+            "title": "DDoS Mitigation",
+            "description": "Rate limiting and attack pattern detection"
+          },
+          "threatIntel": {
+            "title": "Threat Intelligence",
+            "description": "Real-time feeds and automated blocking"
+          }
+        }
+      },
+      "whyChooseUs": {
+        "title": "Why Choose Our Network Services",
+        "subtitle": "Decades of combined experience designing and managing complex network infrastructure for demanding environments.",
+        "securityFirst": {
+          "title": "Security First",
+          "description": "Every network design incorporates defense-in-depth security principles from the ground up."
+        },
+        "highPerformance": {
+          "title": "High Performance",
+          "description": "Optimized configurations for maximum throughput and minimal latency in every deployment."
+        },
+        "openStandards": {
+          "title": "Open Standards",
+          "description": "Built on open-source platforms and industry standards to avoid vendor lock-in."
+        }
+      },
+      "cta": {
+        "title": "Build Your Network Infrastructure",
+        "description": "Whether you're a service provider building carrier-grade networks or an enterprise securing your infrastructure, we deliver solutions that perform and protect.",
+        "primaryButton": "Schedule a Consultation",
+        "secondaryButton": "View Network Diagrams"
+      }
+    },
+    "vdi": {
+      "name": "VDI Migration",
+      "description": "Virtual Desktop Infrastructure",
+      "badge": "Virtual Desktop Infrastructure Migration",
+      "title": "VDI Migration Services",
+      "subtitle": "Migrate large workstation fleets to virtual desktop environments with GPU acceleration, multi-protocol support, and cost-effective solutions.",
+      "buttons": {
+        "getStarted": "Get Started",
+        "contactUs": "Contact Us"
+      },
+      "valueProposition": {
+        "title": "Why Migrate to VDI?",
+        "subtitle": "Virtual Desktop Infrastructure offers centralized management, enhanced security, and flexibility for modern workforces.",
+        "security": {
+          "title": "Enhanced Security",
+          "description": "Data stays in the data center, not on endpoints. Centralized security policies and easier compliance management."
+        },
+        "flexibility": {
+          "title": "Flexible Work",
+          "description": "Access workstations from anywhere, on any device. Perfect for remote work and BYOD policies."
+        },
+        "management": {
+          "title": "Simplified Management",
+          "description": "Centralized updates, provisioning, and troubleshooting. Reduce IT overhead and improve efficiency."
+        }
+      },
+      "servicesSection": {
+        "title": "Our VDI Migration Services",
+        "subtitle": "Comprehensive migration services from assessment and planning to deployment and optimization.",
+        "largeFleet": {
+          "title": "Large Fleet Workstation Migrations to Virtual Desktop Environments",
+          "description": "Seamlessly migrate hundreds or thousands of physical workstations to virtual desktop infrastructure. We manage the entire process with minimal disruption to your operations, ensuring a smooth transition for all users.",
+          "assessmentPlanning": {
+            "title": "Assessment & Planning",
+            "description": "Analyze workloads, user profiles, and infrastructure needs"
+          },
+          "phasedMigration": {
+            "title": "Phased Migration",
+            "description": "Gradual rollout to minimize risk and disruption"
+          },
+          "userTraining": {
+            "title": "User Training",
+            "description": "Comprehensive training for end users and IT staff"
+          },
+          "appCompatibility": {
+            "title": "Application Compatibility",
+            "description": "Ensure all business applications work in VDI"
+          },
+          "performanceOptimization": {
+            "title": "Performance Optimization",
+            "description": "Tune for optimal user experience and resource usage"
+          },
+          "support": {
+            "title": "24/7 Support",
+            "description": "Post-migration support to ensure success"
+          }
+        },
+        "gpuAccelerated": {
+          "title": "GPU Accelerated VMs Expertise",
+          "description": "Deploy GPU-accelerated virtual desktops for demanding workloads. Perfect for CAD, 3D modeling, video editing, machine learning, and other graphics-intensive applications that require dedicated GPU resources.",
+          "gpuTech": {
+            "title": "GPU Technologies",
+            "nvidia": "NVIDIA vGPU and GPU passthrough",
+            "amd": "AMD MxGPU virtualization",
+            "intel": "Intel GVT-g graphics virtualization",
+            "sharing": "GPU sharing and partitioning strategies"
+          },
+          "useCases": {
+            "title": "Use Cases",
+            "cad": "CAD/CAM and engineering workstations",
+            "video": "Video editing and media production",
+            "rendering": "3D rendering and animation",
+            "ai": "AI/ML development and data science"
+          }
+        },
+        "protocols": {
+          "title": "Linux and Windows OS Remote Desktop Protocols",
+          "description": "Expert implementation of remote desktop protocols for both Linux and Windows environments. We optimize protocol configurations for the best balance of performance, security, and user experience.",
+          "windows": {
+            "title": "Windows Protocols",
+            "rdp": "RDP (Remote Desktop Protocol) optimization",
+            "citrix": "Citrix HDX and ICA protocols",
+            "vmware": "VMware Blast Extreme and PCoIP",
+            "remotefx": "RemoteFX for enhanced graphics"
+          },
+          "linux": {
+            "title": "Linux Protocols",
+            "x2go": "X2Go for remote X11 sessions",
+            "spice": "SPICE protocol for KVM/QEMU VMs",
+            "nomachine": "NoMachine NX for high-performance access",
+            "vnc": "VNC variants (TigerVNC, TurboVNC)"
+          }
+        },
+        "reliableFastCheap": {
+          "title": "Reliable, Fast, and Cheap Solutions",
+          "description": "We deliver VDI solutions that excel in all three critical areas: reliability for business continuity, speed for user productivity, and cost-effectiveness for your budget. No compromise necessary.",
+          "reliable": {
+            "title": "Reliable",
+            "uptime": "99.9%+ uptime SLA",
+            "redundant": "Redundant infrastructure",
+            "failover": "Automated failover",
+            "backups": "Regular backups",
+            "monitoring": "24/7 monitoring"
+          },
+          "fast": {
+            "title": "Fast",
+            "storage": "SSD/NVMe storage",
+            "protocols": "Optimized protocols",
+            "network": "Low-latency networks",
+            "gpu": "GPU acceleration",
+            "tuning": "Performance tuning"
+          },
+          "costEffective": {
+            "title": "Cost-Effective",
+            "hardware": "Lower hardware costs",
+            "energy": "Reduced energy usage",
+            "management": "Simplified management",
+            "lifespan": "Extend device lifespan",
+            "licensing": "Flexible licensing"
+          }
+        }
+      },
+      "platforms": {
+        "title": "VDI Platform Expertise",
+        "subtitle": "We work with all major VDI platforms to find the best fit for your needs.",
+        "vmwareHorizon": {
+          "title": "VMware Horizon",
+          "description": "Enterprise VDI with advanced features"
+        },
+        "citrix": {
+          "title": "Citrix Virtual Apps",
+          "description": "Application and desktop delivery"
+        },
+        "avd": {
+          "title": "Microsoft AVD",
+          "description": "Azure Virtual Desktop solution"
+        },
+        "openSource": {
+          "title": "Open Source VDI",
+          "description": "KVM, Proxmox, Apache Guacamole"
+        }
+      },
+      "cta": {
+        "title": "Ready to Migrate to VDI?",
+        "description": "Transform your desktop infrastructure with reliable, fast, and cost-effective VDI solutions. Let's discuss your migration plan.",
+        "primaryButton": "Schedule a Consultation",
+        "secondaryButton": "Download Migration Guide"
+      }
+    },
+    "desktopFleet": {
+      "name": "Desktop Fleet Management",
+      "description": "RMM for Windows and Linux fleets",
+      "badge": "Desktop Fleet Management Solutions",
+      "title": "Desktop Fleet Management",
+      "subtitle": "Comprehensive desktop fleet management with RMM, security monitoring, policy enforcement, and SOC/NOC consulting for Windows and Linux environments.",
+      "buttons": {
+        "getStarted": "Get Started",
+        "contactUs": "Contact Us"
+      },
+      "platformSupport": {
+        "title": "Multi-Platform Support",
+        "subtitle": "Unified management solutions for diverse desktop environments including Windows workstations, Linux desktops, thin clients, and laptops.",
+        "windows": {
+          "title": "Windows Fleets",
+          "description": "Complete management for Windows 11 enterprise environments with Active Directory integration, Group Policy, and advanced security monitoring."
+        },
+        "linux": {
+          "title": "Linux Fleets",
+          "description": "Centralized management for Linux desktops, thin clients, and workstations with configuration management and security hardening."
+        }
+      },
+      "servicesSection": {
+        "title": "Our Services",
+        "subtitle": "End-to-end desktop fleet management solutions from monitoring and policy enforcement to security operations.",
+        "rmm": {
+          "title": "RMM Solutions",
+          "description": "Remote Monitoring and Management solutions for comprehensive visibility and control over your entire desktop fleet. Monitor health, deploy updates, and resolve issues remotely from a centralized dashboard.",
+          "realTimeMonitoring": {
+            "title": "Real-Time Monitoring",
+            "description": "CPU, memory, disk, network metrics with alerting"
+          },
+          "patchManagement": {
+            "title": "Patch Management",
+            "description": "Automated OS and application updates"
+          },
+          "remoteAccess": {
+            "title": "Remote Access",
+            "description": "Secure remote desktop and command execution"
+          },
+          "assetInventory": {
+            "title": "Asset Inventory",
+            "description": "Hardware and software inventory tracking"
+          },
+          "automationScripts": {
+            "title": "Automation Scripts",
+            "description": "Custom scripts for routine tasks"
+          },
+          "reporting": {
+            "title": "Reporting & Analytics",
+            "description": "Comprehensive dashboards and reports"
+          }
+        },
+        "adPolicy": {
+          "title": "Active Directory Policy Restrictions",
+          "description": "Expert implementation of Group Policy Objects (GPO) and Active Directory policies to enforce security standards, control user permissions, and maintain compliance across your Windows environment.",
+          "policyConfig": {
+            "title": "Policy Configuration",
+            "userComputer": "User and computer configuration policies",
+            "whiteBlacklist": "Application whitelisting and blacklisting",
+            "usb": "USB and removable media restrictions",
+            "password": "Password policies and account lockout"
+          },
+          "securityHardening": {
+            "title": "Security Hardening",
+            "firewall": "Windows Firewall configuration via GPO",
+            "bitlocker": "BitLocker encryption enforcement",
+            "softwareRestriction": "Software restriction policies",
+            "audit": "Audit and compliance reporting"
+          }
+        },
+        "cyberSecurity": {
+          "title": "Cyber Security Real-Time Monitoring Solutions",
+          "description": "Advanced security monitoring using OSQuery and centralized threat security platforms. Detect, analyze, and respond to security threats in real-time across your entire desktop fleet.",
+          "osquery": {
+            "title": "OSQuery Implementation",
+            "sql": "SQL-powered endpoint visibility and monitoring",
+            "realtime": "Real-time query execution across fleet",
+            "customRules": "Custom detection rules and queries",
+            "siem": "Integration with SIEM platforms"
+          },
+          "threatSecurity": {
+            "title": "Centralized Threat Security",
+            "edr": "EDR (Endpoint Detection and Response)",
+            "behavioral": "Behavioral analysis and anomaly detection",
+            "threatIntel": "Threat intelligence feeds integration",
+            "automated": "Automated incident response workflows"
+          }
+        },
+        "socNoc": {
+          "title": "Internal NOC or SOC Creation Consulting",
+          "description": "Build your own Network Operations Center (NOC) or Security Operations Center (SOC). We provide consulting, architecture design, tool selection, and training to establish effective security and operations teams.",
+          "nocSetup": {
+            "title": "NOC Setup",
+            "description": "Infrastructure monitoring, alerting, and incident management"
+          },
+          "socSetup": {
+            "title": "SOC Setup",
+            "description": "Security monitoring, threat detection, and response"
+          },
+          "toolSelection": {
+            "title": "Tool Selection",
+            "description": "SIEM, ticketing, monitoring platform evaluation"
+          },
+          "processDesign": {
+            "title": "Process Design",
+            "description": "Runbooks, escalation paths, SLA definitions"
+          },
+          "teamTraining": {
+            "title": "Team Training",
+            "description": "Analyst training and skill development programs"
+          },
+          "metricsKPIs": {
+            "title": "Metrics & KPIs",
+            "description": "Performance measurement and reporting frameworks"
+          }
+        },
+        "offlineVMs": {
+          "title": "Offline VMs RMM Agents",
+          "description": "Specialized RMM agents designed for virtual machines and systems with intermittent or limited connectivity. Maintain visibility and control even when endpoints are offline or in air-gapped environments.",
+          "queueBased": {
+            "title": "Queue-Based Communication",
+            "description": "Store and forward data when connectivity is restored"
+          },
+          "localData": {
+            "title": "Local Data Collection",
+            "description": "Continuous monitoring even without network access"
+          },
+          "scheduledSync": {
+            "title": "Scheduled Sync",
+            "description": "Automatic synchronization during connection windows"
+          },
+          "airGapped": {
+            "title": "Air-Gapped Support",
+            "description": "Manual data transfer for isolated systems"
+          },
+          "vmLifecycle": {
+            "title": "VM Lifecycle Tracking",
+            "description": "Monitor snapshot, clone, and migration events"
+          },
+          "bandwidth": {
+            "title": "Bandwidth Optimization",
+            "description": "Efficient data transmission for limited connections"
+          }
+        },
+        "thinClients": {
+          "title": "Thin Clients with Custom Linux/KDE Operating Systems",
+          "description": "Deploy thin client solutions with custom Linux-based operating systems featuring KDE desktop environments. Fully remotely managed, lightweight, and optimized for your specific use cases with centralized control.",
+          "customOS": {
+            "title": "Custom OS Development",
+            "description": "Tailored Linux distributions with KDE Plasma"
+          },
+          "remoteManagement": {
+            "title": "Remote Management",
+            "description": "Centralized configuration and update deployment"
+          },
+          "lightweight": {
+            "title": "Lightweight Performance",
+            "description": "Optimized for low-resource hardware"
+          },
+          "kioskMode": {
+            "title": "Kiosk Mode Support",
+            "description": "Locked-down configurations for specific tasks"
+          },
+          "rapidProvisioning": {
+            "title": "Rapid Provisioning",
+            "description": "Quick deployment and configuration"
+          },
+          "energyEfficient": {
+            "title": "Energy Efficient",
+            "description": "Reduced power consumption and TCO"
+          }
+        },
+        "linuxEnterprise": {
+          "title": "Linux-Powered Enterprise Laptop & Workstation Fleets",
+          "description": "Enterprise-grade Linux systems for web developers and AI workloads. Customized operating systems that meet compliance requirements while providing developers with powerful tools for modern development and local AI model execution.",
+          "developer": {
+            "title": "Developer Workstations",
+            "preConfigured": "Pre-configured development environments",
+            "ides": "Modern IDEs and toolchains (VS Code, Docker, etc.)",
+            "git": "Secure Git and SSH key management",
+            "kubernetes": "Container and Kubernetes workflows"
+          },
+          "ai": {
+            "title": "AI/ML Workloads",
+            "cuda": "CUDA and ROCm GPU driver optimization",
+            "llm": "Local LLM and AI model execution",
+            "frameworks": "PyTorch, TensorFlow, and MLOps tools",
+            "compliance": "Enterprise compliance with security controls"
+          }
+        },
+        "centralizedRemote": {
+          "title": "Centralized, In-House Remote Control to Prevent Data Loss",
+          "description": "Deploy on-premises remote control solutions that keep all data within your infrastructure. Prevent data loss through centralized session recording, file transfer monitoring, and access auditing without relying on third-party cloud services.",
+          "onPremises": {
+            "title": "On-Premises Deployment",
+            "description": "Self-hosted remote access infrastructure"
+          },
+          "sessionRecording": {
+            "title": "Session Recording",
+            "description": "Full audit trail of remote sessions"
+          },
+          "fileTransfer": {
+            "title": "File Transfer Monitoring",
+            "description": "Track and control data movement"
+          },
+          "accessControl": {
+            "title": "Access Control",
+            "description": "Granular permissions and authentication"
+          },
+          "encrypted": {
+            "title": "Encrypted Communications",
+            "description": "End-to-end encryption for all sessions"
+          },
+          "compliance": {
+            "title": "Compliance Ready",
+            "description": "Meets regulatory requirements for data sovereignty"
+          }
+        },
+        "dlp": {
+          "title": "Data Leak Prevention Solutions",
+          "description": "Comprehensive data loss prevention (DLP) solutions using both open-source and custom-developed software. Detect, monitor, and prevent unauthorized data exfiltration across endpoints, network, and cloud applications.",
+          "contentInspection": {
+            "title": "Content Inspection",
+            "patternMatching": "Pattern matching and classification",
+            "dataDiscovery": "Sensitive data discovery and tagging",
+            "piiPhiPci": "PII, PHI, and PCI data detection",
+            "customRules": "Custom rules and policies"
+          },
+          "preventionResponse": {
+            "title": "Prevention & Response",
+            "blockQuarantine": "Block, quarantine, or encrypt sensitive data",
+            "egress": "Email, USB, and network egress controls",
+            "cloudApp": "Cloud application DLP (SaaS/IaaS)",
+            "incident": "Incident reporting and forensics"
+          }
+        }
+      },
+      "whyChooseUs": {
+        "title": "Why Choose Our Desktop Fleet Solutions",
+        "subtitle": "Comprehensive fleet management with security-first approach and proven expertise.",
+        "securityFocused": {
+          "title": "Security Focused",
+          "description": "Every solution prioritizes security with defense-in-depth strategies and real-time threat monitoring."
+        },
+        "unifiedManagement": {
+          "title": "Unified Management",
+          "description": "Single pane of glass for managing Windows and Linux fleets with consistent policies."
+        },
+        "proactiveMonitoring": {
+          "title": "Proactive Monitoring",
+          "description": "Real-time visibility and automated responses to issues before they impact users."
+        }
+      },
+      "cta": {
+        "title": "Secure and Manage Your Desktop Fleet",
+        "description": "From RMM and policy enforcement to security monitoring and SOC setup, we provide complete desktop fleet management solutions.",
+        "primaryButton": "Schedule a Consultation",
+        "secondaryButton": "View Security Solutions"
+      }
+    }
+  },
+  "netterDSQL": {
+    "badge": "Beyond Distributed SQL Database",
+    "title": "D-SQL",
+    "subtitle": "Unify multiple database workloads in a single platform with ACID transactions, fault tolerance, and limitless scalability for OLTP, OLAP, and streaming.",
+    "buttons": {
+      "getStarted": "Get Started",
+      "viewDocumentation": "View Documentation"
+    },
+    "targetAudience": {
+      "title": "Built for Modern Organizations",
+      "subtitle": "D-SQL is designed to serve the diverse needs of cloud providers and businesses of any size, from startups to enterprise organizations.",
+      "cloudProviders": {
+        "title": "Cloud Providers",
+        "description": "Offer your customers a unified database-as-a-service platform that handles OLTP, OLAP, and streaming workloads with enterprise-grade reliability and infinite scalability."
+      },
+      "anySizeBusiness": {
+        "title": "Any Size Business",
+        "description": "From lean startups needing rapid scaling to large enterprises requiring mission-critical reliability, D-SQL adapts to your business requirements and growth trajectory."
+      }
+    },
+    "keyFeatures": {
+      "aiPowered": {
+        "title": "AI-Powered Intelligence",
+        "description": "Native vector similarity search and LLM-ready SQL queries enable semantic search and intelligent recommendations with enterprise-grade performance.",
+        "vectorSearch": "Native Vector Similarity Search",
+        "llmReady": "LLM-Ready SQL Queries",
+        "semanticSearch": "Semantic Search & Recommendations"
+      },
+      "acidTransactions": {
+        "title": "Global ACID Transactions",
+        "description": "Ensure data consistency across distributed systems with strong ACID guarantees, online scalability, and real-time change data capture.",
+        "consistency": "Strong Consistency Guarantees",
+        "onlineScalability": "Online Scalability",
+        "cdc": "Change Data Capture (CDC)"
+      },
+      "analytics": {
+        "title": "Massively Parallel Analytics",
+        "description": "Columnar storage with vectorized MPP query engine delivers top-tier performance for analytical workloads with federated query support.",
+        "columnar": "Columnar Storage Engine",
+        "vectorized": "Vectorized Query Processing",
+        "federated": "Federated Query Support"
+      }
+    },
+    "oltpOlap": {
+      "title": "Unified OLTP & OLAP Engine",
+      "description": "Single platform handling both Online Transaction Processing (OLTP) for real-time operations and Online Analytical Processing (OLAP) for complex business intelligence queries.",
+      "oltpFeatures": {
+        "title": "OLTP Features",
+        "highFrequency": "High-frequency transactions",
+        "lowLatency": "Sub-millisecond latency",
+        "acid": "ACID compliance"
+      },
+      "olapFeatures": {
+        "title": "OLAP Features",
+        "complexQueries": "Complex analytical queries",
+        "columnar": "Columnar data processing",
+        "petabyte": "Petabyte-scale analytics"
+      }
+    },
+    "eventQueue": {
+      "title": "Event Queue & Stream Processing",
+      "description": "D-SQL serves as both a database and a persistent, distributed event queue system. Unlike traditional Kafka deployments, our events are stored with full database durability and consistency guarantees.",
+      "persistent": {
+        "title": "Persistent & Distributed",
+        "description": "Events are stored persistently across multiple nodes with automatic replication and fault tolerance, ensuring zero data loss."
+      },
+      "databaseNative": {
+        "title": "Database-Native Streaming",
+        "description": "Stream processing capabilities are built into the database engine, eliminating the need for separate streaming infrastructure."
+      },
+      "kafkaCompatibility": {
+        "title": "Kafka API Compatibility",
+        "description": "Full Kafka 3.4.0 API compatibility means your existing applications work without modification."
+      }
+    },
+    "streaming": {
+      "title": "Real-time Streaming",
+      "description": "Kafka API 3.4.0 compatibility with exactly-once delivery and seamless topic-table transactional integration for modern streaming applications.",
+      "kafkaCompatible": "Kafka API Compatible",
+      "exactlyOnce": "Exactly-Once Delivery",
+      "transactional": "Transactional Integration"
+    },
+    "deployment": {
+      "title": "Deployment Options",
+      "openSource": {
+        "title": "Open Source",
+        "description": "Apache 2.0 licensed, deploy anywhere with full community support.",
+        "cta": "Download"
+      },
+      "enterprise": {
+        "title": "Enterprise Edition",
+        "description": "Enhanced security, support, and enterprise-grade features.",
+        "cta": "Contact Sales"
+      },
+      "cloudManaged": {
+        "title": "Cloud Managed",
+        "description": "Fully managed service with 99.99% availability guarantee.",
+        "cta": "Try Cloud"
+      }
+    },
+    "performanceStats": {
+      "title": "Enterprise-Grade Performance",
+      "availability": "Availability",
+      "scalability": "Scalability",
+      "transactions": "Transactions",
+      "workloads": "Workloads"
+    }
+  },
+  "news": {
+    "obstackLaunch": {
+      "title": "Introducing Obstack: Production-Grade Observability for Modern Infrastructure",
+      "description": "After months of development, we're thrilled to announce Obstack—a complete observability stack built for scale, efficiency, and operational excellence."
+    },
+    "hadronAnnouncement": {
+      "title": "Hadron: The Future of Serverless Computing",
+      "description": "We're excited to announce Hadron, our next-generation serverless platform that brings the power of AWS Lambda to your infrastructure—anywhere you want to run it."
+    },
+    "dcacheRelease": {
+      "title": "DCache: Accelerate Your Database with Zero Code Changes",
+      "description": "Today we're launching DCache, a high-performance database caching solution that delivers sub-millisecond query response times without requiring any application code changes."
+    }
+  }
+}
