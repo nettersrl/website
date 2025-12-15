@@ -23,14 +23,13 @@ function Scene() {
   const connectors = useMemo(() => shuffle(accent), [accent]);
 
   return (
-    <Canvas 
-      onClick={click} 
-      shadows 
-      dpr={[1, 1.5]} 
-      gl={{ antialias: false, alpha: true }} 
+    <Canvas
+      onClick={click}
+      shadows
+      dpr={[1, 1.5]}
+      gl={{ antialias: false, alpha: true }}
       camera={{ position: [0, 0, 15], fov: 17.5, near: 1, far: 20 }}
     >
-      <color attach="background" args={['transparent']} />
       <ambientLight intensity={0.4} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
       {connectors.map((props, i) => <Connector key={i} index={i} {...props} />)}
