@@ -1,0 +1,55 @@
+---
+import { curve } from '../lib/charts';
+
+interface Facet { name: string; unit: string; peak: string; values: number[] }
+interface Props { facets: Facet[]; axisFrom: string; axisTo: string; axisLabel: string }
+const { facets, axisFrom, axisTo, axisLabel } = Astro.props;
+
+/* One hue per chart: separate series become separate panels rather than a
+   second colour, so identity comes from the panel title. */
+const panels = facets.map((f) => ({
+  ...f,
+  series: curve(f.values, { width: 360, height: 104, padTop: 10, padBottom: 8, x0: 4, headroom: 1.12 }),
+}));
+---
+<div class="grid-rule cols-3">
+  {panels.map((p) => (
+    <figure class="facet">
+      <figcaption class="facet__head">
+        <div class="facet__titles">
+          <span class="facet__name">{p.name}</span>
+          <span class="facet__unit mono">{p.unit}</span>
+        </div>
+        <span class="facet__peak">{p.peak}</span>
+      </figcaption>
+      <svg viewBox="0 0 368 104" width="368" height="104" fill="none" role="img" aria-label={`${p.name}: ${p.unit}, peaking at ${p.peak}`}>
+        <line x1="0" y1={p.series.baseY} x2="368" y2={p.series.baseY} stroke="#22222a" stroke-width="1" />
+        <path d={p.series.area} fill="rgba(227,0,15,.09)" />
+        <path class="draw" d={p.series.line} fill="none" stroke="#e3000f" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+        <circle cx={p.series.end[0]} cy={p.series.end[1]} r="3.5" fill="#e3000f" />
+      </svg>
+      <div class="facet__axis mono">
+        <span>{axisFrom}</span><span>{axisLabel}</span><span>{axisTo}</span>
+      </div>
+    </figure>
+  ))}
+</div>
+
+<style>
+  .facet { margin: 0; display: flex; flex-direction: column; gap: 18px; padding: 28px 30px 24px; }
+  .facet svg { max-width: 100%; height: auto; }
+  .facet__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .facet__titles { display: flex; flex-direction: column; gap: 5px; }
+  .facet__name { font-size: 15px; font-weight: 600; }
+  .facet__unit { font-size: 11px; color: var(--ink-dim); letter-spacing: 0.06em; }
+  .facet__peak { font-family: var(--font-display); font-size: 26px; font-weight: 600; letter-spacing: -0.03em; color: var(--accent); }
+  .facet__axis {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+</style>

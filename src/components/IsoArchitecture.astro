@@ -1,0 +1,122 @@
+---
+import { box, planeGrid, project, type Camera } from '../lib/iso';
+
+interface Engine { name: string; sub: string }
+interface Props {
+  engines: [Engine, Engine, Engine];
+  storageLabel: string;
+  storageSub: string;
+  outLabel?: string;
+  caption: string;
+}
+const { engines, storageLabel, storageSub, outLabel = 'CDC →', caption } = Astro.props;
+
+const cam: Camera = { u: 26, x: 450, y: 350 };
+const BASE_LIFT = 30;
+const ENG_LIFT = 235;
+const SPAN = 8.6;
+
+const base = box(0, 0, SPAN, SPAN, 16, cam, BASE_LIFT);
+const baseGrid = planeGrid(0, 0, SPAN, SPAN, cam, BASE_LIFT + 16, 1);
+
+const shards: ReturnType<typeof box>[] = [];
+for (let i = 0; i < 3; i++) {
+  for (let j = 0; j < 3; j++) {
+    shards.push(box(0.9 + i * 2.7, 0.9 + j * 2.7, 1.5, 1.5, 11, cam, BASE_LIFT + 16));
+  }
+}
+shards.sort((a, b) => a.cy - b.cy);
+
+/* The three engines sit on one anti-diagonal (constant gx + gy), so they
+   project to the same height and read as a row across the scene rather than
+   as a staircase receding into it. */
+const PLATE = 2.6;
+const SPREAD = 3.0; // wide enough that adjacent sub-labels never touch
+const origins = [
+  { gx: 0, gy: SPREAD * 2 },
+  { gx: SPREAD, gy: SPREAD },
+  { gx: SPREAD * 2, gy: 0 },
+];
+const plates = engines.map((e, i) => {
+  const { gx, gy } = origins[i]!;
+  return {
+    ...box(gx, gy, PLATE, PLATE, 12, cam, ENG_LIFT),
+    ...e,
+    rules: planeGrid(gx, gy, PLATE, PLATE, cam, ENG_LIFT + 12, 1.3),
+  };
+});
+
+const conns = plates.map((p) => ({
+  x: p.bx,
+  y1: p.by,
+  y2: p.by + (ENG_LIFT - BASE_LIFT - 16),
+}));
+
+const nearCorner = project(SPAN, SPAN, cam, BASE_LIFT);
+const storageLabelY = nearCorner[1] + 34;
+const outFrom = project(SPAN, SPAN / 2, cam, BASE_LIFT + 10);
+---
+<figure class="iso-arch">
+  <div class="iso-float">
+    <svg viewBox="0 0 900 620" width="900" height="620" fill="none" role="img" aria-labelledby="arch-cap">
+      <polygon points={base.left} fill="rgba(11,11,15,.95)" stroke="#24242c" stroke-width="1" />
+      <polygon points={base.right} fill="rgba(8,8,11,.95)" stroke="#24242c" stroke-width="1" />
+      <polygon points={base.top} fill="rgba(18,18,24,.92)" stroke="#2e2e38" stroke-width="1" />
+      {baseGrid.map((l) => (
+        <line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke="#1c1c24" stroke-width="1" />
+      ))}
+      {shards.map((s) => (
+        <g>
+          <polygon points={s.left} fill="rgba(16,16,22,.9)" />
+          <polygon points={s.right} fill="rgba(11,11,15,.9)" />
+          <polygon points={s.top} fill="rgba(48,48,58,.55)" stroke="#4a4a58" stroke-width="1" />
+        </g>
+      ))}
+      <text x={cam.x} y={storageLabelY} fill="#8e8e99" font-size="12" letter-spacing="1.8" text-anchor="middle" font-family="var(--font-mono)">
+        {storageLabel.toUpperCase()}
+      </text>
+      <text x={cam.x} y={storageLabelY + 20} fill="#44444e" font-size="11" letter-spacing="1.2" text-anchor="middle" font-family="var(--font-mono)">
+        {storageSub}
+      </text>
+
+      {conns.map((c) => (
+        <line class="flow" x1={c.x} y1={c.y1} x2={c.x} y2={c.y2} stroke="#e3000f" stroke-width="1.4" opacity="0.7" />
+      ))}
+
+      {plates.map((p) => (
+        <g>
+          <polygon points={p.left} fill="rgba(96,8,16,.5)" />
+          <polygon points={p.right} fill="rgba(58,6,11,.6)" />
+          <polygon points={p.top} fill="rgba(34,14,18,.82)" stroke="#e3000f" stroke-width="1.2" />
+          {p.rules.map((l) => (
+            <line x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke="rgba(227,0,15,.22)" stroke-width="1" />
+          ))}
+          <text x={p.cx} y={p.cy - 4} fill="#f5f5f7" font-size="15" font-weight="600" text-anchor="middle" font-family="var(--font-display)">
+            {p.name}
+          </text>
+          <text x={p.cx} y={p.cy + 16} fill="#9a9aa4" font-size="11" text-anchor="middle" letter-spacing=".8" font-family="var(--font-mono)">
+            {p.sub}
+          </text>
+        </g>
+      ))}
+
+      <line class="flow" x1={outFrom[0] + 10} y1={outFrom[1]} x2={outFrom[0] + 104} y2={outFrom[1]} stroke="#5c5c66" stroke-width="1.2" />
+      <text x={outFrom[0] + 57} y={outFrom[1] - 11} fill="#7e7e89" font-size="11" letter-spacing="1.2" text-anchor="middle" font-family="var(--font-mono)">
+        {outLabel}
+      </text>
+    </svg>
+  </div>
+  <figcaption id="arch-cap" class="iso-arch__cap mono">{caption}</figcaption>
+</figure>
+
+<style>
+  .iso-arch { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .iso-arch svg { max-width: 100%; height: auto; overflow: visible; }
+  .iso-arch__cap {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-align: center;
+  }
+</style>

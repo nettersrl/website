@@ -1,0 +1,84 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { locales, localizePath, stripLocale, defaultLocale, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  /** Page-specific <head> additions, e.g. a third-party script. */
+  noindex?: boolean;
+}
+const { locale, title, description, noindex = false } = Astro.props;
+
+const canonicalPath = stripLocale(Astro.url.pathname);
+const site = Astro.site ?? new URL('https://www.netter.io');
+const canonical = new URL(localizePath(canonicalPath, locale), site);
+const fullTitle = title === 'Netter' ? 'Netter — IT Products and Services' : `${title} — Netter`;
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="canonical" href={canonical.href} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    {locales.map((l) => (
+      <link rel="alternate" hreflang={l} href={new URL(localizePath(canonicalPath, l), site).href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(localizePath(canonicalPath, defaultLocale), site).href} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Netter" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:locale" content={locale === 'it' ? 'it_IT' : 'en_GB'} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Header locale={locale} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+
+    <script>
+      // Scroll reveals. The `js` class gates the hidden start state, so with
+      // JS off or failed every section stays visible.
+      document.documentElement.classList.add('js');
+      const targets = document.querySelectorAll('[data-reveal]');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduce || !('IntersectionObserver' in window)) {
+        targets.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry, i) => {
+              if (!entry.isIntersecting) return;
+              const el = entry.target as HTMLElement;
+              el.style.transitionDelay = `${Math.min(i * 90, 270)}ms`;
+              el.classList.add('is-visible');
+              io.unobserve(el);
+            });
+          },
+          { rootMargin: '0px 0px -12% 0px', threshold: 0.08 },
+        );
+        targets.forEach((el) => io.observe(el));
+      }
+    </script>
+  </body>
+</html>

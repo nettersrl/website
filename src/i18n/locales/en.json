@@ -143,15 +143,300 @@
     },
     "obstack": {
       "name": "Obstack",
-      "description": "Complete observability stack for modern infrastructure"
+      "description": "Complete observability stack for modern infrastructure",
+      "detail": {
+        "coreFeatures": {
+          "title": "Complete Observability",
+          "subtitle": "Logs, metrics and traces from distributed applications, collected and correlated in one platform.",
+          "logsMetricsTraces": {
+            "title": "Logs, Metrics & Traces",
+            "description": "Complete telemetry data collection from distributed applications with seamless ingestion and storage."
+          },
+          "performanceMonitoring": {
+            "title": "Performance Monitoring",
+            "description": "Real-time system performance tracking to identify bottlenecks and optimize resource utilization."
+          },
+          "incidentResolution": {
+            "title": "Incident Resolution",
+            "description": "Quickly resolve incidents and reduce downtime with comprehensive visibility into your systems."
+          },
+          "rootCauseAnalysis": {
+            "title": "Root Cause Analysis",
+            "description": "Accurate diagnosis of issues with correlated logs, metrics, and traces in a single platform."
+          }
+        },
+        "servicesSection": {
+          "title": "How We Help",
+          "subtitle": "From first deployment to day-two operations, we run the parts of an observability stack that are easy to get wrong.",
+          "fullSetupSupport": {
+            "title": "Full Setup Support",
+            "description": "We handle the complexity of initial setup, ensuring your observability stack is configured correctly from day one.",
+            "infrastructureDeployment": {
+              "title": "Infrastructure deployment"
+            },
+            "componentConfiguration": {
+              "title": "Component configuration"
+            },
+            "storageOptimization": {
+              "title": "Storage optimization"
+            },
+            "securityHardening": {
+              "title": "Security hardening"
+            }
+          },
+          "agentConfiguration": {
+            "title": "Agent Configuration",
+            "description": "Expert configuration of data collection agents for optimal data flow and minimal performance impact.",
+            "opentelemetryIntegration": {
+              "title": "OpenTelemetry integration"
+            },
+            "customInstrumentation": {
+              "title": "Custom instrumentation"
+            },
+            "samplingStrategies": {
+              "title": "Sampling strategies"
+            },
+            "dataPipelineOptimization": {
+              "title": "Data pipeline optimization"
+            }
+          },
+          "bestPractices": {
+            "title": "Best Practices",
+            "description": "Guidance on what to log, what to track, and how to maximize value while minimizing noise.",
+            "logStructuringStandards": {
+              "title": "Log structuring standards"
+            },
+            "metricNamingConventions": {
+              "title": "Metric naming conventions"
+            },
+            "traceContextPropagation": {
+              "title": "Trace context propagation"
+            },
+            "alertThresholdTuning": {
+              "title": "Alert threshold tuning"
+            }
+          },
+          "customIntegrations": {
+            "title": "Custom Integrations",
+            "description": "Seamless integration with your existing tools and third-party software ecosystems.",
+            "apiIntegrations": {
+              "title": "API integrations"
+            },
+            "customExporters": {
+              "title": "Custom exporters"
+            },
+            "dashboardTemplates": {
+              "title": "Dashboard templates"
+            },
+            "alertingWorkflows": {
+              "title": "Alerting workflows"
+            }
+          }
+        }
+      }
     },
     "hadron": {
       "name": "Hadron",
-      "description": "Next-generation cloud-native platform"
+      "description": "Next-generation cloud-native platform",
+      "detail": {
+        "coreFeatures": {
+          "title": "Core Capabilities",
+          "subSecondColdStarts": {
+            "title": "Sub-Second Cold Starts",
+            "description": "MicroVM technology delivers lightning-fast cold starts under 100ms, eliminating the wait time of traditional serverless platforms."
+          },
+          "deployAnywhere": {
+            "title": "Deploy Anywhere",
+            "description": "Run on-premises, in your own cloud, at the edge, or across multiple regions. True portability without vendor lock-in."
+          },
+          "hardwareLevelIsolation": {
+            "title": "Hardware-Level Isolation",
+            "description": "Each function runs in its own microVM with complete isolation, delivering security guarantees beyond containers."
+          },
+          "extremeDensity": {
+            "title": "Extreme Density",
+            "description": "Pack thousands of microVMs on a single host with minimal overhead, maximizing resource utilization and reducing costs."
+          }
+        },
+        "technical": {
+          "title": "Technical Highlights",
+          "microvmArchitecture": {
+            "title": "MicroVM Architecture",
+            "description": "Built on cutting-edge microVM technology combining the speed of containers with the security of traditional VMs."
+          },
+          "multiRuntimeSupport": {
+            "title": "Multi-Runtime Support",
+            "description": "Run functions in any language or runtime without compatibility concerns. Bring your own container or use pre-built runtimes."
+          },
+          "distributedExecution": {
+            "title": "Distributed Execution",
+            "description": "Orchestrate function execution across globally distributed infrastructure with intelligent routing and load balancing."
+          },
+          "enterpriseSecurity": {
+            "title": "Enterprise Security",
+            "description": "Zero-trust architecture with comprehensive security controls designed for regulated industries and sensitive workloads."
+          }
+        },
+        "deployment": {
+          "title": "Deployment Options",
+          "selfHosted": {
+            "title": "Self-Hosted",
+            "description": "Deploy on your own infrastructure"
+          },
+          "managedCloud": {
+            "title": "Managed Cloud",
+            "description": "Let us handle the operations"
+          },
+          "hybridModel": {
+            "title": "Hybrid Model",
+            "description": "Best of both worlds"
+          }
+        }
+      }
     },
     "dcache": {
       "name": "DCache",
-      "description": "High-performance database caching for MySQL and PostgreSQL"
+      "description": "High-performance database caching for MySQL and PostgreSQL",
+      "detail": {
+        "coreFeatures": {
+          "title": "Core Features",
+          "subMillisecondLatency": {
+            "title": "Sub-Millisecond Latency",
+            "description": "Accelerate query response times from hundreds of milliseconds to under 15ms with intelligent query result caching."
+          },
+          "automaticCacheInvalidation": {
+            "title": "Automatic Cache Invalidation",
+            "description": "No manual TTL management. DCache automatically refreshes cached results by monitoring database changes in real-time."
+          },
+          "zeroCodeChanges": {
+            "title": "Zero Code Changes",
+            "description": "Drop-in compatibility with MySQL and PostgreSQL. Simply update your connection string—no application rewrites required."
+          },
+          "scaleUpTo100x": {
+            "title": "Scale Up to 100x",
+            "description": "Handle dramatically higher read workloads without adding expensive database replicas or upgrading to larger instances."
+          }
+        },
+        "benefits": {
+          "title": "Key Benefits",
+          "wireCompatibleProxy": {
+            "title": "Wire-Compatible Proxy",
+            "description": "Works seamlessly as a wire-compatible proxy between your application and database. No driver changes, no ORM modifications, no architectural rewrites."
+          },
+          "intelligentCacheManagement": {
+            "title": "Intelligent Cache Management",
+            "description": "DCache monitors your database replication stream to automatically invalidate and refresh cached query results when underlying data changes."
+          },
+          "massivePerformanceGains": {
+            "title": "Massive Performance Gains",
+            "description": "Transform slow database queries into lightning-fast cached responses, dramatically improving application performance and user experience."
+          },
+          "costOptimization": {
+            "title": "Cost Optimization",
+            "description": "Reduce database infrastructure costs by up to 70% by eliminating the need for expensive read replicas and oversized primary databases."
+          }
+        },
+        "useCases": {
+          "title": "Use Cases",
+          "analyticsDashboards": {
+            "title": "Analytics Dashboards",
+            "description": "Speed up dashboard queries that aggregate large datasets, delivering real-time insights without database strain."
+          },
+          "apiBackends": {
+            "title": "API Backends",
+            "description": "Accelerate frequently-called API endpoints that read from the database, improving response times and throughput."
+          },
+          "eCommercePlatforms": {
+            "title": "E-commerce Platforms",
+            "description": "Cache product catalogs, inventory queries, and pricing data to handle high-traffic periods without performance degradation."
+          },
+          "multiTenantSaas": {
+            "title": "Multi-Tenant SaaS",
+            "description": "Efficiently serve repetitive queries across thousands of tenants while maintaining data consistency and isolation."
+          }
+        },
+        "technical": {
+          "title": "Technical Details",
+          "supportedDatabases": {
+            "title": "Supported Databases",
+            "postgresqlVersions111213141516": {
+              "title": "PostgreSQL (versions 11, 12, 13, 14, 15, 16)"
+            },
+            "mysqlVersions5780": {
+              "title": "MySQL (versions 5.7, 8.0)"
+            },
+            "amazonRdsForPostgresqlAndMysql": {
+              "title": "Amazon RDS for PostgreSQL and MySQL"
+            },
+            "amazonAuroraPostgresqlAndMysql": {
+              "title": "Amazon Aurora PostgreSQL and MySQL"
+            },
+            "googleCloudSql": {
+              "title": "Google Cloud SQL"
+            },
+            "azureDatabaseForPostgresqlAndMysql": {
+              "title": "Azure Database for PostgreSQL and MySQL"
+            }
+          },
+          "deploymentOptions": {
+            "title": "Deployment Options",
+            "selfHostedOnPremisesDeployment": {
+              "title": "Self-hosted on-premises deployment"
+            },
+            "cloudDeploymentAwsGcpAzure": {
+              "title": "Cloud deployment (AWS, GCP, Azure)"
+            },
+            "managedDcacheServiceWithSla": {
+              "title": "Managed DCache service with SLA"
+            },
+            "highAvailabilityConfigurations": {
+              "title": "High availability configurations"
+            },
+            "multiRegionSupport": {
+              "title": "Multi-region support"
+            },
+            "vpcAndPrivateNetworkDeployment": {
+              "title": "VPC and private network deployment"
+            }
+          },
+          "securityCompliance": {
+            "title": "Security & Compliance",
+            "tlsSslEncryptionInTransit": {
+              "title": "TLS/SSL encryption in transit"
+            },
+            "encryptedConnectionsToUpstreamDatabase": {
+              "title": "Encrypted connections to upstream database"
+            },
+            "roleBasedAccessControl": {
+              "title": "Role-based access control"
+            },
+            "soc2TypeIiCompliance": {
+              "title": "SOC 2 Type II compliance"
+            },
+            "auditLoggingAndMonitoring": {
+              "title": "Audit logging and monitoring"
+            },
+            "dataResidencyCompliance": {
+              "title": "Data residency compliance"
+            }
+          }
+        },
+        "whyChoose": {
+          "title": "Why Choose DCache",
+          "productionReady": {
+            "title": "Production-Ready",
+            "description": "Battle-tested caching engine designed for mission-critical production workloads with comprehensive security and reliability features."
+          },
+          "developerFriendly": {
+            "title": "Developer-Friendly",
+            "description": "Zero learning curve. Works with your existing database tools, ORMs, and application code without any modifications."
+          },
+          "consistencyGuaranteed": {
+            "title": "Consistency Guaranteed",
+            "description": "Unlike traditional caching layers, DCache ensures data consistency by automatically invalidating stale cache entries."
+          }
+        }
+      }
     }
   },
   "services": {

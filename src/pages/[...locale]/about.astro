@@ -1,0 +1,130 @@
+---
+import Base from '../../layouts/Base.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import StatGrid from '../../components/StatGrid.astro';
+import IsoStack from '../../components/IsoStack.astro';
+import Arrow from '../../components/Arrow.astro';
+import { getSection } from '../../lib/content';
+import { products, splitStat, company } from '../../data/site';
+import { useTranslations, localizePath, localeParams, type Locale } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return localeParams();
+}
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const lp = (p: string) => localizePath(p, locale);
+
+const values = getSection(locale, 'about.values');
+const stats = ['companiesServed', 'uptime', 'projectsDelivered', 'support'].map((k) =>
+  splitStat(t(`about.achievements.${k}`)),
+);
+---
+<Base locale={locale} title={t('common.aboutUs')} description={t('about.subtitle')}>
+  <section class="section blueprint">
+    <div class="shell page-hero">
+      <div class="badge rise">{t('about.badge')}</div>
+      <h1 class="display-xl rise" style="animation-delay:.14s">
+        {t('about.title')} <span class="subdued">{t('about.titleHighlight')}</span>
+      </h1>
+      <p class="lead page-hero__lead rise" style="animation-delay:.26s">{t('about.subtitle')}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell mission">
+      <div class="mission__copy" data-reveal>
+        <div class="eyebrow">{t('about.mission.heading')}</div>
+        <p class="mission__para">{t('about.mission.paragraph1')}</p>
+        <p class="mission__para mission__para--muted">{t('about.mission.paragraph2')}</p>
+        <a href={lp('/contact')} class="btn btn--primary mission__cta">
+          {t('about.mission.cta')}<Arrow />
+        </a>
+      </div>
+      <div class="mission__figure" data-reveal>
+        <IsoStack
+          layers={[t('header.products'), 'Platform', 'Infrastructure']}
+          nodes={products.map((p) => t(`${p.key}.name`))}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell">
+      <header class="sec-head" data-reveal>
+        <h2 class="h2">{t('about.achievements.heading')}</h2>
+      </header>
+      <StatGrid stats={stats} />
+    </div>
+  </section>
+
+  {values && (
+    <section class="section">
+      <div class="shell">
+        <header class="block-head" data-reveal>
+          <div class="eyebrow">{t('about.badge')}</div>
+          <h2 class="h2">{values.title}</h2>
+          {values.subtitle && <p class="lead">{values.subtitle}</p>}
+        </header>
+        <div class="grid-rule cols-4" data-reveal>
+          {values.items.map((v, i) => (
+            <article class="vcard">
+              <span class="mono vcard__idx">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="h3">{v.title}</h3>
+              <p class="body-muted">{v.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section section--alt">
+    <div class="shell">
+      <div class="office" data-reveal>
+        <div class="office__label mono">{company.name}</div>
+        <address class="office__address">
+          {company.street}<br />{company.city}
+        </address>
+        <div class="office__vat mono">{t('footer.company.vat')}</div>
+      </div>
+    </div>
+  </section>
+
+  <CallToAction
+    title={t('about.cta.heading')}
+    description={t('about.cta.description')}
+    primary={{ label: t('about.cta.primaryButton'), href: lp('/contact') }}
+    secondary={{ label: t('about.cta.secondaryButton'), href: lp('/contact') }}
+  />
+</Base>
+
+<style>
+  .page-hero { display: flex; flex-direction: column; gap: 26px; max-width: 900px; }
+  .page-hero__lead { max-width: 660px; }
+
+  .mission { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; align-items: center; }
+  .mission__copy { display: flex; flex-direction: column; gap: 20px; }
+  .mission__para { font-size: clamp(16px, 1.3vw, 18px); line-height: 1.68; color: var(--ink); }
+  .mission__para--muted { color: var(--ink-muted); }
+  .mission__cta { align-self: flex-start; margin-top: 8px; }
+
+  .sec-head { margin-bottom: 44px; }
+  .block-head { display: flex; flex-direction: column; gap: 16px; max-width: 660px; margin-bottom: 48px; }
+
+  .vcard { display: flex; flex-direction: column; gap: 12px; padding: 34px 28px; border-top: 2px solid transparent; transition: border-color 0.25s ease; }
+  .vcard:hover { border-top-color: var(--accent); }
+  .vcard__idx { font-size: 11px; letter-spacing: 0.1em; color: var(--accent); }
+
+  .office { display: flex; flex-direction: column; gap: 10px; padding: 36px 32px; border: 1px solid var(--hairline); background: var(--surface); border-left: 2px solid var(--accent); max-width: 420px; }
+  .office__label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); }
+  .office__address { font-style: normal; font-size: 16px; line-height: 1.7; color: var(--ink); }
+  .office__vat { font-size: 12px; color: var(--ink-faint); }
+
+  @media (max-width: 1000px) {
+    .mission { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  }
+</style>

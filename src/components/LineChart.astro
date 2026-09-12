@@ -1,0 +1,84 @@
+---
+import { curve, yTicks, xTicks } from '../lib/charts';
+
+interface Props {
+  values: number[];
+  labels: string[];
+  title: string;
+  unit: string;
+  headline: string;
+  headlineUnit: string;
+  axisLabel: string;
+}
+const { values, labels, title, unit, headline, headlineUnit, axisLabel } = Astro.props;
+
+const PLOT_W = 1212;
+const X0 = 52;
+const H = 240;
+
+const series = curve(values, { width: PLOT_W, height: H, padTop: 26, padBottom: 26, x0: X0, headroom: 1.4 });
+const ticks = yTicks(series, 4, 1);
+const cols = xTicks(labels, PLOT_W, X0);
+---
+<figure class="chart">
+  <div class="chart__head">
+    <div class="chart__titles">
+      <h3 class="chart__title">{title}</h3>
+      <p class="chart__unit">{unit}</p>
+    </div>
+    <div class="chart__headline">
+      <span class="chart__value">{headline}</span>
+      <span class="chart__value-unit mono">{headlineUnit}</span>
+    </div>
+  </div>
+
+  <svg viewBox={`0 0 1272 ${H}`} width="1272" height={H} fill="none" role="img" aria-label={`${title}. ${unit}.`}>
+    {ticks.map((t) => (
+      <g>
+        <line x1={X0} y1={t.y} x2={X0 + PLOT_W} y2={t.y} stroke="#16161c" stroke-width="1" />
+        <text x={X0 - 12} y={t.y + 4} fill="#5c5c66" font-size="11" text-anchor="end" font-family="var(--font-mono)">
+          {t.label}
+        </text>
+      </g>
+    ))}
+    <path d={series.area} fill="rgba(227,0,15,.1)" />
+    <path class="draw" d={series.line} fill="none" stroke="#e3000f" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+    {series.points.map((p) => (
+      <circle cx={p[0]} cy={p[1]} r="3" fill="#e3000f" opacity="0.85" />
+    ))}
+    {cols.map((c) => (
+      <text x={c.x} y={H - 8} fill="#5c5c66" font-size="11" text-anchor="middle" font-family="var(--font-mono)">
+        {c.label}
+      </text>
+    ))}
+  </svg>
+  <figcaption class="chart__axis mono">{axisLabel}</figcaption>
+</figure>
+
+<style>
+  .chart { margin: 0; padding: 32px 34px 26px; background: var(--surface); border: 1px solid var(--hairline); }
+  .chart svg { max-width: 100%; height: auto; }
+  .chart__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 26px;
+  }
+  .chart__titles { display: flex; flex-direction: column; gap: 6px; }
+  .chart__title { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; }
+  .chart__unit { font-size: 13px; color: var(--ink-dim); }
+  .chart__headline { display: flex; align-items: baseline; gap: 8px; }
+  .chart__value { font-family: var(--font-display); font-size: 34px; font-weight: 600; letter-spacing: -0.03em; }
+  .chart__value-unit { font-size: 12px; color: var(--ink-dim); }
+  .chart__axis {
+    display: block;
+    margin-top: 10px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-align: center;
+  }
+</style>

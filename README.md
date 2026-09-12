@@ -1,69 +1,63 @@
-# React + TypeScript + Vite
+# Netter website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Static marketing site for [www.netter.io](https://www.netter.io), built with
+Astro and React.
 
-Currently, two official plugins are available:
+## Running it
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev      # local dev server
+npm run build    # type-check + static build into dist/
+npm run preview  # serve the built output
+npm run deploy   # build and publish dist/ to the gh-pages branch
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## How it is put together
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**Astro renders everything; React hydrates three things.** Pages, sections,
+diagrams and charts are static HTML with no client JS. The only islands are the
+navigation (mega-menu and mobile drawer) and the contact form. Every link in the
+header is a real anchor, so the site navigates before — and without — hydration.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**Content lives in `src/i18n/locales/{en,it}.json`.** These dictionaries are the
+single source of copy. `src/lib/content.ts` walks their uniform
+`{title, subtitle, ...children}` shape, so a page renders whatever sections its
+subtree happens to have rather than hard-coding a template per page. Italian is
+incomplete upstream; `src/i18n/ui.ts` falls back to English per key.
+
+**Routes are locale-parameterised.** `src/pages/[...locale]/` builds each page
+twice — once at the root for English, once under `/it/`. Slugs match the
+previous site exactly so existing links keep working.
+
+**Diagrams are generated, not drawn.** `src/lib/iso.ts` implements one 2:1
+dimetric projection:
+
 ```
+sx = X + (gx - gy) * U
+sy = Y + (gx + gy) * U/2 - z
+```
+
+Every isometric figure on the site is built from grid coordinates through that
+function and rendered to SVG at build time. Scenes are painted back-to-front by
+`gx + gy`. `src/lib/charts.ts` does the same job for chart geometry.
+
+## Design rules
+
+`DESIGN_GUIDELINES.md` is authoritative. The two that shape everything:
+
+- **Squared edges only** — there is no `border-radius` in this codebase.
+- **One accent** — `#e3000f`, taken from the logo mark. Everything else is
+  neutral ink so the red never competes with itself. Charts use one hue; extra
+  series become small multiples, never a second colour.
+
+Tokens live at the top of `src/styles/global.css`.
+
+## Things to know
+
+- The D-SQL performance charts use **sample data**, flagged as such on the page.
+  Replace the arrays in `src/pages/[...locale]/products/[slug].astro` with real
+  benchmarks before treating them as claims.
+- The contact form posts to the same Formspree endpoint and reCAPTCHA key as the
+  previous site (`src/data/site.ts`). reCAPTCHA now loads only on `/contact`
+  rather than on every page.

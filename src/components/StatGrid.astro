@@ -1,0 +1,21 @@
+---
+interface Stat { value: string; label: string }
+interface Props { stats: Stat[]; bare?: boolean }
+const { stats, bare = false } = Astro.props;
+---
+<div class:list={['grid-rule', 'cols-4', bare && 'stats--bare']} data-reveal>
+  {stats.map((s) => (
+    <div class="stat">
+      <div class="stat-value">{s.value}</div>
+      <div class="stat__label">{s.label}</div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .stat { display: flex; flex-direction: column; gap: 12px; padding: 34px 28px; }
+  .stat__label { font-size: 14px; line-height: 1.5; color: var(--ink-muted); }
+  .stats--bare { border-left: 0; border-right: 0; }
+  .stats--bare > * { background: var(--ground); }
+  @media (max-width: 900px) { .stat { padding: 24px 20px; } }
+</style>

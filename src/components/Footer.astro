@@ -1,0 +1,98 @@
+---
+import Logo from './Logo.astro';
+import { products, services, company } from '../data/site';
+import { useTranslations, localizePath, type Locale } from '../i18n/ui';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const lp = (p: string) => localizePath(p, locale);
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <Logo height={24} />
+        <p class="body-muted">{t('footer.tagline')}</p>
+      </div>
+
+      <nav class="footer__col" aria-labelledby="f-products">
+        <div id="f-products" class="footer__label mono">{t('header.products')}</div>
+        {products.map((p) => (
+          <a href={lp(`/products/${p.slug}`)}>{t(`${p.key}.name`)}</a>
+        ))}
+      </nav>
+
+      <nav class="footer__col" aria-labelledby="f-services">
+        <div id="f-services" class="footer__label mono">{t('header.services')}</div>
+        {services.slice(0, 5).map((s) => (
+          <a href={lp(`/services/${s.slug}`)}>{t(`${s.key}.name`)}</a>
+        ))}
+        <a href={lp('/services')}>{t('common.viewDetails')}</a>
+      </nav>
+
+      <div class="footer__col">
+        <div class="footer__label mono">{company.name}</div>
+        <address class="footer__address">
+          {company.street}<br />{company.city}
+        </address>
+        <a href={`mailto:${company.email}`}>{company.email}</a>
+        <div class="footer__vat mono">{t('footer.company.vat')}</div>
+      </div>
+    </div>
+
+    <div class="footer__base">
+      <div class="mono footer__legal">
+        © {year} {company.name.toUpperCase()} — {t('common.allRightsReserved').toUpperCase()}
+      </div>
+      <nav class="footer__meta">
+        <a href={lp('/about')}>{t('header.about')}</a>
+        <a href={lp('/services')}>{t('header.services')}</a>
+        <a href={lp('/contact')}>{t('common.contactUs')}</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer { padding-block: 64px 40px; background: var(--ground); }
+  .footer__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 40px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .footer__brand { display: flex; flex-direction: column; gap: 18px; max-width: 240px; }
+  .footer__col { display: flex; flex-direction: column; gap: 14px; }
+  .footer__col a { font-size: 14px; color: var(--ink-muted); }
+  .footer__col a:hover { color: var(--accent); }
+  .footer__label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .footer__address { font-style: normal; font-size: 14px; line-height: 1.7; color: var(--ink-dim); }
+  .footer__vat { font-size: 12px; color: var(--ink-faint); margin-top: 4px; }
+
+  .footer__base {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-top: 26px;
+  }
+  .footer__legal { font-size: 11px; letter-spacing: 0.06em; color: var(--ink-ghost); }
+  .footer__meta { display: flex; gap: 18px; font-size: 12px; color: var(--ink-ghost); }
+  .footer__meta a { color: var(--ink-ghost); }
+
+  @media (max-width: 900px) {
+    .footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+  }
+  @media (max-width: 560px) {
+    .footer__grid { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

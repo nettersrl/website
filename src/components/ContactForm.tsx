@@ -1,176 +1,139 @@
-import { useState, useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Button } from '@/components/ui/button';
-import { CheckCircle } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
-// Declare grecaptcha on window
 declare global {
   interface Window {
-    grecaptcha: any;
+    grecaptcha?: {
+      render: (el: HTMLElement, opts: Record<string, unknown>) => number;
+      getResponse: (id?: number) => string;
+      reset: (id?: number) => void;
+    };
   }
 }
 
-export function ContactForm() {
-  const { t } = useTranslation();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+interface Labels {
+  email: string;
+  emailPlaceholder: string;
+  message: string;
+  messagePlaceholder: string;
+  submit: string;
+  submitting: string;
+  successTitle: string;
+  successMessage: string;
+  captchaRequired: string;
+  failed: string;
+}
+
+interface Props {
+  endpoint: string;
+  siteKey: string;
+  labels: Labels;
+}
+
+type Status = 'idle' | 'sending' | 'sent';
+
+export default function ContactForm({ endpoint, siteKey, labels }: Props) {
+  const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState<string | null>(null);
-  const recaptchaRef = useRef<HTMLDivElement>(null);
-  const recaptchaWidgetId = useRef<number | null>(null);
+  const captchaHost = useRef<HTMLDivElement>(null);
+  const widgetId = useRef<number | null>(null);
 
   useEffect(() => {
-    // Load reCAPTCHA when component mounts
-    const loadRecaptcha = () => {
-      if (window.grecaptcha && window.grecaptcha.render && recaptchaRef.current && recaptchaWidgetId.current === null) {
-        try {
-          recaptchaWidgetId.current = window.grecaptcha.render(recaptchaRef.current, {
-            sitekey: '6Ldo0oIUAAAAAGcNGTtp-6kruWAddaznK0hRrogH',
-            callback: (response: string) => {
-              // Update hidden field when reCAPTCHA is completed
-              const hiddenInput = document.getElementById('g-recaptcha-response') as HTMLInputElement;
-              if (hiddenInput) {
-                hiddenInput.value = response;
-              }
-            }
-          });
-          console.log('reCAPTCHA loaded successfully');
-        } catch (error) {
-          console.error('Error rendering reCAPTCHA:', error);
-        }
-      }
+    let cancelled = false;
+    const mount = () => {
+      if (cancelled || widgetId.current !== null) return true;
+      const host = captchaHost.current;
+      if (!host || !window.grecaptcha?.render) return false;
+      widgetId.current = window.grecaptcha.render(host, { sitekey: siteKey, theme: 'dark' });
+      return true;
     };
+    if (mount()) return;
+    const timer = window.setInterval(() => {
+      if (mount()) window.clearInterval(timer);
+    }, 150);
+    return () => {
+      cancelled = true;
+      window.clearInterval(timer);
+    };
+  }, [siteKey]);
 
-    // Check if grecaptcha is already loaded
-    if (window.grecaptcha && window.grecaptcha.render) {
-      loadRecaptcha();
-    } else {
-      // Wait for grecaptcha to load
-      const interval = setInterval(() => {
-        if (window.grecaptcha && window.grecaptcha.render) {
-          loadRecaptcha();
-          clearInterval(interval);
-        }
-      }, 100);
-
-      return () => clearInterval(interval);
-    }
-  }, []);
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsSubmitting(true);
+  // Takes the form element rather than the event, so the handler needs none
+  // of React's deprecated synthetic-event types.
+  const submit = async (form: HTMLFormElement) => {
     setError(null);
 
-    const form = event.currentTarget;
-
-    // Get reCAPTCHA response
-    const recaptchaResponse = window.grecaptcha?.getResponse(recaptchaWidgetId.current);
-    if (!recaptchaResponse) {
-      setError('Please complete the reCAPTCHA verification');
-      setIsSubmitting(false);
+    const token = widgetId.current !== null ? window.grecaptcha?.getResponse(widgetId.current) : '';
+    if (!token) {
+      setError(labels.captchaRequired);
       return;
     }
 
-    // Set the hidden input value
-    const hiddenInput = form.querySelector('#g-recaptcha-response') as HTMLInputElement;
-    if (hiddenInput) {
-      hiddenInput.value = recaptchaResponse;
-    }
-
-    // Create FormData
-    const formData = new FormData(form);
+    setStatus('sending');
+    const body = new FormData(form);
+    body.set('g-recaptcha-response', token);
 
     try {
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: {
-          Accept: 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        setIsSuccess(true);
-        form.reset();
-        // Reset reCAPTCHA
-        if (window.grecaptcha && recaptchaWidgetId.current !== null) {
-          window.grecaptcha.reset(recaptchaWidgetId.current);
-        }
-      } else {
-        const data = await response.json();
-        if (data.errors) {
-          setError(data.errors.map((error: any) => error.message).join(', '));
-        } else {
-          setError('Oops! There was a problem submitting your form');
-        }
+      const res = await fetch(endpoint, { method: 'POST', body, headers: { Accept: 'application/json' } });
+      if (!res.ok) {
+        const data = (await res.json().catch(() => null)) as { errors?: { message: string }[] } | null;
+        throw new Error(data?.errors?.map((e) => e.message).join(', ') || labels.failed);
       }
-    } catch (error) {
-      setError('Oops! There was a problem submitting your form');
-    } finally {
-      setIsSubmitting(false);
+      form.reset();
+      if (widgetId.current !== null) window.grecaptcha?.reset(widgetId.current);
+      setStatus('sent');
+    } catch (e) {
+      setError(e instanceof Error ? e.message : labels.failed);
+      setStatus('idle');
     }
   };
 
-  if (isSuccess) {
+  if (status === 'sent') {
     return (
-      <div className="flex flex-col items-center justify-center py-12 text-center">
-        <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
-        <h3 className="text-2xl font-bold mb-2">{t('contact.successTitle')}</h3>
-        <p className="text-muted-foreground">{t('contact.successMessage')}</p>
+      <div className="form form--done" role="status">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#e3000f" strokeWidth={1.8}
+             strokeLinecap="square" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5" /></svg>
+        <h3 className="form__done-title">{labels.successTitle}</h3>
+        <p className="body-muted">{labels.successMessage}</p>
       </div>
     );
   }
 
   return (
     <form
-      action="https://formspree.io/f/xldpvnoe"
-      method="POST"
-      onSubmit={handleSubmit}
-      className="space-y-6"
+      className="form"
+      noValidate
+      onSubmit={(event) => {
+        event.preventDefault();
+        void submit(event.currentTarget);
+      }}
     >
-      <div className="space-y-2">
-        <label htmlFor="email" className="block text-sm font-medium">
-          {t('contact.emailLabel')}
-        </label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          required
-          className="w-full px-4 py-2 border border-border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
-          placeholder={t('contact.emailPlaceholder')}
-        />
-      </div>
+      <label className="form__field">
+        <span className="form__label mono">{labels.email}</span>
+        <input type="email" name="email" required autoComplete="email"
+               placeholder={labels.emailPlaceholder} className="form__input" />
+      </label>
 
-      <div className="space-y-2">
-        <label htmlFor="message" className="block text-sm font-medium">
-          {t('contact.messageLabel')}
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={6}
-          required
-          className="w-full px-4 py-2 border border-border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all resize-none"
-          placeholder={t('contact.messagePlaceholder')}
-        />
-      </div>
+      <label className="form__field">
+        <span className="form__label mono">{labels.message}</span>
+        <textarea name="message" required rows={6}
+                  placeholder={labels.messagePlaceholder} className="form__input form__input--area" />
+      </label>
 
-      <div className="flex justify-center">
-        <div ref={recaptchaRef} />
-      </div>
+      {/* Bot trap: a real person never fills this. */}
+      <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" className="form__trap" />
 
-      <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" />
+      <div ref={captchaHost} className="form__captcha" />
 
-      {error && (
-        <div className="text-sm text-red-500 bg-red-50 dark:bg-red-950/20 p-3 rounded-md border border-red-200 dark:border-red-800">
-          {error}
-        </div>
-      )}
+      {error && <p className="form__error" role="alert">{error}</p>}
 
-      <Button type="submit" disabled={isSubmitting} className="w-full" size="lg">
-        {isSubmitting ? t('contact.submitting') : t('contact.submit')}
-      </Button>
+      <button type="submit" className="btn btn--primary form__submit" disabled={status === 'sending'}>
+        {status === 'sending' ? labels.submitting : labels.submit}
+        {status !== 'sending' && (
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               strokeWidth={2} strokeLinecap="square" aria-hidden="true">
+            <path d="M5 12h13M13 6l6 6-6 6" />
+          </svg>
+        )}
+      </button>
     </form>
   );
 }
