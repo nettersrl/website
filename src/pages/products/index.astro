@@ -1,0 +1,67 @@
+---
+import Base from '../../layouts/Base.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Arrow from '../../components/Arrow.astro';
+import { products, productHref } from '../../data/site';
+import { t } from '../../lib/copy';
+
+---
+<Base title={t('header.products')} description={t('home.products.description')}>
+  <section class="section blueprint">
+    <div class="shell page-hero">
+      <div class="badge rise">{t('header.products')}</div>
+      <h1 class="display-xl rise" style="animation-delay:.14s">{t('home.products.title')}</h1>
+      <p class="lead page-hero__lead rise" style="animation-delay:.26s">{t('home.products.description')}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="grid-rule cols-2" data-reveal>
+        {products.map((p, i) => (
+          <a
+            href={productHref(p, (path) => path)}
+            target={p.url ? '_blank' : undefined}
+            rel={p.url ? 'noopener' : undefined}
+            class="tile pcard"
+          >
+            <div class="pcard__top">
+              <svg width="64" height="52" viewBox="0 0 64 52" fill="none" aria-hidden="true">
+                <polygon points="32,5 58,18 32,31 6,18" fill="#1e1e26" stroke="#e3000f" stroke-width="1.2" />
+                <polygon points="6,18 32,31 32,47 6,34" fill="#121218" stroke="#3a1015" stroke-width="1" />
+                <polygon points="32,31 58,18 58,34 32,47" fill="#0e0e13" stroke="#3a1015" stroke-width="1" />
+              </svg>
+              {p.status
+                ? <span class="plate">{p.status}</span>
+                : <span class="mono pcard__idx">{String(i + 1).padStart(2, '0')}</span>}
+            </div>
+            <h2 class="pcard__name">{t(`${p.key}.name`)}</h2>
+            <p class="lead">{t(`${p.key}.description`)}</p>
+            <span class="btn-text">
+              {p.url ? p.url.replace('https://', '') : t('common.learnMore')}
+              <Arrow size={12} weight={2.4} />
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction
+    title={t('about.cta.heading')}
+    description={t('about.cta.description')}
+    primary={{ label: t('common.contactSales') }}
+  />
+</Base>
+
+<style>
+  .page-hero { display: flex; flex-direction: column; gap: 26px; max-width: 860px; }
+  .page-hero__lead { max-width: 620px; }
+  .pcard { gap: 18px; padding: 44px 40px; min-height: 300px; }
+  .pcard__top { display: flex; align-items: flex-start; justify-content: space-between; }
+  .pcard__idx { font-size: 11px; letter-spacing: 0.1em; color: var(--ink-ghost); }
+  .pcard__name { font-family: var(--font-display); font-size: clamp(28px, 3vw, 38px); font-weight: 600; letter-spacing: -0.03em; }
+  .pcard:hover .pcard__name { color: var(--accent); }
+  .pcard .lead { flex-grow: 1; }
+  @media (max-width: 700px) { .pcard { padding: 30px 24px; min-height: 0; } }
+</style>

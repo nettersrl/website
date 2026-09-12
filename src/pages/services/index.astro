@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Icon from '../../components/Icon.astro';
+import Arrow from '../../components/Arrow.astro';
+import { services } from '../../data/site';
+import { t } from '../../lib/copy';
+
+---
+<Base title={t('header.services')} description={t('home.consultancy.description')}>
+  <section class="section blueprint">
+    <div class="shell page-hero">
+      <div class="badge rise">{t('header.services')}</div>
+      <h1 class="display-xl rise" style="animation-delay:.14s">{t('home.consultancy.title')}</h1>
+      <p class="lead page-hero__lead rise" style="animation-delay:.26s">{t('home.consultancy.description')}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="grid-rule cols-2" data-reveal>
+        {services.map((s, i) => (
+          <a href={`/services/${s.slug}`} class="tile scard">
+            <div class="scard__top">
+              <span class="scard__icon"><Icon path={s.icon} size={19} /></span>
+              <span class="mono scard__idx">{String(i + 1).padStart(2, '0')}</span>
+            </div>
+            <h2 class="h3">{t(`${s.key}.name`)}</h2>
+            <p class="body-muted scard__desc">{t(`${s.key}.description`)}</p>
+            <span class="btn-text">{t('common.learnMore')}<Arrow size={12} weight={2.4} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CallToAction
+    title={t('about.cta.heading')}
+    description={t('about.cta.description')}
+    primary={{ label: t('common.scheduleConsultation') }}
+  />
+</Base>
+
+<style>
+  .page-hero { display: flex; flex-direction: column; gap: 26px; max-width: 860px; }
+  .page-hero__lead { max-width: 620px; }
+  .scard { gap: 16px; padding: 36px 32px; min-height: 220px; }
+  .scard__top { display: flex; align-items: flex-start; justify-content: space-between; }
+  .scard__icon { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--accent-edge); background: var(--accent-wash); color: var(--accent); }
+  .scard__idx { font-size: 11px; letter-spacing: 0.1em; color: var(--ink-ghost); }
+  .scard:hover h2 { color: var(--accent); }
+  .scard__desc { flex-grow: 1; }
+  @media (max-width: 700px) { .scard { padding: 26px 22px; min-height: 0; } }
+</style>

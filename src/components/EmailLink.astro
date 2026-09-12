@@ -1,0 +1,22 @@
+---
+/**
+ * A contact link whose address is only resolved after the human challenge.
+ * Renders with no address in the markup; the layout script rewrites the href
+ * and, unless `label` is set, the text once a visitor verifies.
+ */
+interface Props {
+  label?: string;
+  subject?: string;
+  class?: string;
+}
+const { label, subject, class: className = '' } = Astro.props;
+---
+<a
+  href="#netter-human-layer"
+  class:list={['obf-email', className]}
+  data-label={label ? '' : undefined}
+  data-subject={subject}
+  rel="nofollow"
+>
+  {label ?? 'Show email address'}<slot />
+</a>

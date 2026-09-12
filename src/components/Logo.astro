@@ -1,0 +1,13 @@
+---
+import logo from '../assets/netter-logo.svg';
+interface Props { height?: number; class?: string }
+const { height = 26, class: className = '' } = Astro.props;
+---
+<img
+  src={logo.src}
+  alt="Netter"
+  width={Math.round((height * 277.7) / 73.25)}
+  height={height}
+  class={className}
+  style={`height:${height}px;width:auto`}
+/>

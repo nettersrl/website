@@ -1,0 +1,66 @@
+---
+import type { ContentSection } from '../lib/content';
+
+interface Props {
+  section: ContentSection;
+  eyebrow?: string;
+  /** Column count for the top-level items. */
+  cols?: 2 | 3 | 4;
+  alt?: boolean;
+}
+const { section, eyebrow, cols = 3, alt = false } = Astro.props;
+const hasNested = section.items.some((i) => i.items.length > 0);
+const columns = hasNested ? 2 : cols;
+---
+<section class:list={['section', alt && 'section--alt']}>
+  <div class="shell">
+    {(section.title || eyebrow) && (
+      <header class="block__head" data-reveal>
+        {eyebrow && <div class="eyebrow">{eyebrow}</div>}
+        {section.title && <h2 class="h2">{section.title}</h2>}
+        {section.subtitle && <p class="lead block__sub">{section.subtitle}</p>}
+      </header>
+    )}
+
+    {section.items.length > 0 && (
+      <div class:list={['grid-rule', `cols-${columns}`]} data-reveal>
+        {section.items.map((item) => (
+          <article class="block__item">
+            <h3 class="h3">{item.title}</h3>
+            {item.description && <p class="body-muted">{item.description}</p>}
+            {item.items.length > 0 && (
+              <ul class="block__points">
+                {item.items.map((sub) => (
+                  <li>
+                    <span class="block__marker" aria-hidden="true"></span>
+                    <span>
+                      <strong class="block__point-title">{sub.title}</strong>
+                      {sub.description && <span class="block__point-desc">{sub.description}</span>}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .block__head { display: flex; flex-direction: column; gap: 16px; max-width: 720px; margin-bottom: 48px; }
+  .block__sub { margin-top: 2px; }
+  .block__item { display: flex; flex-direction: column; gap: 14px; padding: 36px 32px; border-top: 2px solid transparent; transition: border-color 0.25s ease; }
+  .block__item:hover { border-top-color: var(--accent); }
+  .block__points { list-style: none; display: flex; flex-direction: column; gap: 14px; margin: 8px 0 0; padding: 18px 0 0; border-top: 1px solid var(--hairline); }
+  .block__points li { display: flex; align-items: flex-start; gap: 12px; }
+  .block__marker { width: 5px; height: 5px; background: var(--accent); flex-shrink: 0; margin-top: 8px; }
+  .block__point-title { display: block; font-size: 14px; font-weight: 600; color: var(--ink); }
+  .block__point-desc { display: block; margin-top: 3px; font-size: 13px; line-height: 1.55; color: var(--ink-dim); }
+
+  @media (max-width: 900px) {
+    .block__head { margin-bottom: 32px; }
+    .block__item { padding: 26px 22px; }
+  }
+</style>

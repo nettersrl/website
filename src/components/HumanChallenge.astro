@@ -1,0 +1,124 @@
+---
+/**
+ * Anti-spam gate for the contact address, in the same shape as the one on
+ * obstack.it: the widget is shown only after a mailto click, and clearing it
+ * dispatches `netter:humanVerified`, which is what unlocks the address.
+ *
+ * Set PUBLIC_TURNSTILE_SITEKEY to swap the click-challenge for real
+ * Cloudflare Turnstile.
+ */
+interface Props { sitekey?: string }
+const { sitekey } = Astro.props;
+const isTurnstile = Boolean(sitekey);
+---
+
+{isTurnstile ? (
+  <>
+    <div
+      class="cf-turnstile"
+      data-sitekey={sitekey}
+      data-callback="onNetterTurnstileVerified"
+      data-theme="dark"
+      data-size="normal"
+    ></div>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer is:inline></script>
+    <script is:inline>
+      window.onNetterTurnstileVerified = function (token) {
+        window.dispatchEvent(
+          new CustomEvent('netter:humanVerified', { detail: { token, provider: 'turnstile' } }),
+        );
+      };
+    </script>
+  </>
+) : (
+  <>
+    <div class="cf-challenge" data-cf-widget role="status" aria-live="polite" aria-label="Human verification">
+      <div class="cf-box">
+        <div class="cf-left">
+          <button type="button" class="cf-checkbox" aria-label="Verify you are human">
+            <span class="cf-spinner" aria-hidden="true"></span>
+            <span class="cf-check" aria-hidden="true">✓</span>
+          </button>
+          <span class="cf-label">Verify you are human</span>
+        </div>
+        <div class="cf-right">
+          <span class="cf-logo mono">Netter Shield</span>
+          <span class="cf-sub mono">Anti-spam protection</span>
+        </div>
+      </div>
+      <span class="cf-msg mono">Click the box to show the address</span>
+    </div>
+    <script is:inline>
+      (() => {
+        const widget = document.querySelector('[data-cf-widget]');
+        if (!widget) return;
+        widget.querySelector('.cf-checkbox')?.addEventListener('click', () => {
+          if (widget.dataset.verified === '1' || widget.dataset.checking === '1') return;
+          widget.dataset.checking = '1';
+          const msg = widget.querySelector('.cf-msg');
+          if (msg) msg.textContent = 'Verifying you are human…';
+          setTimeout(() => {
+            window.dispatchEvent(
+              new CustomEvent('netter:humanVerified', { detail: { provider: 'click-challenge' } }),
+            );
+          }, 700);
+        });
+      })();
+    </script>
+  </>
+)}
+
+<style>
+  .cf-challenge {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 340px;
+    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    user-select: none;
+    box-shadow: 0 0 0 1px rgba(227, 0, 15, 0.35), 0 0 20px rgba(227, 0, 15, 0.3),
+      0 16px 40px rgba(0, 0, 0, 0.55);
+  }
+  .cf-box { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+  .cf-left { display: flex; align-items: center; gap: 12px; }
+  .cf-checkbox {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    background: var(--ground);
+    border: 2px solid var(--border);
+    cursor: pointer;
+  }
+  .cf-spinner {
+    display: none;
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%; /* the one curve on the site: it has to read as a spinner */
+    animation: cf-spin 0.8s linear infinite;
+  }
+  .cf-check { display: none; color: var(--accent); font-weight: 700; font-size: 16px; line-height: 1; }
+  .cf-challenge[data-checking='1'] .cf-spinner { display: block; }
+  .cf-challenge[data-checking='1'] .cf-checkbox { cursor: wait; }
+  .cf-challenge[data-verified='1'] .cf-spinner { display: none; }
+  .cf-challenge[data-verified='1'] .cf-check { display: block; }
+  .cf-challenge[data-verified='1'] .cf-checkbox {
+    border-color: var(--accent-edge);
+    background: var(--accent-wash);
+    cursor: default;
+  }
+  .cf-label { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .cf-right { display: flex; flex-direction: column; gap: 2px; text-align: right; }
+  .cf-logo { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+  .cf-sub { font-size: 9px; letter-spacing: 0.08em; color: var(--ink-faint); }
+  .cf-msg { font-size: 10px; letter-spacing: 0.04em; color: var(--ink-faint); }
+  .cf-challenge[data-verified='1'] .cf-msg { color: var(--accent); }
+  @keyframes cf-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .cf-spinner { animation: none; } }
+</style>
