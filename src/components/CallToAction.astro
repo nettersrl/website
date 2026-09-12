@@ -31,6 +31,6 @@ const { title, description, primary, secondary } = Astro.props;
   .cta__copy { display: flex; flex-direction: column; gap: 16px; max-width: 620px; }
   .cta__actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; flex-shrink: 0; }
   @media (max-width: 700px) {
-    .cta__actions .btn { width: 100%; }
+    .cta__actions :global(.btn) { width: 100%; }
   }
 </style>

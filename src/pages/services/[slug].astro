@@ -36,11 +36,34 @@ const blockKeys = [
   'whyChooseUs',
 ];
 
+const site = 'https://www.netter.io';
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name,
+    serviceType: name,
+    description: subtitle,
+    provider: { '@id': `${site}/#organization` },
+    areaServed: 'Worldwide',
+    url: `${site}/services/${service.slug}/`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${site}/` },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: `${site}/services/` },
+      { '@type': 'ListItem', position: 3, name, item: `${site}/services/${service.slug}/` },
+    ],
+  },
+];
+
 const blocks = blockKeys
   .map((key) => getSection(`${service.key}.${key}`))
   .filter((s): s is NonNullable<typeof s> => s !== null && (s.items.length > 0 || !!s.title));
 ---
-<Base title={name} description={subtitle}>
+<Base title={name} description={subtitle} schema={schema}>
   <Breadcrumb
    
     trail={[{ label: t('header.services'), href: '/services' }, { label: name }]}
@@ -85,5 +108,5 @@ const blocks = blockKeys
   }
   .svc-hero__lead { max-width: 700px; font-size: clamp(16px, 1.4vw, 19px); }
   .svc-hero__actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-  @media (max-width: 700px) { .svc-hero__actions .btn { width: 100%; } }
+  @media (max-width: 700px) { .svc-hero__actions :global(.btn) { width: 100%; } }
 </style>

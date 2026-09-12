@@ -73,16 +73,39 @@ const isTurnstile = Boolean(sitekey);
     display: inline-flex;
     flex-direction: column;
     gap: 6px;
-    max-width: 340px;
-    padding: 12px 14px;
+    width: 372px;
+    max-width: 100%;
+    padding: 14px 16px;
     background: var(--surface);
     border: 1px solid var(--accent);
     user-select: none;
-    box-shadow: 0 0 0 1px rgba(227, 0, 15, 0.35), 0 0 20px rgba(227, 0, 15, 0.3),
-      0 16px 40px rgba(0, 0, 0, 0.55);
+    /* The border cycles hue and glow so the widget pulls the eye — it appears
+       away from where the visitor just clicked. */
+    animation: cf-aura 3.2s ease-in-out infinite;
   }
-  .cf-box { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-  .cf-left { display: flex; align-items: center; gap: 12px; }
+  @keyframes cf-aura {
+    0%, 100% {
+      border-color: #e3000f;
+      box-shadow: 0 0 0 1px rgba(227, 0, 15, 0.5), 0 0 16px rgba(227, 0, 15, 0.6),
+        0 0 38px rgba(227, 0, 15, 0.28), 0 18px 44px rgba(0, 0, 0, 0.6);
+    }
+    50% {
+      border-color: #ff6a00;
+      box-shadow: 0 0 0 1px rgba(255, 106, 0, 0.55), 0 0 22px rgba(255, 106, 0, 0.7),
+        0 0 48px rgba(255, 106, 0, 0.34), 0 18px 44px rgba(0, 0, 0, 0.6);
+    }
+  }
+  /* Once verified it stops competing for attention. */
+  .cf-challenge[data-verified='1'] {
+    animation: none;
+    border-color: var(--accent-edge);
+    box-shadow: 0 0 10px rgba(227, 0, 15, 0.25), 0 18px 44px rgba(0, 0, 0, 0.6);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cf-challenge { animation: none; }
+  }
+  .cf-box { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .cf-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
   .cf-checkbox {
     width: 28px;
     height: 28px;
@@ -113,11 +136,11 @@ const isTurnstile = Boolean(sitekey);
     background: var(--accent-wash);
     cursor: default;
   }
-  .cf-label { font-size: 13px; font-weight: 500; color: var(--ink); }
-  .cf-right { display: flex; flex-direction: column; gap: 2px; text-align: right; }
-  .cf-logo { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
-  .cf-sub { font-size: 9px; letter-spacing: 0.08em; color: var(--ink-faint); }
-  .cf-msg { font-size: 10px; letter-spacing: 0.04em; color: var(--ink-faint); }
+  .cf-label { font-size: 13px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+  .cf-right { display: flex; flex-direction: column; gap: 2px; text-align: right; flex-shrink: 0; }
+  .cf-logo { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 500; white-space: nowrap; }
+  .cf-sub { font-size: 9px; letter-spacing: 0.08em; color: var(--ink-faint); white-space: nowrap; }
+  .cf-msg { font-size: 10px; letter-spacing: 0.04em; color: var(--ink-faint); white-space: nowrap; }
   .cf-challenge[data-verified='1'] .cf-msg { color: var(--accent); }
   @keyframes cf-spin { to { transform: rotate(360deg); } }
   @media (prefers-reduced-motion: reduce) { .cf-spinner { animation: none; } }

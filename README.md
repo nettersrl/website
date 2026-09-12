@@ -10,8 +10,21 @@ npm install
 npm run dev      # local dev server
 npm run build    # type-check + static build into dist/
 npm run preview  # serve the built output
-npm run deploy   # build and publish dist/ to the gh-pages branch
+npm run deploy   # manual publish — CI normally does this
 ```
+
+## Deployment
+
+Pushing to `main` deploys. `.github/workflows/deploy.yml` builds the site,
+runs a few guards (an `index.html` exists, `CNAME` survived, the sitemap was
+written, and no plaintext contact address leaked into the output), then
+force-pushes `dist/` to the `gh-pages` branch that GitHub Pages serves. It adds
+`.nojekyll`, without which Pages would drop the `_astro/` directory.
+
+`.github/workflows/ci.yml` runs the same type-check and build on pull requests
+and on every non-`main` branch.
+
+`npm run deploy` still works for a manual publish, but CI is the normal path.
 
 ## How it is put together
 
@@ -43,6 +56,19 @@ sy = Y + (gx + gy) * U/2 - z
 Every isometric figure on the site is built from grid coordinates through that
 function and rendered to SVG at build time. Scenes are painted back-to-front by
 `gx + gy`. `src/lib/charts.ts` does the same job for chart geometry.
+
+## SEO
+
+Each page carries a canonical URL, Open Graph and Twitter tags, and a generated
+social card (`public/og-card.png`). JSON-LD ships on every page — `Organization`
+and `WebSite` from the layout, plus `Product`, `Service`, `BreadcrumbList` or
+`ItemList` from the page itself. `@astrojs/sitemap` writes the sitemap with
+per-section priorities, and `robots.txt` points at it.
+
+The largest remaining performance cost is the ~212 KB React runtime, loaded on
+every page for the header navigation — the only React island left now the
+contact form is gone. Replacing it with a few lines of vanilla JS would remove
+React from the site entirely.
 
 ## Design rules
 

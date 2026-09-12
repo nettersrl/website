@@ -3,6 +3,10 @@
  * A contact link whose address is only resolved after the human challenge.
  * Renders with no address in the markup; the layout script rewrites the href
  * and, unless `label` is set, the text once a visitor verifies.
+ *
+ * NOTE: this anchor carries its own scope id, so a parent's scoped CSS will
+ * NOT reach it. Style it with global classes (`btn`, …) or wrap the parent
+ * rule in `:global()`.
  */
 interface Props {
   label?: string;

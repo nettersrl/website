@@ -9,7 +9,21 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.netter.io',
   output: 'static',
-  integrations: [react(), sitemap()],
+  integrations: [
+    react(),
+    sitemap({
+      changefreq: 'monthly',
+      lastmod: new Date(),
+      serialize(item) {
+        const path = new URL(item.url).pathname;
+        if (path === '/') item.priority = 1.0;
+        else if (/^\/(products|services)\/$/.test(path)) item.priority = 0.9;
+        else if (/^\/(products|services)\//.test(path)) item.priority = 0.8;
+        else item.priority = 0.6;
+        return item;
+      },
+    }),
+  ],
   i18n: {
     locales: ['en', 'it'],
     defaultLocale: 'en',

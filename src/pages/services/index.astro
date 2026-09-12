@@ -6,8 +6,20 @@ import Arrow from '../../components/Arrow.astro';
 import { services } from '../../data/site';
 import { t } from '../../lib/copy';
 
+const site = 'https://www.netter.io';
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Netter services',
+  itemListElement: services.map((sv, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: t(`${sv.key}.name`),
+    url: `${site}/services/${sv.slug}/`,
+  })),
+}];
 ---
-<Base title={t('header.services')} description={t('home.consultancy.description')}>
+<Base title={t('header.services')} description={t('home.consultancy.description')} schema={schema}>
   <section class="section blueprint">
     <div class="shell page-hero">
       <div class="badge rise">{t('header.services')}</div>

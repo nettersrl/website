@@ -134,9 +134,9 @@ const productPoints = ['distributedSystems', 'cloudNative', 'microservices'].map
   <!-- ============================ PROOF =========================== -->
   <section class="section">
     <div class="shell">
-      <header class="sec-head" data-reveal>
+      <header class="sec-head sec-head--top" data-reveal>
         <div class="sec-head__copy">
-          <h2 class="h2 sec-head__solo">{t('about.achievements.heading')}</h2>
+          <h2 class="h2">{t('about.achievements.heading')}</h2>
           <p class="lead">{t('about.achievements.subtitle')}</p>
         </div>
         <p class="mono sec-head__note">NETTER S.R.L. — ASSISI, ITALY</p>
@@ -150,7 +150,7 @@ const productPoints = ['distributedSystems', 'cloudNative', 'microservices'].map
     title={t('about.cta.heading')}
     description={t('about.cta.description')}
     primary={{ label: t('about.cta.primaryButton') }}
-    secondary={{ label: t('about.cta.secondaryButton'), href: '/about' }}
+    secondary={{ label: t('home.products.cta'), href: '/products' }}
   />
 </Base>
 
@@ -162,6 +162,9 @@ const productPoints = ['distributedSystems', 'cloudNative', 'microservices'].map
   .hero__actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 
   .sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 52px; }
+  /* With a subtitle present the note has to hang off the top, not the baseline. */
+  .sec-head--top { align-items: flex-start; }
+  .sec-head--top .sec-head__note { padding-top: 10px; }
   .sec-head__copy { display: flex; flex-direction: column; gap: 18px; max-width: 560px; }
   .sec-head__solo { max-width: 460px; }
   .sec-head__note { font-size: 11px; letter-spacing: 0.1em; color: var(--ink-faint); }
@@ -199,7 +202,7 @@ const productPoints = ['distributedSystems', 'cloudNative', 'microservices'].map
     .services__intro { position: static; }
   }
   @media (max-width: 700px) {
-    .hero__actions .btn { width: 100%; }
+    .hero__actions :global(.btn) { width: 100%; }
     .sec-head { margin-bottom: 32px; }
   }
 </style>

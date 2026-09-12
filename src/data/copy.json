@@ -31,31 +31,6 @@
     "partnerships": "Partnerships",
     "careers": "Careers"
   },
-  "contact": {
-    "badge": "Get in Touch",
-    "title": "Contact Us",
-    "subtitle": "Have a question or ready to start your project? We'd love to hear from you.",
-    "formTitle": "Send us a message",
-    "emailLabel": "Email Address",
-    "emailPlaceholder": "your.email@company.com",
-    "messageLabel": "Message",
-    "messagePlaceholder": "Tell us about your project or ask us a question...",
-    "submit": "Send Message",
-    "submitting": "Sending...",
-    "successTitle": "Thank you for reaching out!",
-    "successMessage": "We've received your message and will get back to you shortly.",
-    "info": {
-      "email": {
-        "title": "Email Us",
-        "description": "Send us an email and we'll respond within 24 hours."
-      },
-      "phone": {
-        "title": "Call Us",
-        "description": "Speak with our team during business hours.",
-        "hours": "Monday - Friday, 9AM - 6PM EST"
-      }
-    }
-  },
   "footer": {
     "tagline": "Quality engineering, from code to infrastructure.",
     "company": {
@@ -104,7 +79,7 @@
     },
     "achievements": {
       "heading": "What Sets Us Apart",
-      "companiesServed": "50+ Tech companies served worldwide",
+      "companiesServed": "50+ Tech Companies Served Worldwide",
       "uptime": "99.9% System Uptime Maintained",
       "projectsDelivered": "200+ Successful Projects Delivered",
       "support": "24/7 Dedicated Support Team",
@@ -144,97 +119,7 @@
     },
     "obstack": {
       "name": "Obstack",
-      "description": "Complete observability stack for modern infrastructure",
-      "detail": {
-        "coreFeatures": {
-          "title": "Complete Observability",
-          "subtitle": "Logs, metrics and traces from distributed applications, collected and correlated in one platform.",
-          "logsMetricsTraces": {
-            "title": "Logs, Metrics & Traces",
-            "description": "Complete telemetry data collection from distributed applications with seamless ingestion and storage."
-          },
-          "performanceMonitoring": {
-            "title": "Performance Monitoring",
-            "description": "Real-time system performance tracking to identify bottlenecks and optimize resource utilization."
-          },
-          "incidentResolution": {
-            "title": "Incident Resolution",
-            "description": "Quickly resolve incidents and reduce downtime with comprehensive visibility into your systems."
-          },
-          "rootCauseAnalysis": {
-            "title": "Root Cause Analysis",
-            "description": "Accurate diagnosis of issues with correlated logs, metrics, and traces in a single platform."
-          }
-        },
-        "servicesSection": {
-          "title": "How We Help",
-          "subtitle": "From first deployment to day-two operations, we run the parts of an observability stack that are easy to get wrong.",
-          "fullSetupSupport": {
-            "title": "Full Setup Support",
-            "description": "We handle the complexity of initial setup, ensuring your observability stack is configured correctly from day one.",
-            "infrastructureDeployment": {
-              "title": "Infrastructure deployment"
-            },
-            "componentConfiguration": {
-              "title": "Component configuration"
-            },
-            "storageOptimization": {
-              "title": "Storage optimization"
-            },
-            "securityHardening": {
-              "title": "Security hardening"
-            }
-          },
-          "agentConfiguration": {
-            "title": "Agent Configuration",
-            "description": "Expert configuration of data collection agents for optimal data flow and minimal performance impact.",
-            "opentelemetryIntegration": {
-              "title": "OpenTelemetry integration"
-            },
-            "customInstrumentation": {
-              "title": "Custom instrumentation"
-            },
-            "samplingStrategies": {
-              "title": "Sampling strategies"
-            },
-            "dataPipelineOptimization": {
-              "title": "Data pipeline optimization"
-            }
-          },
-          "bestPractices": {
-            "title": "Best Practices",
-            "description": "Guidance on what to log, what to track, and how to maximize value while minimizing noise.",
-            "logStructuringStandards": {
-              "title": "Log structuring standards"
-            },
-            "metricNamingConventions": {
-              "title": "Metric naming conventions"
-            },
-            "traceContextPropagation": {
-              "title": "Trace context propagation"
-            },
-            "alertThresholdTuning": {
-              "title": "Alert threshold tuning"
-            }
-          },
-          "customIntegrations": {
-            "title": "Custom Integrations",
-            "description": "Seamless integration with your existing tools and third-party software ecosystems.",
-            "apiIntegrations": {
-              "title": "API integrations"
-            },
-            "customExporters": {
-              "title": "Custom exporters"
-            },
-            "dashboardTemplates": {
-              "title": "Dashboard templates"
-            },
-            "alertingWorkflows": {
-              "title": "Alerting workflows"
-            }
-          }
-        }
-      }
+      "description": "Complete observability stack for modern infrastructure"
     },
     "hadron": {
       "name": "Hadron",
@@ -1912,20 +1797,6 @@
       "scalability": "Scalability",
       "transactions": "Transactions",
       "workloads": "Workloads"
-    }
-  },
-  "news": {
-    "obstackLaunch": {
-      "title": "Introducing Obstack: Production-Grade Observability for Modern Infrastructure",
-      "description": "After months of development, we're thrilled to announce Obstack—a complete observability stack built for scale, efficiency, and operational excellence."
-    },
-    "hadronAnnouncement": {
-      "title": "Hadron: The Future of Serverless Computing",
-      "description": "We're excited to announce Hadron, our next-generation serverless platform that brings the power of AWS Lambda to your infrastructure—anywhere you want to run it."
-    },
-    "dcacheRelease": {
-      "title": "DCache: Accelerate Your Database with Zero Code Changes",
-      "description": "Today we're launching DCache, a high-performance database caching solution that delivers sub-millisecond query response times without requiring any application code changes."
     }
   }
 }
