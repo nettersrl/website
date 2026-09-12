@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="shell">
     <div class="footer__brand">
-      <Logo height={26} />
+      <Logo height={24} />
       <p class="footer__motto">{t('footer.tagline')}</p>
     </div>
 
@@ -63,35 +63,33 @@ const year = new Date().getFullYear();
 <style>
   .footer { padding-block: 64px 40px; background: var(--ground); }
 
-  /* Brand lockup: logo and motto share one left edge, above the link columns. */
+  /* Brand lockup: logo and motto share one left edge. */
   .footer__brand {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 14px;
-    padding-bottom: 44px;
+    gap: 12px;
+    padding-bottom: 36px;
     border-bottom: 1px solid var(--hairline);
   }
   .footer__motto {
-    font-family: var(--font-display);
-    font-size: clamp(20px, 2.2vw, 28px);
-    font-weight: 600;
-    letter-spacing: -0.025em;
-    line-height: 1.15;
-    color: var(--ink);
-    max-width: 18ch;
+    font-size: clamp(15px, 1.3vw, 17px);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--ink-muted);
+    max-width: 32ch;
   }
 
   .footer__grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 40px;
-    padding-block: 44px;
+    padding-block: 40px;
     border-bottom: 1px solid var(--hairline);
   }
   .footer__col { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
-  .footer__col a { font-size: 14px; color: var(--ink-muted); }
-  .footer__col a:hover { color: var(--accent); }
+  .footer__col :global(a) { font-size: 14px; color: var(--ink-muted); }
+  .footer__col :global(a:hover) { color: var(--accent); }
   .footer__label {
     font-size: 11px;
     letter-spacing: 0.12em;

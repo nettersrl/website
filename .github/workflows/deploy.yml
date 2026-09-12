@@ -1,0 +1,78 @@
+name: Deploy
+
+# The site is served from the gh-pages branch, so this workflow publishes there
+# rather than switching Pages to the Actions source — no repository setting has
+# to change for it to take over from the local `npm run deploy`.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      # `npm run build` runs `astro check` first, so a type error fails the
+      # deploy instead of shipping.
+      - name: Build
+        run: npm run build
+
+      - name: Check the build looks right
+        run: |
+          test -f dist/index.html || { echo "no index.html"; exit 1; }
+          test -f dist/CNAME || { echo "CNAME missing — custom domain would break"; exit 1; }
+          test -f dist/sitemap-index.xml || { echo "sitemap missing"; exit 1; }
+          if grep -rqo 'info@netter\.io' dist/; then
+            echo "contact address leaked into the build in plain text"
+            exit 1
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: dist
+          retention-days: 7
+
+  deploy:
+    name: Publish to gh-pages
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: dist
+
+      - name: Publish
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cd dist
+          touch .nojekyll
+          git init -q
+          git checkout -qb gh-pages
+          git add -A
+          git commit -qm "Deploy ${GITHUB_SHA::7}"
+          git push -qf "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

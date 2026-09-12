@@ -89,7 +89,6 @@ const stats = ['companiesServed', 'uptime', 'projectsDelivered', 'support'].map(
     title={t('about.cta.heading')}
     description={t('about.cta.description')}
     primary={{ label: t('about.cta.primaryButton') }}
-    secondary={{ label: t('about.cta.secondaryButton'), href: '/about' }}
   />
 </Base>
 
@@ -101,7 +100,7 @@ const stats = ['companiesServed', 'uptime', 'projectsDelivered', 'support'].map(
   .mission__copy { display: flex; flex-direction: column; gap: 20px; }
   .mission__para { font-size: clamp(16px, 1.3vw, 18px); line-height: 1.68; color: var(--ink); }
   .mission__para--muted { color: var(--ink-muted); }
-  .mission__cta { align-self: flex-start; margin-top: 8px; }
+  :global(.mission__cta) { align-self: flex-start; margin-top: 8px; }
 
   .sec-head { margin-bottom: 44px; }
   .block-head { display: flex; flex-direction: column; gap: 16px; max-width: 660px; margin-bottom: 48px; }

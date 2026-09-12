@@ -31,19 +31,22 @@ const planes = [
   };
 });
 
+/* Five slots, staggered three-behind-two, so every product gets a node and
+   none of the labels collide. */
 const slots = [
-  { gx: 0.55, gy: 0.55 },
-  { gx: 3.55, gy: 0.55 },
-  { gx: 0.55, gy: 2.75 },
-  { gx: 3.55, gy: 2.75 },
+  { gx: 0.35, gy: 0.45 },
+  { gx: 2.6, gy: 0.45 },
+  { gx: 4.85, gy: 0.45 },
+  { gx: 1.45, gy: 2.7 },
+  { gx: 3.7, gy: 2.7 },
 ];
 /* Painter's algorithm: an isometric scene must draw back-to-front, and
    depth on this camera is simply gx + gy. */
 const productNodes = nodes
-  .slice(0, 4)
+  .slice(0, slots.length)
   .map((label, i) => {
     const s = slots[i]!;
-    return { ...cube(s.gx, s.gy, 1.55, nodeH, cam, lifts.top), label, depth: s.gx + s.gy };
+    return { ...cube(s.gx, s.gy, 1.45, nodeH, cam, lifts.top), label, depth: s.gx + s.gy };
   })
   .sort((a, b) => a.depth - b.depth);
 
