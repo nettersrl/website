@@ -23,8 +23,9 @@ i18n
       escapeValue: false,
     },
     detection: {
-      order: ['navigator'],
-      caches: [],
+      order: ['sessionStorage', 'navigator'],
+      lookupSessionStorage: 'i18nextLng',
+      caches: ['sessionStorage'],
     },
   });
 
