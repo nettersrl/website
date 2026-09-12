@@ -2,24 +2,24 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { locales, localizePath, stripLocale, defaultLocale, type Locale } from '../i18n/ui';
+import HumanChallenge from '../components/HumanChallenge.astro';
+import { contactEmailEncoded } from '../data/site';
+
+const turnstileSitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY;
 
 interface Props {
-  locale: Locale;
   title: string;
   description: string;
-  /** Page-specific <head> additions, e.g. a third-party script. */
   noindex?: boolean;
 }
-const { locale, title, description, noindex = false } = Astro.props;
+const { title, description, noindex = false } = Astro.props;
 
-const canonicalPath = stripLocale(Astro.url.pathname);
 const site = Astro.site ?? new URL('https://www.netter.io');
-const canonical = new URL(localizePath(canonicalPath, locale), site);
+const canonical = new URL(Astro.url.pathname, site);
 const fullTitle = title === 'Netter' ? 'Netter — IT Products and Services' : `${title} — Netter`;
 ---
 <!doctype html>
-<html lang={locale}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,17 +29,12 @@ const fullTitle = title === 'Netter' ? 'Netter — IT Products and Services' : `
     <link rel="canonical" href={canonical.href} />
     {noindex && <meta name="robots" content="noindex" />}
 
-    {locales.map((l) => (
-      <link rel="alternate" hreflang={l} href={new URL(localizePath(canonicalPath, l), site).href} />
-    ))}
-    <link rel="alternate" hreflang="x-default" href={new URL(localizePath(canonicalPath, defaultLocale), site).href} />
-
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Netter" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical.href} />
-    <meta property="og:locale" content={locale === 'it' ? 'it_IT' : 'en_GB'} />
+    <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -49,11 +44,121 @@ const fullTitle = title === 'Netter' ? 'Netter — IT Products and Services' : `
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
-    <Header locale={locale} />
+    <Header />
     <main id="main">
       <slot />
     </main>
-    <Footer locale={locale} />
+    <Footer />
+
+    <div id="netter-human-layer" class="human-layer" hidden>
+      <HumanChallenge sitekey={turnstileSitekey} />
+    </div>
+
+    <script is:inline define:vars={{ encoded: contactEmailEncoded }}>
+      (() => {
+        // The address ships reversed-base64 and is decoded only once a visitor
+        // clears the challenge, so scraping the HTML yields nothing usable.
+        const decode = (v) => {
+          try { return atob(v.split('').reverse().join('')); } catch { return ''; }
+        };
+        const getEmail = () => decode(encoded);
+
+        const buildMailto = (email, subject, body) => {
+          if (!email) return '';
+          const params = new URLSearchParams();
+          if (subject) params.set('subject', subject);
+          if (body) params.set('body', body);
+          const query = params.toString().replace(/\+/g, '%20');
+          return `mailto:${email}${query ? `?${query}` : ''}`;
+        };
+        const mailtoFor = (el, email) =>
+          buildMailto(email, el.getAttribute('data-subject'), el.getAttribute('data-body'));
+
+        let verified = false;
+        let pending = null;
+
+        const looksAutomated = () => {
+          try {
+            if (navigator.webdriver) return true;
+            return /HeadlessChrome|PhantomJS|bot|crawler|spider/i.test(navigator.userAgent);
+          } catch { return false; }
+        };
+
+        const revealAll = (email) => {
+          document.querySelectorAll('a.obf-email').forEach((el) => {
+            if (el.dataset.decoded === '1') return;
+            el.setAttribute('href', mailtoFor(el, email));
+            if (!el.hasAttribute('data-label')) el.textContent = email;
+            el.dataset.decoded = '1';
+          });
+        };
+
+        const layer = () => document.getElementById('netter-human-layer');
+
+        const markVerified = (provider) => {
+          if (verified || looksAutomated()) return;
+          const email = getEmail();
+          if (!email) return;
+          verified = true;
+
+          const widget = document.querySelector('[data-cf-widget]');
+          if (widget) {
+            widget.dataset.verified = '1';
+            widget.dataset.checking = '';
+            const msg = widget.querySelector('.cf-msg');
+            if (msg) msg.textContent = 'Verified — address unlocked';
+          }
+
+          revealAll(email);
+          window.dispatchEvent(new CustomEvent('netter:verified', { detail: { provider } }));
+
+          if (pending) {
+            const href = mailtoFor(pending, email);
+            pending = null;
+            setTimeout(() => { window.location.href = href; }, 300);
+          }
+          setTimeout(() => { const l = layer(); if (l) l.hidden = true; }, 1800);
+        };
+
+        const startChallenge = () => {
+          const l = layer();
+          if (l) {
+            l.hidden = false;
+            l.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        };
+
+        const activate = (event, el) => {
+          if (el.dataset.decoded === '1') return; // already a real mailto
+          event.preventDefault();
+          if (verified) {
+            const email = getEmail();
+            el.setAttribute('href', mailtoFor(el, email));
+            el.dataset.decoded = '1';
+            window.location.href = mailtoFor(el, email);
+            return;
+          }
+          pending = el;
+          startChallenge();
+        };
+
+        // Delegated, because these links outlive and postdate this script:
+        // React re-creates the header nav on hydration, and the mobile
+        // drawer's button does not exist until the drawer is opened.
+        document.addEventListener('click', (e) => {
+          const el = e.target instanceof Element ? e.target.closest('a.obf-email') : null;
+          if (el) activate(e, el);
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key !== 'Enter' && e.key !== ' ') return;
+          const el = e.target instanceof Element ? e.target.closest('a.obf-email') : null;
+          if (el) activate(e, el);
+        });
+        window.addEventListener('netter:humanVerified', (e) => {
+          markVerified((e.detail && e.detail.provider) || 'challenge');
+        });
+      })();
+    </script>
 
     <script>
       // Scroll reveals. The `js` class gates the hidden start state, so with
@@ -82,3 +187,12 @@ const fullTitle = title === 'Netter' ? 'Netter — IT Products and Services' : `
     </script>
   </body>
 </html>
+
+<style>
+  .human-layer {
+    display: flex;
+    justify-content: center;
+    padding: 0 var(--gutter) 56px;
+    background: var(--ground);
+  }
+</style>

@@ -1,8 +1,4 @@
-import en from '../i18n/locales/en.json';
-import it from '../i18n/locales/it.json';
-import type { Locale } from '../i18n/ui';
-
-const dictionaries: Record<Locale, unknown> = { en, it };
+import copy from '../data/copy.json';
 
 /** Keys that describe the node itself rather than one of its children. */
 const SELF_KEYS = new Set(['title', 'subtitle', 'description', 'name', 'badge']);
@@ -21,8 +17,8 @@ export interface ContentSection {
   items: ContentNode[];
 }
 
-function resolve(dict: unknown, path: string): unknown {
-  let cur: unknown = dict;
+function resolve(path: string): unknown {
+  let cur: unknown = copy;
   for (const part of path.split('.')) {
     if (typeof cur !== 'object' || cur === null || !(part in cur)) return undefined;
     cur = (cur as Record<string, unknown>)[part];
@@ -30,9 +26,9 @@ function resolve(dict: unknown, path: string): unknown {
   return cur;
 }
 
-/** The locale's subtree at `path`, falling back to English. */
-function subtree(locale: Locale, path: string): Record<string, unknown> | undefined {
-  const found = resolve(dictionaries[locale], path) ?? resolve(dictionaries.en, path);
+/** The copy subtree at `path`, if it is a block rather than a string. */
+function subtree(path: string): Record<string, unknown> | undefined {
+  const found = resolve(path);
   return typeof found === 'object' && found !== null && !Array.isArray(found)
     ? (found as Record<string, unknown>)
     : undefined;
@@ -66,13 +62,13 @@ function childNodes(raw: Record<string, unknown>): ContentNode[] {
 }
 
 /**
- * Read a content block straight out of the locale JSON. The dictionaries are
- * uniformly `{title, subtitle, ...children{title, description}}`, so every
- * section on the site renders from this one walker rather than a hand-written
- * template per page — no copy is retyped, and Italian falls back per subtree.
+ * Read a content block out of copy.json. The file is uniformly
+ * `{title, subtitle, ...children{title, description}}`, so every section on
+ * the site renders from this one walker rather than a hand-written template
+ * per page.
  */
-export function getSection(locale: Locale, path: string): ContentSection | null {
-  const raw = subtree(locale, path);
+export function getSection(path: string): ContentSection | null {
+  const raw = subtree(path);
   if (!raw) return null;
   return {
     title: str(raw, 'title'),
@@ -82,14 +78,7 @@ export function getSection(locale: Locale, path: string): ContentSection | null 
   };
 }
 
-/** Flat list of a block's leaf bullet points (children with no children). */
-export function getPoints(locale: Locale, path: string): string[] {
-  const section = getSection(locale, path);
-  if (!section) return [];
-  return section.items.map((i) => i.title);
-}
-
-/** True when `path` exists as a content block for this locale or English. */
-export function hasSection(locale: Locale, path: string): boolean {
-  return subtree(locale, path) !== undefined;
+/** True when `path` exists as a content block. */
+export function hasSection(path: string): boolean {
+  return subtree(path) !== undefined;
 }

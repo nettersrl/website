@@ -4,6 +4,9 @@ export interface NavItem {
   label: string;
   href: string;
   description?: string;
+  external?: boolean;
+  /** Shown as a small plate beside the name, e.g. an unreleased product. */
+  status?: string;
 }
 
 export interface NavGroup {
@@ -14,8 +17,7 @@ export interface NavGroup {
 interface Props {
   groups: NavGroup[];
   links: NavItem[];
-  locales: { code: string; label: string; href: string; current: boolean }[];
-  cta: NavItem;
+  cta: { label: string };
   menuLabel: string;
   closeLabel: string;
   currentPath: string;
@@ -34,7 +36,7 @@ const Arrow = ({ size = 14 }: { size?: number }) => (
  * navigates — the panels just render closed.
  */
 export default function SiteNav({
-  groups, links, locales, cta, menuLabel, closeLabel, currentPath,
+  groups, links, cta, menuLabel, closeLabel, currentPath,
 }: Props) {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -73,6 +75,7 @@ export default function SiteNav({
   };
 
   const isCurrent = (href: string) => currentPath === href || currentPath === `${href}/`;
+  const ctaProps = { className: 'btn btn--primary btn--sm nav__cta obf-email', href: '#netter-human-layer', rel: 'nofollow', 'data-label': '' };
 
   return (
     <div className="nav" ref={navRef}>
@@ -101,9 +104,16 @@ export default function SiteNav({
             {openGroup === group.label && (
               <div className="nav__panel">
                 {group.items.map((item) => (
-                  <a key={item.href} href={item.href} className="nav__card">
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="nav__card"
+                    target={item.external ? '_blank' : undefined}
+                    rel={item.external ? 'noopener' : undefined}
+                  >
                     <span className="nav__card-title">
                       {item.label}
+                      {item.status && <span className="nav__plate">{item.status}</span>}
                       <Arrow size={12} />
                     </span>
                     {item.description && <span className="nav__card-desc">{item.description}</span>}
@@ -123,19 +133,7 @@ export default function SiteNav({
 
       {/* ---------- right rail ---------- */}
       <div className="nav__rail">
-        <div className="nav__locales mono">
-          {locales.map((l, i) => (
-            <span key={l.code}>
-              {i > 0 && <span className="nav__sep">/</span>}
-              <a href={l.href} hrefLang={l.code}
-                 aria-current={l.current ? 'true' : undefined}
-                 className={l.current ? 'nav__locale is-active' : 'nav__locale'}>
-                {l.label}
-              </a>
-            </span>
-          ))}
-        </div>
-        <a href={cta.href} className="btn btn--primary btn--sm nav__cta">
+        <a {...ctaProps}>
           {cta.label}
           <Arrow />
         </a>
@@ -167,8 +165,17 @@ export default function SiteNav({
             <div key={group.label} className="nav__drawer-group">
               <div className="nav__drawer-label mono">{group.label}</div>
               {group.items.map((item) => (
-                <a key={item.href} href={item.href} className="nav__drawer-link">
-                  {item.label}
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="nav__drawer-link"
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noopener' : undefined}
+                >
+                  <span className="nav__drawer-name">
+                    {item.label}
+                    {item.status && <span className="nav__plate">{item.status}</span>}
+                  </span>
                   <Arrow size={13} />
                 </a>
               ))}
@@ -182,7 +189,7 @@ export default function SiteNav({
               </a>
             ))}
           </div>
-          <a href={cta.href} className="btn btn--primary nav__drawer-cta">
+          <a {...ctaProps} className="btn btn--primary nav__drawer-cta obf-email">
             {cta.label}
             <Arrow />
           </a>

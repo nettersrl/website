@@ -1,28 +1,21 @@
 ---
-import Base from '../../layouts/Base.astro';
-import CallToAction from '../../components/CallToAction.astro';
-import StatGrid from '../../components/StatGrid.astro';
-import IsoStack from '../../components/IsoStack.astro';
-import Arrow from '../../components/Arrow.astro';
-import { getSection } from '../../lib/content';
-import { products, splitStat, company } from '../../data/site';
-import { useTranslations, localizePath, localeParams, type Locale } from '../../i18n/ui';
+import Base from '../layouts/Base.astro';
+import CallToAction from '../components/CallToAction.astro';
+import StatGrid from '../components/StatGrid.astro';
+import IsoStack from '../components/IsoStack.astro';
+import Arrow from '../components/Arrow.astro';
+import { getSection } from '../lib/content';
+import { products, splitStat, company } from '../data/site';
+import { t } from '../lib/copy';
+import EmailLink from '../components/EmailLink.astro';
 
-export function getStaticPaths() {
-  return localeParams();
-}
 
-interface Props { locale: Locale }
-const { locale } = Astro.props;
-const t = useTranslations(locale);
-const lp = (p: string) => localizePath(p, locale);
-
-const values = getSection(locale, 'about.values');
+const values = getSection('about.values');
 const stats = ['companiesServed', 'uptime', 'projectsDelivered', 'support'].map((k) =>
   splitStat(t(`about.achievements.${k}`)),
 );
 ---
-<Base locale={locale} title={t('common.aboutUs')} description={t('about.subtitle')}>
+<Base title={t('common.aboutUs')} description={t('about.subtitle')}>
   <section class="section blueprint">
     <div class="shell page-hero">
       <div class="badge rise">{t('about.badge')}</div>
@@ -39,9 +32,7 @@ const stats = ['companiesServed', 'uptime', 'projectsDelivered', 'support'].map(
         <div class="eyebrow">{t('about.mission.heading')}</div>
         <p class="mission__para">{t('about.mission.paragraph1')}</p>
         <p class="mission__para mission__para--muted">{t('about.mission.paragraph2')}</p>
-        <a href={lp('/contact')} class="btn btn--primary mission__cta">
-          {t('about.mission.cta')}<Arrow />
-        </a>
+        <EmailLink label={t('about.mission.cta')} class="btn btn--primary mission__cta"><Arrow /></EmailLink>
       </div>
       <div class="mission__figure" data-reveal>
         <IsoStack
@@ -97,8 +88,8 @@ const stats = ['companiesServed', 'uptime', 'projectsDelivered', 'support'].map(
   <CallToAction
     title={t('about.cta.heading')}
     description={t('about.cta.description')}
-    primary={{ label: t('about.cta.primaryButton'), href: lp('/contact') }}
-    secondary={{ label: t('about.cta.secondaryButton'), href: lp('/contact') }}
+    primary={{ label: t('about.cta.primaryButton') }}
+    secondary={{ label: t('about.cta.secondaryButton'), href: '/about' }}
   />
 </Base>
 

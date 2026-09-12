@@ -1,13 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
 import Arrow from '../components/Arrow.astro';
-import { useTranslations, localizePath, defaultLocale } from '../i18n/ui';
+import { t } from '../lib/copy';
+import EmailLink from '../components/EmailLink.astro';
 
-const locale = defaultLocale;
-const t = useTranslations(locale);
-const lp = (p: string) => localizePath(p, locale);
 ---
-<Base locale={locale} title="Page not found" description="That page does not exist." noindex>
+<Base title="Page not found" description="That page does not exist." noindex>
   <section class="section blueprint nf">
     <div class="shell nf__inner">
       <div class="mono nf__code">404</div>
@@ -16,10 +14,10 @@ const lp = (p: string) => localizePath(p, locale);
         The link may be out of date. Everything below is a good place to pick up again.
       </p>
       <div class="nf__links">
-        <a href={lp('/')} class="btn btn--primary">{t('header.home')}<Arrow /></a>
-        <a href={lp('/products')} class="btn btn--ghost">{t('header.products')}</a>
-        <a href={lp('/services')} class="btn btn--ghost">{t('header.services')}</a>
-        <a href={lp('/contact')} class="btn btn--ghost">{t('common.contactUs')}</a>
+        <a href={'/'} class="btn btn--primary">{t('header.home')}<Arrow /></a>
+        <a href={'/products'} class="btn btn--ghost">{t('header.products')}</a>
+        <a href={'/services'} class="btn btn--ghost">{t('header.services')}</a>
+        <EmailLink label={t('common.contactUs')} class="btn btn--ghost"></EmailLink>
       </div>
     </div>
   </section>

@@ -1,20 +1,12 @@
 ---
-import Base from '../../../layouts/Base.astro';
-import CallToAction from '../../../components/CallToAction.astro';
-import Arrow from '../../../components/Arrow.astro';
-import { products } from '../../../data/site';
-import { useTranslations, localizePath, localeParams, type Locale } from '../../../i18n/ui';
+import Base from '../../layouts/Base.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Arrow from '../../components/Arrow.astro';
+import { products, productHref } from '../../data/site';
+import { t } from '../../lib/copy';
 
-export function getStaticPaths() {
-  return localeParams();
-}
-
-interface Props { locale: Locale }
-const { locale } = Astro.props;
-const t = useTranslations(locale);
-const lp = (p: string) => localizePath(p, locale);
 ---
-<Base locale={locale} title={t('header.products')} description={t('home.products.description')}>
+<Base title={t('header.products')} description={t('home.products.description')}>
   <section class="section blueprint">
     <div class="shell page-hero">
       <div class="badge rise">{t('header.products')}</div>
@@ -27,18 +19,28 @@ const lp = (p: string) => localizePath(p, locale);
     <div class="shell">
       <div class="grid-rule cols-2" data-reveal>
         {products.map((p, i) => (
-          <a href={lp(`/products/${p.slug}`)} class="tile pcard">
+          <a
+            href={productHref(p, (path) => path)}
+            target={p.url ? '_blank' : undefined}
+            rel={p.url ? 'noopener' : undefined}
+            class="tile pcard"
+          >
             <div class="pcard__top">
               <svg width="64" height="52" viewBox="0 0 64 52" fill="none" aria-hidden="true">
                 <polygon points="32,5 58,18 32,31 6,18" fill="#1e1e26" stroke="#e3000f" stroke-width="1.2" />
                 <polygon points="6,18 32,31 32,47 6,34" fill="#121218" stroke="#3a1015" stroke-width="1" />
                 <polygon points="32,31 58,18 58,34 32,47" fill="#0e0e13" stroke="#3a1015" stroke-width="1" />
               </svg>
-              <span class="mono pcard__idx">{String(i + 1).padStart(2, '0')}</span>
+              {p.status
+                ? <span class="plate">{p.status}</span>
+                : <span class="mono pcard__idx">{String(i + 1).padStart(2, '0')}</span>}
             </div>
             <h2 class="pcard__name">{t(`${p.key}.name`)}</h2>
             <p class="lead">{t(`${p.key}.description`)}</p>
-            <span class="btn-text">{t('common.learnMore')}<Arrow size={12} weight={2.4} /></span>
+            <span class="btn-text">
+              {p.url ? p.url.replace('https://', '') : t('common.learnMore')}
+              <Arrow size={12} weight={2.4} />
+            </span>
           </a>
         ))}
       </div>
@@ -48,7 +50,7 @@ const lp = (p: string) => localizePath(p, locale);
   <CallToAction
     title={t('about.cta.heading')}
     description={t('about.cta.description')}
-    primary={{ label: t('common.contactSales'), href: lp('/contact') }}
+    primary={{ label: t('common.contactSales') }}
   />
 </Base>
 

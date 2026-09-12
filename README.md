@@ -20,15 +20,17 @@ diagrams and charts are static HTML with no client JS. The only islands are the
 navigation (mega-menu and mobile drawer) and the contact form. Every link in the
 header is a real anchor, so the site navigates before — and without — hydration.
 
-**Content lives in `src/i18n/locales/{en,it}.json`.** These dictionaries are the
-single source of copy. `src/lib/content.ts` walks their uniform
-`{title, subtitle, ...children}` shape, so a page renders whatever sections its
-subtree happens to have rather than hard-coding a template per page. Italian is
-incomplete upstream; `src/i18n/ui.ts` falls back to English per key.
+**Content lives in `src/data/copy.json`.** That file is the single source of
+copy; `src/lib/copy.ts` reads a key out of it and `src/lib/content.ts` walks its
+uniform `{title, subtitle, ...children}` shape, so a page renders whatever
+sections its subtree happens to have rather than hard-coding a template per
+page. The site is English only.
 
-**Routes are locale-parameterised.** `src/pages/[...locale]/` builds each page
-twice — once at the root for English, once under `/it/`. Slugs match the
-previous site exactly so existing links keep working.
+**Slugs match the previous site exactly** so existing links keep working.
+
+**Products can live elsewhere.** An entry in `src/data/site.ts` with a `url`
+(Obstack, Ventic) links straight to its own site and gets no page here; one with
+a `status` (Hadron) renders a plate marking it as unreleased.
 
 **Diagrams are generated, not drawn.** `src/lib/iso.ts` implements one 2:1
 dimetric projection:
@@ -58,6 +60,12 @@ Tokens live at the top of `src/styles/global.css`.
 - The D-SQL performance charts use **sample data**, flagged as such on the page.
   Replace the arrays in `src/pages/[...locale]/products/[slug].astro` with real
   benchmarks before treating them as claims.
-- The contact form posts to the same Formspree endpoint and reCAPTCHA key as the
-  previous site (`src/data/site.ts`). reCAPTCHA now loads only on `/contact`
-  rather than on every page.
+- **There is no contact form or contact page.** Contact links open the visitor's
+  own mail client, and the address is never in the markup: it ships as reversed
+  base64 in `src/data/site.ts` and is decoded only after a visitor clears the
+  challenge in `src/components/HumanChallenge.astro` — the same approach as
+  obstack.it. Set `PUBLIC_TURNSTILE_SITEKEY` to swap the click-challenge for real
+  Cloudflare Turnstile.
+- Any link that should open mail is an `EmailLink`; the layout binds them by
+  delegation, so links React re-renders or the mobile drawer creates later still
+  work.

@@ -1,21 +1,13 @@
 ---
-import Base from '../../../layouts/Base.astro';
-import CallToAction from '../../../components/CallToAction.astro';
-import Icon from '../../../components/Icon.astro';
-import Arrow from '../../../components/Arrow.astro';
-import { services } from '../../../data/site';
-import { useTranslations, localizePath, localeParams, type Locale } from '../../../i18n/ui';
+import Base from '../../layouts/Base.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Icon from '../../components/Icon.astro';
+import Arrow from '../../components/Arrow.astro';
+import { services } from '../../data/site';
+import { t } from '../../lib/copy';
 
-export function getStaticPaths() {
-  return localeParams();
-}
-
-interface Props { locale: Locale }
-const { locale } = Astro.props;
-const t = useTranslations(locale);
-const lp = (p: string) => localizePath(p, locale);
 ---
-<Base locale={locale} title={t('header.services')} description={t('home.consultancy.description')}>
+<Base title={t('header.services')} description={t('home.consultancy.description')}>
   <section class="section blueprint">
     <div class="shell page-hero">
       <div class="badge rise">{t('header.services')}</div>
@@ -28,7 +20,7 @@ const lp = (p: string) => localizePath(p, locale);
     <div class="shell">
       <div class="grid-rule cols-2" data-reveal>
         {services.map((s, i) => (
-          <a href={lp(`/services/${s.slug}`)} class="tile scard">
+          <a href={`/services/${s.slug}`} class="tile scard">
             <div class="scard__top">
               <span class="scard__icon"><Icon path={s.icon} size={19} /></span>
               <span class="mono scard__idx">{String(i + 1).padStart(2, '0')}</span>
@@ -45,7 +37,7 @@ const lp = (p: string) => localizePath(p, locale);
   <CallToAction
     title={t('about.cta.heading')}
     description={t('about.cta.description')}
-    primary={{ label: t('common.scheduleConsultation'), href: lp('/contact') }}
+    primary={{ label: t('common.scheduleConsultation') }}
   />
 </Base>
 

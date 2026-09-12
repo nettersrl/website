@@ -1,14 +1,13 @@
 ---
-import { localizePath, useTranslations, type Locale } from '../i18n/ui';
+import { t } from '../lib/copy';
 
 interface Crumb { label: string; href?: string }
-interface Props { locale: Locale; trail: Crumb[] }
-const { locale, trail } = Astro.props;
-const t = useTranslations(locale);
+interface Props { trail: Crumb[] }
+const { trail } = Astro.props;
 ---
 <nav class="crumbs mono" aria-label="Breadcrumb">
   <div class="shell crumbs__inner">
-    <a href={localizePath('/', locale)}>{t('header.home')}</a>
+    <a href="/">{t('header.home')}</a>
     {trail.map((c) => (
       <>
         <span class="crumbs__sep" aria-hidden="true">/</span>

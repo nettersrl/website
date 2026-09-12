@@ -1,54 +1,43 @@
 ---
 import Logo from './Logo.astro';
 import SiteNav from './SiteNav.tsx';
-import { products, services } from '../data/site';
-import { useTranslations, localizePath, stripLocale, locales, localeNames, type Locale } from '../i18n/ui';
-
-interface Props { locale: Locale }
-const { locale } = Astro.props;
-const t = useTranslations(locale);
-const lp = (p: string) => localizePath(p, locale);
-const canonical = stripLocale(Astro.url.pathname);
+import { products, services, productHref } from '../data/site';
+import { t } from '../lib/copy';
 
 const groups = [
   {
     label: t('header.products'),
     items: products.map((p) => ({
       label: t(`${p.key}.name`),
-      href: lp(`/products/${p.slug}`),
+      href: productHref(p, (path) => path),
       description: t(`${p.key}.description`),
+      external: Boolean(p.url),
+      status: p.status,
     })),
   },
   {
     label: t('header.services'),
     items: services.map((s) => ({
       label: t(`${s.key}.name`),
-      href: lp(`/services/${s.slug}`),
+      href: `/services/${s.slug}`,
       description: t(`${s.key}.description`),
+      external: false,
     })),
   },
 ];
 
-const links = [{ label: t('header.about'), href: lp('/about') }];
-
-const localeLinks = locales.map((code) => ({
-  code,
-  label: localeNames[code],
-  href: localizePath(canonical, code),
-  current: code === locale,
-}));
+const links = [{ label: t('header.about'), href: '/about' }];
 ---
 <header class="header">
   <div class="header__inner">
-    <a href={lp('/')} class="header__brand" aria-label="Netter — home">
+    <a href="/" class="header__brand" aria-label="Netter — home">
       <Logo height={26} />
     </a>
     <SiteNav
       client:load
       groups={groups}
       links={links}
-      locales={localeLinks}
-      cta={{ label: t('common.contactUs'), href: lp('/contact') }}
+      cta={{ label: t('common.contactUs') }}
       menuLabel="Open menu"
       closeLabel="Close menu"
       currentPath={Astro.url.pathname}
@@ -135,12 +124,22 @@ const localeLinks = locales.map((code) => ({
   }
   .nav__card:hover .nav__card-title { color: var(--accent); }
   .nav__card-desc { font-size: 12.5px; line-height: 1.5; color: var(--ink-dim); }
+  .nav__plate {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 7px;
+    border: 1px solid var(--accent-edge);
+    background: var(--accent-wash);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .nav__drawer-name { display: inline-flex; align-items: center; gap: 10px; }
 
   .nav__rail { display: flex; align-items: center; gap: 22px; flex-shrink: 0; }
-  .nav__locales { display: flex; align-items: center; font-size: 12px; letter-spacing: 0.06em; color: var(--ink-faint); }
-  .nav__sep { padding-inline: 6px; color: var(--ink-ghost); }
-  .nav__locale { color: var(--ink-faint); }
-  .nav__locale.is-active { color: var(--ink); }
 
   .nav__burger {
     display: none;

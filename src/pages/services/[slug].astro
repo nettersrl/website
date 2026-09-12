@@ -1,26 +1,20 @@
 ---
-import Base from '../../../layouts/Base.astro';
-import ContentBlock from '../../../components/ContentBlock.astro';
-import CallToAction from '../../../components/CallToAction.astro';
-import Breadcrumb from '../../../components/Breadcrumb.astro';
-import Icon from '../../../components/Icon.astro';
-import Arrow from '../../../components/Arrow.astro';
-import { services } from '../../../data/site';
-import { getSection } from '../../../lib/content';
-import { useTranslations, localizePath, locales, defaultLocale } from '../../../i18n/ui';
+import Base from '../../layouts/Base.astro';
+import ContentBlock from '../../components/ContentBlock.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Icon from '../../components/Icon.astro';
+import Arrow from '../../components/Arrow.astro';
+import EmailLink from '../../components/EmailLink.astro';
+import { services } from '../../data/site';
+import { getSection } from '../../lib/content';
+import { t } from '../../lib/copy';
 
 export function getStaticPaths() {
-  return locales.flatMap((locale) =>
-    services.map((service) => ({
-      params: { locale: locale === defaultLocale ? undefined : locale, slug: service.slug },
-      props: { locale, service },
-    })),
-  );
+  return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
 }
 
-const { locale, service } = Astro.props;
-const t = useTranslations(locale);
-const lp = (p: string) => localizePath(p, locale);
+const { service } = Astro.props;
 
 const name = t(`${service.key}.name`);
 const title = t(`${service.key}.title`);
@@ -43,13 +37,13 @@ const blockKeys = [
 ];
 
 const blocks = blockKeys
-  .map((key) => getSection(locale, `${service.key}.${key}`))
+  .map((key) => getSection(`${service.key}.${key}`))
   .filter((s): s is NonNullable<typeof s> => s !== null && (s.items.length > 0 || !!s.title));
 ---
-<Base locale={locale} title={name} description={subtitle}>
+<Base title={name} description={subtitle}>
   <Breadcrumb
-    locale={locale}
-    trail={[{ label: t('header.services'), href: lp('/services') }, { label: name }]}
+   
+    trail={[{ label: t('header.services'), href: '/services' }, { label: name }]}
   />
 
   <section class="section blueprint">
@@ -59,8 +53,8 @@ const blocks = blockKeys
       <h1 class="display-xl rise" style="animation-delay:.12s">{title}</h1>
       <p class="lead svc-hero__lead rise" style="animation-delay:.24s">{subtitle}</p>
       <div class="svc-hero__actions rise" style="animation-delay:.34s">
-        <a href={lp('/contact')} class="btn btn--primary">{t(`${service.key}.buttons.getStarted`)}<Arrow /></a>
-        <a href={lp('/contact')} class="btn btn--ghost">{t(`${service.key}.buttons.contactUs`)}</a>
+        <EmailLink label={t(`${service.key}.buttons.getStarted`)} class="btn btn--primary"><Arrow /></EmailLink>
+        <a href="/services" class="btn btn--ghost">{t('header.services')}</a>
       </div>
     </div>
   </section>
@@ -72,8 +66,8 @@ const blocks = blockKeys
   <CallToAction
     title={t(`${service.key}.cta.title`)}
     description={t(`${service.key}.cta.description`)}
-    primary={{ label: t(`${service.key}.cta.primaryButton`), href: lp('/contact') }}
-    secondary={{ label: t('header.services'), href: lp('/services') }}
+    primary={{ label: t(`${service.key}.cta.primaryButton`) }}
+    secondary={{ label: t('header.services'), href: '/services' }}
   />
 </Base>
 

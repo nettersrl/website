@@ -9,6 +9,10 @@ export interface ProductEntry {
   key: string;
   /** Locale path holding the detail-page copy, when one exists. */
   detailKey?: string;
+  /** Products with their own site link straight out; they get no page here. */
+  url?: string;
+  /** Shown as a plate beside the name when the product is not yet shipping. */
+  status?: string;
 }
 
 export interface ServiceEntry {
@@ -19,10 +23,19 @@ export interface ServiceEntry {
 
 export const products: ProductEntry[] = [
   { slug: 'd-sql', key: 'products.netterDSQL', detailKey: 'netterDSQL' },
-  { slug: 'obstack', key: 'products.obstack' },
-  { slug: 'hadron', key: 'products.hadron' },
+  { slug: 'obstack', key: 'products.obstack', url: 'https://obstack.it' },
+  { slug: 'ventic', key: 'products.ventic', url: 'https://ventic.it' },
+  { slug: 'hadron', key: 'products.hadron', status: 'Coming soon' },
   { slug: 'dcache', key: 'products.dcache' },
 ];
+
+/** Products that have a page on this site. */
+export const localProducts = products.filter((p) => !p.url);
+
+/** Where a product's link points — its own site, or its page here. */
+export function productHref(product: ProductEntry, localize: (path: string) => string): string {
+  return product.url ?? localize(`/products/${product.slug}`);
+}
 
 /** 24px stroke-grid icon paths — one consistent style, never emoji. */
 export const services: ServiceEntry[] = [
@@ -73,16 +86,16 @@ export const company = {
   street: 'Via Indipendenza',
   city: '06081 Assisi, Italy',
   vat: 'VAT code: IT03569900545',
-  email: 'info@netter.io',
   domain: 'www.netter.io',
 };
 
+/**
+ * The contact address as reversed base64. It is never written in the markup
+ * in plain form — the page decodes it only after a visitor clears the human
+ * challenge, so scrapers reading the HTML get nothing useful.
+ */
+export const contactEmailEncoded = '=8WauIXZ0RXZuB0bm5Wa';
 
-/** Carried over from the previous site — same Formspree form, same key. */
-export const contactForm = {
-  endpoint: 'https://formspree.io/f/xldpvnoe',
-  recaptchaSiteKey: '6Ldo0oIUAAAAAGcNGTtp-6kruWAddaznK0hRrogH',
-};
 
 /**
  * The achievement strings ship as one sentence ("50+ Tech Companies Served"),

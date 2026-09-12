@@ -1,21 +1,14 @@
 ---
-import Base from '../../layouts/Base.astro';
-import IsoStack from '../../components/IsoStack.astro';
-import CallToAction from '../../components/CallToAction.astro';
-import StatGrid from '../../components/StatGrid.astro';
-import Arrow from '../../components/Arrow.astro';
-import Icon from '../../components/Icon.astro';
-import { products, services, splitStat } from '../../data/site';
-import { useTranslations, localizePath, localeParams, type Locale } from '../../i18n/ui';
+import Base from '../layouts/Base.astro';
+import IsoStack from '../components/IsoStack.astro';
+import CallToAction from '../components/CallToAction.astro';
+import StatGrid from '../components/StatGrid.astro';
+import Arrow from '../components/Arrow.astro';
+import Icon from '../components/Icon.astro';
+import { products, services, splitStat, productHref } from '../data/site';
+import { t } from '../lib/copy';
+import EmailLink from '../components/EmailLink.astro';
 
-export function getStaticPaths() {
-  return localeParams();
-}
-
-interface Props { locale: Locale }
-const { locale } = Astro.props;
-const t = useTranslations(locale);
-const lp = (p: string) => localizePath(p, locale);
 
 const stats = ['companiesServed', 'uptime', 'projectsDelivered', 'support'].map((k) =>
   splitStat(t(`about.achievements.${k}`)),
@@ -28,7 +21,7 @@ const productPoints = ['distributedSystems', 'cloudNative', 'microservices'].map
   t(`home.products.features.${k}`),
 );
 ---
-<Base locale={locale} title="Netter" description={t('home.subtitle')}>
+<Base title="Netter" description={t('home.subtitle')}>
   <!-- ============================ HERO ============================ -->
   <section class="section blueprint hero">
     <div class="shell hero__inner">
@@ -40,10 +33,10 @@ const productPoints = ['distributedSystems', 'cloudNative', 'microservices'].map
         </h1>
         <p class="lead hero__lead rise" style="animation-delay:.28s">{t('home.subtitle')}</p>
         <div class="hero__actions rise" style="animation-delay:.4s">
-          <a href={lp('/products')} class="btn btn--primary">
+          <a href={'/products'} class="btn btn--primary">
             {t('home.products.cta')}<Arrow />
           </a>
-          <a href={lp('/contact')} class="btn btn--ghost">{t('common.scheduleConsultation')}</a>
+          <EmailLink label={t('common.scheduleConsultation')} class="btn btn--ghost"></EmailLink>
         </div>
       </div>
       <div class="hero__figure">
@@ -64,27 +57,37 @@ const productPoints = ['distributedSystems', 'cloudNative', 'microservices'].map
           <h2 class="h2">{t('home.products.title')}</h2>
           <p class="lead">{t('home.products.description')}</p>
         </div>
-        <a href={lp('/products')} class="btn-text sec-head__more">
+        <a href={'/products'} class="btn-text sec-head__more">
           {t('common.viewDetails')}<Arrow size={12} weight={2.4} />
         </a>
       </header>
 
-      <div class="grid-rule cols-4" data-reveal>
+      <div class="grid-rule cols-5" data-reveal>
         {products.map((p, i) => (
-          <a href={lp(`/products/${p.slug}`)} class="tile p-tile">
+          <a
+            href={productHref(p, (path) => path)}
+            target={p.url ? '_blank' : undefined}
+            rel={p.url ? 'noopener' : undefined}
+            class="tile p-tile"
+          >
             <div class="p-tile__top">
               <svg width="52" height="42" viewBox="0 0 52 42" fill="none" aria-hidden="true">
                 <polygon points="26,4 47,14.5 26,25 5,14.5" fill="#1e1e26" stroke="#e3000f" stroke-width="1.2" />
                 <polygon points="5,14.5 26,25 26,38 5,27.5" fill="#121218" stroke="#3a1015" stroke-width="1" />
                 <polygon points="26,25 47,14.5 47,27.5 26,38" fill="#0e0e13" stroke="#3a1015" stroke-width="1" />
               </svg>
-              <span class="p-tile__idx mono">{String(i + 1).padStart(2, '0')}</span>
+              {p.status
+                ? <span class="plate">{p.status}</span>
+                : <span class="p-tile__idx mono">{String(i + 1).padStart(2, '0')}</span>}
             </div>
             <div class="p-tile__body">
               <h3 class="h3">{t(`${p.key}.name`)}</h3>
               <p class="body-muted">{t(`${p.key}.description`)}</p>
             </div>
-            <span class="btn-text">{t('common.learnMore')}<Arrow size={12} weight={2.4} /></span>
+            <span class="btn-text">
+              {p.url ? p.url.replace('https://', '') : t('common.learnMore')}
+              <Arrow size={12} weight={2.4} />
+            </span>
           </a>
         ))}
       </div>
@@ -109,14 +112,14 @@ const productPoints = ['distributedSystems', 'cloudNative', 'microservices'].map
             <li><span class="points__marker" aria-hidden="true"></span>{point}</li>
           ))}
         </ul>
-        <a href={lp('/services')} class="btn btn--ghost services__cta">
+        <a href={'/services'} class="btn btn--ghost services__cta">
           {t('home.consultancy.cta')}<Arrow size={14} />
         </a>
       </div>
 
       <div class="grid-rule cols-2 services__grid" data-reveal>
         {services.map((s) => (
-          <a href={lp(`/services/${s.slug}`)} class="s-row">
+          <a href={`/services/${s.slug}`} class="s-row">
             <span class="s-row__icon"><Icon path={s.icon} size={15} /></span>
             <span class="s-row__body">
               <span class="s-row__name">{t(`${s.key}.name`)}</span>
@@ -132,7 +135,10 @@ const productPoints = ['distributedSystems', 'cloudNative', 'microservices'].map
   <section class="section">
     <div class="shell">
       <header class="sec-head" data-reveal>
-        <h2 class="h2 sec-head__solo">{t('about.achievements.heading')}</h2>
+        <div class="sec-head__copy">
+          <h2 class="h2 sec-head__solo">{t('about.achievements.heading')}</h2>
+          <p class="lead">{t('about.achievements.subtitle')}</p>
+        </div>
         <p class="mono sec-head__note">NETTER S.R.L. — ASSISI, ITALY</p>
       </header>
       <StatGrid stats={stats} />
@@ -143,8 +149,8 @@ const productPoints = ['distributedSystems', 'cloudNative', 'microservices'].map
   <CallToAction
     title={t('about.cta.heading')}
     description={t('about.cta.description')}
-    primary={{ label: t('about.cta.primaryButton'), href: lp('/contact') }}
-    secondary={{ label: t('about.cta.secondaryButton'), href: lp('/contact') }}
+    primary={{ label: t('about.cta.primaryButton') }}
+    secondary={{ label: t('about.cta.secondaryButton'), href: '/about' }}
   />
 </Base>
 
@@ -162,6 +168,7 @@ const productPoints = ['distributedSystems', 'cloudNative', 'microservices'].map
   .sec-head__more { padding-bottom: 8px; }
 
   .p-tile { min-height: 268px; }
+  .p-tile .btn-text { word-break: break-all; }
   .p-tile__top { display: flex; align-items: flex-start; justify-content: space-between; }
   .p-tile__idx { font-size: 11px; letter-spacing: 0.1em; color: var(--ink-ghost); }
   .p-tile__body { display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }

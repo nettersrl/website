@@ -1,35 +1,43 @@
 ---
 import Logo from './Logo.astro';
-import { products, services, company } from '../data/site';
-import { useTranslations, localizePath, type Locale } from '../i18n/ui';
+import EmailLink from './EmailLink.astro';
+import { products, services, company, productHref } from '../data/site';
+import { t } from '../lib/copy';
 
-interface Props { locale: Locale }
-const { locale } = Astro.props;
-const t = useTranslations(locale);
-const lp = (p: string) => localizePath(p, locale);
 const year = new Date().getFullYear();
 ---
 <footer class="footer">
   <div class="shell">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <Logo height={24} />
-        <p class="body-muted">{t('footer.tagline')}</p>
-      </div>
+    <div class="footer__brand">
+      <Logo height={26} />
+      <p class="footer__motto">{t('footer.tagline')}</p>
+    </div>
 
+    <div class="footer__grid">
       <nav class="footer__col" aria-labelledby="f-products">
         <div id="f-products" class="footer__label mono">{t('header.products')}</div>
         {products.map((p) => (
-          <a href={lp(`/products/${p.slug}`)}>{t(`${p.key}.name`)}</a>
+          <a
+            href={productHref(p, (path) => path)}
+            rel={p.url ? 'noopener' : undefined}
+            target={p.url ? '_blank' : undefined}
+          >{t(`${p.key}.name`)}</a>
         ))}
       </nav>
 
       <nav class="footer__col" aria-labelledby="f-services">
         <div id="f-services" class="footer__label mono">{t('header.services')}</div>
         {services.slice(0, 5).map((s) => (
-          <a href={lp(`/services/${s.slug}`)}>{t(`${s.key}.name`)}</a>
+          <a href={`/services/${s.slug}`}>{t(`${s.key}.name`)}</a>
         ))}
-        <a href={lp('/services')}>{t('common.viewDetails')}</a>
+        <a href="/services">{t('common.viewDetails')}</a>
+      </nav>
+
+      <nav class="footer__col" aria-labelledby="f-company">
+        <div id="f-company" class="footer__label mono">Company</div>
+        <a href="/about">{t('header.about')}</a>
+        <a href="/products">{t('header.products')}</a>
+        <EmailLink label={t('common.contactUs')} />
       </nav>
 
       <div class="footer__col">
@@ -37,7 +45,6 @@ const year = new Date().getFullYear();
         <address class="footer__address">
           {company.street}<br />{company.city}
         </address>
-        <a href={`mailto:${company.email}`}>{company.email}</a>
         <div class="footer__vat mono">{t('footer.company.vat')}</div>
       </div>
     </div>
@@ -46,26 +53,43 @@ const year = new Date().getFullYear();
       <div class="mono footer__legal">
         © {year} {company.name.toUpperCase()} — {t('common.allRightsReserved').toUpperCase()}
       </div>
-      <nav class="footer__meta">
-        <a href={lp('/about')}>{t('header.about')}</a>
-        <a href={lp('/services')}>{t('header.services')}</a>
-        <a href={lp('/contact')}>{t('common.contactUs')}</a>
-      </nav>
+      <p class="footer__trademarks">
+        All registered trademarks used on this site are the property of their respective owners.
+      </p>
     </div>
   </div>
 </footer>
 
 <style>
   .footer { padding-block: 64px 40px; background: var(--ground); }
+
+  /* Brand lockup: logo and motto share one left edge, above the link columns. */
+  .footer__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding-bottom: 44px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .footer__motto {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    color: var(--ink);
+    max-width: 18ch;
+  }
+
   .footer__grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 40px;
-    padding-bottom: 48px;
+    padding-block: 44px;
     border-bottom: 1px solid var(--hairline);
   }
-  .footer__brand { display: flex; flex-direction: column; gap: 18px; max-width: 240px; }
-  .footer__col { display: flex; flex-direction: column; gap: 14px; }
+  .footer__col { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
   .footer__col a { font-size: 14px; color: var(--ink-muted); }
   .footer__col a:hover { color: var(--accent); }
   .footer__label {
@@ -79,15 +103,14 @@ const year = new Date().getFullYear();
 
   .footer__base {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
-    gap: 20px;
+    gap: 24px;
     flex-wrap: wrap;
     padding-top: 26px;
   }
   .footer__legal { font-size: 11px; letter-spacing: 0.06em; color: var(--ink-ghost); }
-  .footer__meta { display: flex; gap: 18px; font-size: 12px; color: var(--ink-ghost); }
-  .footer__meta a { color: var(--ink-ghost); }
+  .footer__trademarks { font-size: 11px; line-height: 1.6; color: var(--ink-ghost); max-width: 54ch; }
 
   @media (max-width: 900px) {
     .footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }

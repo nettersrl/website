@@ -1,10 +1,12 @@
 ---
 import Arrow from './Arrow.astro';
+import EmailLink from './EmailLink.astro';
 
 interface Props {
   title: string;
   description?: string;
-  primary: { label: string; href: string };
+  /** Opens the visitor's mail client, behind the human challenge. */
+  primary: { label: string; subject?: string };
   secondary?: { label: string; href: string };
 }
 const { title, description, primary, secondary } = Astro.props;
@@ -16,7 +18,9 @@ const { title, description, primary, secondary } = Astro.props;
       {description && <p class="lead">{description}</p>}
     </div>
     <div class="cta__actions" data-reveal>
-      <a href={primary.href} class="btn btn--primary">{primary.label}<Arrow /></a>
+      <EmailLink label={primary.label} subject={primary.subject} class="btn btn--primary">
+        <Arrow />
+      </EmailLink>
       {secondary && <a href={secondary.href} class="btn btn--ghost">{secondary.label}</a>}
     </div>
   </div>
